@@ -44,6 +44,7 @@ const counterElem = document.querySelector('#counter');
 
 const startTimerButton = document.getElementById('startTimerButton');
 startTimerButton.addEventListener('click', () => {
+    startTimerButton.blur();
     window.dispatchEvent(new CustomEvent('start'))
 });
 
@@ -105,7 +106,10 @@ window.addEventListener('start', async (e) => {
 
     // changeSoundtracks(theShireSrc)
 })
-
+const al = document.getElementById('al');
+al.addEventListener("click", () => {
+    alert("ciao")
+});
 
 // const playMusic = document.getElementById('playMusic')
 //

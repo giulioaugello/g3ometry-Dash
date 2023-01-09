@@ -20,6 +20,7 @@ export class PhysObject {
         this.isPlayer = isPlayer;
         if (this.isPlayer) {
             // If object is player-controllable, a controller is created.
+            console.log(this)
             this.playerController = new PlayerController(this)
         }
 
@@ -60,7 +61,9 @@ export class PhysObject {
         // Compute phys routine. If object is active, it checks for collisions and applies the correct forces to it.
         if (this.isPlayer) {
             let check = this.is_colliding(physobjs)
+            // console.log(check, physobjs)
             let bounds = this.compute_bounds()
+
 
             // if (this.isPlayer) {
             //     if (check.coll) {
@@ -95,87 +98,87 @@ export class PhysObject {
             //
             // }
             // else if (this.isBall) {
-                if (check.coll) {
-                    // Se la palla sta collidendo sotto e non è ferma
-                    if (check.data.y.bottom.is_colliding) {
-                        console.log("y bottom")
-                        // //// Y
-                        // this.speed.y = -this.speed.y
-                        //
-                        // //// X
-                        // this.calculateSpeeds('y', 'x', check.data.y.bottom.target_bounds, 7.5, false)
-                        //
-                        // //// Z
-                        // this.calculateSpeeds('y', 'z', check.data.y.bottom.target_bounds, 7.5, false)
-                    }
+            if (check.coll) {
+                // Se la palla sta collidendo sotto e non è ferma
+                if (check.data.y.bottom.is_colliding) {
+                    console.log("y bottom")
+                    // //// Y
+                    // this.speed.y = -this.speed.y
+                    //
+                    // //// X
+                    // this.calculateSpeeds('y', 'x', check.data.y.bottom.target_bounds, 7.5, false)
+                    //
+                    // //// Z
+                    // this.calculateSpeeds('y', 'z', check.data.y.bottom.target_bounds, 7.5, false)
+                }
 
-                    //Se la palla sta collidendo sopra e non è ferma
-                    if (check.data.y.top.is_colliding) {
-                        console.log("y top")
-                        // //// Y
-                        // // Rimando la palla verso l'alto con la stessa velocità con cui è arrivata
-                        // this.speed.y = -this.speed.y
-                        //
-                        // //// X
-                        // this.calculateSpeeds('y', 'x', check.data.y.top.target_bounds, 20, true)
-                        //
-                        // //// Z
-                        // this.calculateSpeeds('y', 'z', check.data.y.top.target_bounds, 20, true)
-                    }
+                //Se la palla sta collidendo sopra e non è ferma
+                if (check.data.y.top.is_colliding) {
+                    console.log("y top")
+                    // //// Y
+                    // // Rimando la palla verso l'alto con la stessa velocità con cui è arrivata
+                    // this.speed.y = -this.speed.y
+                    //
+                    // //// X
+                    // this.calculateSpeeds('y', 'x', check.data.y.top.target_bounds, 20, true)
+                    //
+                    // //// Z
+                    // this.calculateSpeeds('y', 'z', check.data.y.top.target_bounds, 20, true)
+                }
 
-                    // Se la palla sta collidendo sulla parete dietro e non è fermo
-                    if (check.data.x.top.is_colliding) {
-                        console.log("x top")
-                        // //// X
-                        // // Inverto la speed di x
-                        // this.speed.x = -this.speed.x
-                        //
-                        // //// Y
-                        // this.calculateSpeeds('x', 'y', check.data.x.top.target_bounds, 20, true)
-                        //
-                        // //// Z
-                        // this.calculateSpeeds('x', 'z', check.data.x.top.target_bounds, 20, true)
-                    }
+                // Se la palla sta collidendo sulla parete dietro e non è fermo
+                if (check.data.x.top.is_colliding) {
+                    console.log("x top")
+                    // //// X
+                    // // Inverto la speed di x
+                    // this.speed.x = -this.speed.x
+                    //
+                    // //// Y
+                    // this.calculateSpeeds('x', 'y', check.data.x.top.target_bounds, 20, true)
+                    //
+                    // //// Z
+                    // this.calculateSpeeds('x', 'z', check.data.x.top.target_bounds, 20, true)
+                }
 
-                    // Se la palla sta collidendo sulla parete davanti e non è fermo
-                    if (check.data.x.bottom.is_colliding) {
-                        console.log("x bottom")
-                        // //// X
-                        // // Inverto la speed di x
-                        // this.speed.x = -this.speed.x
-                        //
-                        // //// Y
-                        // this.calculateSpeeds('x', 'y', check.data.x.bottom.target_bounds, 20, false)
-                        //
-                        // //// Z
-                        // this.calculateSpeeds('x', 'z', check.data.x.bottom.target_bounds, 20, false)
-                    }
+                // Se la palla sta collidendo sulla parete davanti e non è fermo
+                if (check.data.x.bottom.is_colliding) {
+                    console.log("x bottom")
+                    // //// X
+                    // // Inverto la speed di x
+                    // this.speed.x = -this.speed.x
+                    //
+                    // //// Y
+                    // this.calculateSpeeds('x', 'y', check.data.x.bottom.target_bounds, 20, false)
+                    //
+                    // //// Z
+                    // this.calculateSpeeds('x', 'z', check.data.x.bottom.target_bounds, 20, false)
+                }
 
-                    // Se la palla sta collidendo sulla parete sinistra e non è ferma
-                    if (check.data.z.bottom.is_colliding) {
-                        console.log("z bottom")
-                        // //// Z
-                        // this.speed.z = -this.speed.z
-                        //
-                        // //// X
-                        // this.calculateSpeeds('z', 'x', check.data.z.bottom.target_bounds, 20, false)
-                        //
-                        // //// Y
-                        // this.calculateSpeeds('z', 'y', check.data.z.bottom.target_bounds, 20, false)
-                    }
+                // Se la palla sta collidendo sulla parete sinistra e non è ferma
+                if (check.data.z.bottom.is_colliding) {
+                    console.log("z bottom")
+                    // //// Z
+                    // this.speed.z = -this.speed.z
+                    //
+                    // //// X
+                    // this.calculateSpeeds('z', 'x', check.data.z.bottom.target_bounds, 20, false)
+                    //
+                    // //// Y
+                    // this.calculateSpeeds('z', 'y', check.data.z.bottom.target_bounds, 20, false)
+                }
 
-                    // Se la palla sta collidendo sulla parete destra e non è ferma
-                    if (check.data.z.top.is_colliding) {
-                        console.log("z top")
-                        // //// Z
-                        // this.speed.z = -this.speed.z
-                        //
-                        // //// X
-                        // this.calculateSpeeds('z', 'x', check.data.z.top.target_bounds, 20, true)
-                        //
-                        // //// Y
-                        // this.calculateSpeeds('z', 'y', check.data.z.top.target_bounds, 20, true)
-                    }
+                // Se la palla sta collidendo sulla parete destra e non è ferma
+                if (check.data.z.top.is_colliding) {
+                    console.log("z top")
+                    // //// Z
+                    // this.speed.z = -this.speed.z
+                    //
+                    // //// X
+                    // this.calculateSpeeds('z', 'x', check.data.z.top.target_bounds, 20, true)
+                    //
+                    // //// Y
+                    // this.calculateSpeeds('z', 'y', check.data.z.top.target_bounds, 20, true)
+                }
                 // }
 
                 this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
@@ -256,70 +259,88 @@ export class PhysObject {
 
         for (const obj in physobjs) {
             // Se l'oggetto attuale è il player e obj è palla allora non lo faccio perchè poi farò palla-oggetto
-            if (this.isPlayer) {
-
-                    let targetBounds;
-
-                    if (!physobjs[obj].isPlayer) {
-                        targetBounds = physobjs[obj].bounds;
-                    } else {
-                        targetBounds = physobjs[obj].compute_bounds()
-                    }
+            // if (this.isPlayer && !physobjs[obj].isPlayer) {
 
 
-                    // Se collide da qualche parte
-                    if ((bounds.min.x <= targetBounds.max.x && bounds.max.x >= targetBounds.min.x) &&
-                        (bounds.min.z <= targetBounds.max.z && bounds.max.z >= targetBounds.min.z) &&
-                        (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
-                        isColliding = true;
+                let targetBounds;
 
-                        // if (this.isBall) {
-                        //
-                        //     if (physobjs[obj].collider_type === "goal") {
-                        //         this.speed.y += this.speed.y / 10
-                        //
-                        //         window.dispatchEvent(new CustomEvent('point'))
-                        //     }
-                        //
-                        //     if (physobjs[obj].collider_type === "death") {
-                        //         window.dispatchEvent(new CustomEvent('game_over'))
-                        //     }
-                        // }
-
-                        switch (this.whereIsColliding(bounds, targetBounds)) {
-                            case 0:
-                                data.z.bottom.is_colliding = true
-                                data.z.bottom.bounds = bounds
-                                data.z.bottom.target_bounds = targetBounds
-                                break
-                            case 1:
-                                data.z.top.is_colliding = true
-                                data.z.top.bounds = bounds
-                                data.z.top.target_bounds = targetBounds
-                                break
-                            case 2:
-                                data.y.bottom.is_colliding = true
-                                data.y.bottom.bounds = bounds
-                                data.y.bottom.target_bounds = targetBounds
-                                break
-                            case 3:
-                                data.y.top.is_colliding = true
-                                data.y.top.bounds = bounds
-                                data.y.top.target_bounds = targetBounds
-                                break
-                            case 4:
-                                data.x.bottom.is_colliding = true
-                                data.x.bottom.bounds = bounds
-                                data.x.bottom.target_bounds = targetBounds
-                                break
-                            case 5:
-                                data.x.top.is_colliding = true
-                                data.x.top.bounds = bounds
-                                data.x.top.target_bounds = targetBounds
-                                break
-
-                    }
+                if (!physobjs[obj].isPlayer) {
+                    targetBounds = physobjs[obj].bounds;
+                } else {
+                    targetBounds = physobjs[obj].compute_bounds()
                 }
+
+
+                // Se collide da qualche parte
+                if ((bounds.min.x <= targetBounds.max.x && bounds.max.x >= targetBounds.min.x) &&
+                    (bounds.min.z <= targetBounds.max.z && bounds.max.z >= targetBounds.min.z) &&
+                    (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
+                    isColliding = true;
+
+                    // console.log(physobjs[obj])
+                    // if (this.isBall) {
+                    //
+                    //     if (physobjs[obj].collider_type === "goal") {
+                    //         this.speed.y += this.speed.y / 10
+                    //
+                    //         window.dispatchEvent(new CustomEvent('point'))
+                    //     }
+                    //
+                    //     if (physobjs[obj].collider_type === "death") {
+                    //         window.dispatchEvent(new CustomEvent('game_over'))
+                    //     }
+                    // }
+                    console.log("ciao")
+
+                    // switch (this.whereIsColliding(bounds, targetBounds)) {
+                    //     case 0:
+                    //         data.z.bottom.is_colliding = true
+                    //         data.z.bottom.bounds = bounds
+                    //         data.z.bottom.target_bounds = targetBounds
+                    //         break
+                    //     case 1:
+                    //         data.z.top.is_colliding = true
+                    //         data.z.top.bounds = bounds
+                    //         data.z.top.target_bounds = targetBounds
+                    //         break
+                    //     case 2:
+                    //         data.y.bottom.is_colliding = true
+                    //         data.y.bottom.bounds = bounds
+                    //         data.y.bottom.target_bounds = targetBounds
+                    //         break
+                    //     case 3:
+                    //         data.y.top.is_colliding = true
+                    //         data.y.top.bounds = bounds
+                    //         data.y.top.target_bounds = targetBounds
+                    //         break
+                    //     case 4:
+                    //         data.x.bottom.is_colliding = true
+                    //         data.x.bottom.bounds = bounds
+                    //         data.x.bottom.target_bounds = targetBounds
+                    //         break
+                    //     case 5:
+                    //         data.x.top.is_colliding = true
+                    //         data.x.top.bounds = bounds
+                    //         data.x.top.target_bounds = targetBounds
+                    //         break
+                    //
+                    // }
+                }
+            // }
+
+            if (physobjs[obj].collider_type === "box") {
+                if (physobjs[obj].position.y <= this.position.y) {
+                    data.y.bottom = true;
+                }
+                if (physobjs[obj].position.y > this.position.y) {
+                    data.y.top = true;
+                }
+                // if (physobjs[obj].boundingBox.max.y > this.position.y) {
+                //     data.x.top = data.x.bottom = data.z.top = data.z.bottom = true;
+                //     data.y.top = data.y.bottom = false;
+                // }
+            } else {
+                data.y.bottom = true;
             }
         }
         return {
@@ -327,18 +348,18 @@ export class PhysObject {
         };
     }
 
-    whereIsColliding(bounds, targetBounds) {
-        let zBottomDifference = Math.abs(bounds.min.z - targetBounds.max.z)
-        let zTopDifference = Math.abs(targetBounds.min.z - bounds.max.z)
-        let yBottomDifference = Math.abs(bounds.min.y - targetBounds.max.y)
-        let yTopDifference = Math.abs(targetBounds.min.y - bounds.max.y)
-        let xTopDifference = Math.abs(bounds.min.x - targetBounds.max.x)
-        let xBottomDifference = Math.abs(targetBounds.min.x - bounds.max.x)
-
-        let differences = [zBottomDifference, zTopDifference, yBottomDifference, yTopDifference, xTopDifference, xBottomDifference]
-
-        return differences.indexOf(Math.min(...differences))
-    }
+    // whereIsColliding(bounds, targetBounds) {
+    //     let zBottomDifference = Math.abs(bounds.min.z - targetBounds.max.z)
+    //     let zTopDifference = Math.abs(targetBounds.min.z - bounds.max.z)
+    //     let yBottomDifference = Math.abs(bounds.min.y - targetBounds.max.y)
+    //     let yTopDifference = Math.abs(targetBounds.min.y - bounds.max.y)
+    //     let xTopDifference = Math.abs(bounds.min.x - targetBounds.max.x)
+    //     let xBottomDifference = Math.abs(targetBounds.min.x - bounds.max.x)
+    //
+    //     let differences = [zBottomDifference, zTopDifference, yBottomDifference, yTopDifference, xTopDifference, xBottomDifference]
+    //
+    //     return differences.indexOf(Math.min(...differences))
+    // }
 
     // Le bounding box degli oggetti sono piccolissime, aggiustarle
     compute_bounds() {

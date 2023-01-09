@@ -106,7 +106,10 @@ export class PlayerController {
     keyDown(e) {
         // Basic key press handling
         switch (e.keyCode) {
-            case 32: // space
+            // case 32: // space
+            //     queue.x.n = true
+            //     break
+            case 83: // 's' ma METTERE QUELLO DI SOPRA
                 queue.x.n = true
                 break
             // case 87: // w
@@ -153,18 +156,21 @@ export class PlayerController {
     keyUp(e) {
         // Basic key lift handling
         switch (e.keyCode) {
-            case 87: // w
-                queue.z.p = false
-                break
-            case 65: // a
-                queue.x.p = false;
-                break;
-            case 83: // s
-                queue.z.n = false
-                break
-            case 68: // d
+            case 83: // space
                 queue.x.n = false
                 break
+            // case 87: // w
+            //     queue.z.p = false
+            //     break
+            // case 65: // a
+            //     queue.x.p = false;
+            //     break;
+            // case 83: // s
+            //     queue.z.n = false
+            //     break
+            // case 68: // d
+            //     queue.x.n = false
+            //     break
         }
     }
 
@@ -186,8 +192,12 @@ export class PlayerController {
         //     obj.speed.y = -1
         // }
         if (queue.x.n) {
-            obj.speed.y = 1
+
+            obj.speed.y = 0.1
         }
+        // else if (!queue.x.n){
+        //     obj.speed.y = -0.1
+        // }
         // if (queue.z.p) {
         //     obj.speed.z = -0.3
         // }
