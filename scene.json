@@ -1,0 +1,73 @@
+{
+  "objs": [
+    {
+      "name": "Player",
+      "path": "obj/player.obj",
+      "isPlayer": true,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "coords": {
+        "x": 0.0,
+        "y": 4.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "base",
+      "path": "obj/base.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": 0.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cono1",
+      "path": "obj/cone1.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -10.0,
+        "y": 4.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cube1",
+      "path": "obj/cube1.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -7.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cube2",
+      "path": "obj/cube2.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -7.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    }
+  ]
+}
