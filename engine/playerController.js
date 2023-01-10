@@ -9,6 +9,7 @@ let obj = null;
 // let canvas = null;
 let drag = false;
 let old = {x: null, y: null};
+// let actualPos = null;
 
 export class PlayerController {
 
@@ -110,6 +111,7 @@ export class PlayerController {
             //     queue.x.n = true
             //     break
             case 83: // 's' ma METTERE QUELLO DI SOPRA
+                // actualPos = obj.position.y;
                 queue.x.n = true
                 break
             // case 87: // w
@@ -191,12 +193,19 @@ export class PlayerController {
         // if (queue.x.p) {
         //     obj.speed.y = -1
         // }
+
         if (queue.x.n) {
+            // console.log("handler")
 
             obj.speed.y = 0.1
+            // console.log(actualPos, obj.position.y)
+            //
+            // if (obj.position.y === actualPos + 0.5){
+            //     obj.speed.y = -0.1
+            // }
         }
         // else if (!queue.x.n){
-        //     obj.speed.y = -0.1
+        //     console.log("handler false")
         // }
         // if (queue.z.p) {
         //     obj.speed.z = -0.3
