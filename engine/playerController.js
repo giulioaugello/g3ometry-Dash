@@ -195,18 +195,12 @@ export class PlayerController {
         // }
 
         if (queue.x.n) {
-            // console.log("handler")
 
-            obj.speed.y = 0.1
-            // console.log(actualPos, obj.position.y)
-            //
-            // if (obj.position.y === actualPos + 0.5){
-            //     obj.speed.y = -0.1
-            // }
+            // obj.speed.y = 0.1
+            obj.speed.y = 0.4
+
         }
-        // else if (!queue.x.n){
-        //     console.log("handler false")
-        // }
+
         // if (queue.z.p) {
         //     obj.speed.z = -0.3
         // }

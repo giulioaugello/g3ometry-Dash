@@ -5,6 +5,9 @@ import {ShadersManager} from "./shadersManager.js";
     The PhysObject class is the abstraction that joins meshes with physics and user interaction, and also
     handles rendering for the object itself.
  */
+
+let actualPosY = null
+
 export class PhysObject {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
     constructor(mesh, name, isPlayer, isBall, collider_type, dim, coords, bounds) {
@@ -62,7 +65,6 @@ export class PhysObject {
             let check = this.is_colliding(physobjs)
             // console.log(check, physobjs)
             let bounds = this.compute_bounds()
-            let actualPosY = null
 
             // if (this.isPlayer) {
             //     if (check.coll) {
@@ -99,9 +101,14 @@ export class PhysObject {
             // else if (this.isBall) {
 
             if (check.coll) {
+
+                if (this.speed.y < 0){
+                    this.speed.y = 0
+                }
+
                 // Se la palla sta collidendo sotto e non è ferma
                 if (check.data.y.bottom.is_colliding) {
-                    console.log("y bottom")
+                    // console.log("y bottom")
                     actualPosY = this.position.y
                     // //// Y
                     // this.speed.y = -this.speed.y
@@ -193,7 +200,13 @@ export class PhysObject {
                 // console.log(this.speed.x)
 
             } else {
-                actualPosY = this.position.y
+                if (this.speed.y > 0) {
+                    if (this.position.y >= actualPosY + 4){
+                        this.speed.y = -0.3
+                    }
+                } else {
+                    this.speed.y = -0.3
+                }
             }
 
             this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
@@ -204,13 +217,7 @@ export class PhysObject {
             this.translation.y += this.speed.y;
             this.translation.z += this.speed.z;
 
-            console.log(actualPosY, this.position.y)
-
-            // while (!check.coll){
-            //     if (this.speed.y > 0) {
-            //         if (this.position.y >= actualPosY + 1)
-            //     }
-            // }
+            // console.log(actualPosY, this.position.y)
             //
             // if (this.speed.y > 0){
             //     while(!check.coll){

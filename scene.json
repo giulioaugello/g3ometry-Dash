@@ -29,6 +29,59 @@
         "y": 3.5,
         "z": 0.0
       }
+    },
+
+    {
+      "name": "cube2",
+      "path": "obj/cube2.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -9.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cube3",
+      "path": "obj/cube3.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -11.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cone1",
+      "path": "obj/cone1.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -10.0,
+        "y": 4.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "death",
+      "path": "obj/death.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -24.0,
+        "y": 0.0,
+        "z": 0.0
+      }
     }
   ]
 }
