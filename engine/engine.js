@@ -90,7 +90,7 @@ export class Engine {
         if (!actor) {
             return [0, 0, 0]
         }
-        return [actor.position.z, actor.position.x, actor.position.y]
+        return [actor.position.z, actor.position.x, 10]
     }
 
 
