@@ -186,7 +186,15 @@ export class PlayerController {
 
         if (queue.x.n) { // s
             // obj.speed.y = 0.1
+
+            // if (obj.speed.y <= 0){
+            //     obj.speed.y = 0.4
+            // }else{
+            //     console.log("ciao")
+            // }
+
             obj.speed.y = 0.4
+
         } else if (queue.z.p) { // a
 
             obj.speed.x = 0

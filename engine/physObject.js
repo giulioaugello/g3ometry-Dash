@@ -200,6 +200,8 @@ export class PhysObject {
                 // console.log(this.speed.x)
 
             } else {
+                //in aria
+
                 if (this.speed.y > 0) {
                     if (this.position.y >= actualPosY + 4) {
                         this.speed.y = -0.3
@@ -411,46 +413,58 @@ export class PhysObject {
         // let boxDimY = this.isPlayer ? (this.dim.y / 2) : 2
         // let boxDimZ = this.isPlayer ? (this.dim.z / 2) : 1
 
-        // return {
-        //     max: {
-        //         x: this.position.x + boxDimX,
-        //         y: this.position.y + boxDimY,
-        //         z: this.position.z + boxDimZ
-        //     }, min: {
-        //         x: this.position.x - boxDimX,
-        //         y: this.position.y - boxDimY,
-        //         z: this.position.z - boxDimZ
-        //     }
-        // }
-        if (this.name === "evil") {
-            return {
-                max: {
-                    x: this.position.x + 0.1,
-                    y: this.position.y + 0.1,
-                    z: this.position.z + 0.1
-                }, min: {
-                    x: this.position.x - 0.1,
-                    y: this.position.y - 0.1,
-                    z: this.position.z - 0.1
-                }
-            }
-        } else {
-            return {
-                max: {
-                    x: this.position.x + 0.43,
-                    y: this.position.y + 0.75,
-                    z: this.position.z + 0.43
-                }, min: {
-                    x: this.position.x - 0.43,
-                    y: this.position.y - 0.75,
-                    z: this.position.z - 0.43
-                }
+        return {
+            max: {
+                x: this.position.x + (this.dim.x / 2),
+                y: this.position.y + (this.dim.y / 2),
+                z: this.position.z + (this.dim.z / 2)
+            }, min: {
+                x: this.position.x - (this.dim.x / 2),
+                y: this.position.y - (this.dim.y / 2),
+                z: this.position.z - (this.dim.z / 2)
             }
         }
+        // if (this.collider_type === "evil") {
+        //     return {
+        //         max: {
+        //             x: this.position.x + 1,
+        //             y: this.position.y + 1,
+        //             z: this.position.z + 1
+        //         }, min: {
+        //             x: this.position.x - 1,
+        //             y: this.position.y - 1,
+        //             z: this.position.z - 1
+        //         }
+        //     }
+        // } else if (this.isPlayer){
+        //     return {
+        //         max: {
+        //             x: this.position.x + 0.5,
+        //             y: this.position.y + 0.5,
+        //             z: this.position.z + 0.5
+        //         }, min: {
+        //             x: this.position.x - 0.5,
+        //             y: this.position.y - 0.5,
+        //             z: this.position.z - 0.5
+        //         }
+        //     }
+        // } else if (this.collider_type === "box") {
+        //     return {
+        //         max: {
+        //             x: this.position.x + 1,
+        //             y: this.position.y + 0.5,
+        //             z: this.position.z + 1
+        //         }, min: {
+        //             x: this.position.x - 1,
+        //             y: this.position.y - 0.5,
+        //             z: this.position.z - 1
+        //         }
+        //     }
+        // }
 
     }
 
-    render(gl, program) {
+    render(gl, program, player_coords) {
         const size = 3;
         const type = gl.FLOAT;
         const normalize = false;
@@ -493,13 +507,14 @@ export class PhysObject {
         let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
         gl.uniformMatrix4fv(projectionMatrixLocation, false, ShadersManager.getProjectionMatrix(gl.canvas.clientWidth, gl.canvas.clientHeight));
 
+        let camera_positions = ShadersManager.getCameraPosition(player_coords)
         // Set up viewWorldPositionLocation (u_viewWorldPosition)
         let viewWorldPositionLocation = gl.getUniformLocation(program, "u_viewWorldPosition");
-        gl.uniform3fv(viewWorldPositionLocation, ShadersManager.getCameraPosition());
+        gl.uniform3fv(viewWorldPositionLocation, camera_positions);
 
         // Set up viewMatrixLocation (u_view)
         let viewMatrixLocation = gl.getUniformLocation(program, "u_view_matrix");
-        gl.uniformMatrix4fv(viewMatrixLocation, false, ShadersManager.getViewMatrix());
+        gl.uniformMatrix4fv(viewMatrixLocation, false, ShadersManager.getViewMatrix(camera_positions, player_coords));
 
         // Fragment Shader
 

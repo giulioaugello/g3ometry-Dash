@@ -2,7 +2,9 @@ export class ShadersManager {
 
     static vertexShaderParameters = {
         // cameraPosition: [75, -75, 80],
-        cameraPosition: [75, 5, 7],
+        // cameraPosition: [75, 5, 7],
+        cameraPosition: [34, -42, 47],
+
         cameraTar: [0, 0, 20],
         cameraUp: [0, 0, 1],
         fieldOfViewDegrees: 30,
@@ -25,8 +27,9 @@ export class ShadersManager {
 
     // Vertex Shader parameters
 
-    static getCameraPosition() {
-        return this.vertexShaderParameters.cameraPosition;
+    static getCameraPosition(player_coords) {
+        return [this.vertexShaderParameters.cameraPosition[0] + player_coords[0], this.vertexShaderParameters.cameraPosition[1] + player_coords[1],
+            this.vertexShaderParameters.cameraPosition[2] + player_coords[2]];
     }
 
     static increaseFieldOfViewRadiansOf(value) {
@@ -47,10 +50,10 @@ export class ShadersManager {
 
     // View Matrix è l'inversa della Camera Matrix
     // Ed è il nuovo sistema di riferimento
-    static getViewMatrix() {
+    static getViewMatrix(camera_positions, player_coords) {
         //this.move();
 
-        let cameraMatrix = m4.lookAt(this.vertexShaderParameters.cameraPosition, this.vertexShaderParameters.cameraTar, this.vertexShaderParameters.cameraUp); //cameraMatrix = m4.lookAt((camera_override ? [camera_override.position.x, camera_override.position.z, camera_override.position.y * -1] : cameraPosition), cameraTar, up);
+        let cameraMatrix = m4.lookAt(camera_positions, player_coords, this.vertexShaderParameters.cameraUp); //cameraMatrix = m4.lookAt((camera_override ? [camera_override.position.x, camera_override.position.z, camera_override.position.y * -1] : cameraPosition), cameraTar, up);
         return m4.inverse(cameraMatrix)
     }
 

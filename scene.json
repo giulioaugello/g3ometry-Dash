@@ -23,7 +23,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 11,
+        "y": 1,
+        "z": 11
+      },
       "coords": {
         "x": 0.0,
         "y": 3.5,
@@ -37,7 +41,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
       "coords": {
         "x": -9.0,
         "y": 3.5,
@@ -50,7 +58,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
       "coords": {
         "x": -10.0,
         "y": 3.5,
@@ -63,7 +75,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
       "coords": {
         "x": -11.5,
         "y": 3.5,
@@ -76,7 +92,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 4.5,
+        "y": 1,
+        "z": 1
+      },
       "coords": {
         "x": -13.0,
         "y": 3.5,
@@ -89,7 +109,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "evil",
-      "dim": null,
+      "dim": {
+        "x": 0.5,
+        "y": 1,
+        "z": 1
+      },
       "coords": {
         "x": -13.0,
         "y": 4.5,
@@ -102,7 +126,11 @@
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
-      "dim": null,
+      "dim": {
+        "x": 70,
+        "y": 2,
+        "z": 20
+      },
       "coords": {
         "x": -24.0,
         "y": 0.0,
