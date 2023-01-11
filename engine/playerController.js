@@ -208,8 +208,8 @@ export class PlayerController {
             // }
 
         } else {
-            console.log("!zn")
-            obj.speed.x = 0.1
+            // console.log("!zn")
+            obj.speed.x = 0.15
             obj.speed.z = 0
         }
 

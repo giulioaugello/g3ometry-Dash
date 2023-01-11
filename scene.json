@@ -78,9 +78,22 @@
       "collider_type": "box",
       "dim": null,
       "coords": {
-        "x": -11.0,
+        "x": -13.0,
         "y": 3.5,
-        "z": 2.0
+        "z": 0.0
+      }
+    },
+    {
+      "name": "evil",
+      "path": "obj/evil.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "evil",
+      "dim": null,
+      "coords": {
+        "x": -13.0,
+        "y": 4.5,
+        "z": 0.0
       }
     },
     {

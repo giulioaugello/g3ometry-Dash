@@ -38,7 +38,7 @@ export class PhysObject {
         this.offsets = coords
         this.position = {x: coords.x, y: coords.y, z: coords.z}
         this.positions = this.mesh.positions
-        this.speed = {x: 0.1, y: 0, z: 0};
+        this.speed = {x: 0.15, y: 0, z: 0};
 
         this.accel = {x: 0.0, y: 0.0, z: 0.0};
         this.translation = {x: 0, y: 0, z: 0}
@@ -102,7 +102,7 @@ export class PhysObject {
 
             if (check.coll) {
 
-                if (this.speed.y < 0){
+                if (this.speed.y < 0) {
                     this.speed.y = 0
                 }
 
@@ -201,7 +201,7 @@ export class PhysObject {
 
             } else {
                 if (this.speed.y > 0) {
-                    if (this.position.y >= actualPosY + 4){
+                    if (this.position.y >= actualPosY + 4) {
                         this.speed.y = -0.3
                     }
                 } else {
@@ -330,6 +330,11 @@ export class PhysObject {
                     // }
                     // console.log("ciao", physobjs[obj])
 
+                    if (physobjs[obj].collider_type === "evil") {
+                        console.log("over")
+                        window.dispatchEvent(new CustomEvent('game_over'))
+                    }
+
                     switch (this.whereIsColliding(bounds, targetBounds)) {
                         case 0:
                             data.z.bottom.is_colliding = true
@@ -417,17 +422,32 @@ export class PhysObject {
         //         z: this.position.z - boxDimZ
         //     }
         // }
-        return {
-            max: {
-                x: this.position.x + 1,
-                y: this.position.y + 0.7,
-                z: this.position.z + 1
-            }, min: {
-                x: this.position.x - 1,
-                y: this.position.y - 0.7,
-                z: this.position.z - 1
+        if (this.name === "evil") {
+            return {
+                max: {
+                    x: this.position.x + 0.1,
+                    y: this.position.y + 0.1,
+                    z: this.position.z + 0.1
+                }, min: {
+                    x: this.position.x - 0.1,
+                    y: this.position.y - 0.1,
+                    z: this.position.z - 0.1
+                }
+            }
+        } else {
+            return {
+                max: {
+                    x: this.position.x + 0.43,
+                    y: this.position.y + 0.75,
+                    z: this.position.z + 0.43
+                }, min: {
+                    x: this.position.x - 0.43,
+                    y: this.position.y - 0.75,
+                    z: this.position.z - 0.43
+                }
             }
         }
+
     }
 
     render(gl, program) {

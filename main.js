@@ -77,14 +77,16 @@ window.addEventListener('point', async (e) => {
 })
 
 window.addEventListener('game_over', async (e) => {
-    if (document.getElementById('stopOnFloorReached').checked) {
-        startTimerButton.value = "Start"
-        engine.stop()
-        alert("Il tuo punteggio è " + counter)
-    } else {
-        counter--
-        counterElem.textContent = counter;
-    }
+    // if (document.getElementById('stopOnFloorReached').checked) {
+    //     startTimerButton.value = "Start"
+    //     engine.stop()
+    //     alert("Il tuo punteggio è " + counter)
+    // } else {
+    //     counter--
+    //     counterElem.textContent = counter;
+    // }
+    alert("schifo")
+    engine.stop()
 })
 
 // FPS Listener
