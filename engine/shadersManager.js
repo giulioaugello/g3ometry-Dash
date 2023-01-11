@@ -1,11 +1,11 @@
 export class ShadersManager {
 
     static vertexShaderParameters = {
-        cameraPosition: [75, -75, 80],
-        // cameraPosition: [0, 0, 0],
+        // cameraPosition: [75, -75, 80],
+        cameraPosition: [75, -75, 138],
         cameraTar: [0, 0, 20],
         cameraUp: [0, 0, 1],
-        fieldOfViewDegrees: 30,
+        fieldOfViewDegrees: 15,
         zNear: 1,
         zFar: 2000
     }

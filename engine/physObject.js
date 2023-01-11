@@ -399,22 +399,33 @@ export class PhysObject {
         return differences.indexOf(Math.min(...differences))
     }
 
-    // Le bounding box degli oggetti sono piccolissime, aggiustarle
+
     compute_bounds() {
         //Function that computes the bounds of an object.
-        let boxDimX = this.isPlayer ? (this.dim.x / 2) : 1
-        let boxDimY = this.isPlayer ? (this.dim.y / 2) : 2
-        let boxDimZ = this.isPlayer ? (this.dim.z / 2) : 1
+        // let boxDimX = this.isPlayer ? (this.dim.x / 2) : 1
+        // let boxDimY = this.isPlayer ? (this.dim.y / 2) : 2
+        // let boxDimZ = this.isPlayer ? (this.dim.z / 2) : 1
 
+        // return {
+        //     max: {
+        //         x: this.position.x + boxDimX,
+        //         y: this.position.y + boxDimY,
+        //         z: this.position.z + boxDimZ
+        //     }, min: {
+        //         x: this.position.x - boxDimX,
+        //         y: this.position.y - boxDimY,
+        //         z: this.position.z - boxDimZ
+        //     }
+        // }
         return {
             max: {
-                x: this.position.x + boxDimX,
-                y: this.position.y + boxDimY,
-                z: this.position.z + boxDimZ
+                x: this.position.x + 1,
+                y: this.position.y + 0.7,
+                z: this.position.z + 1
             }, min: {
-                x: this.position.x - boxDimX,
-                y: this.position.y - boxDimY,
-                z: this.position.z - boxDimZ
+                x: this.position.x - 1,
+                y: this.position.y - 0.7,
+                z: this.position.z - 1
             }
         }
     }

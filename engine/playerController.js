@@ -9,7 +9,7 @@ let obj = null;
 // let canvas = null;
 let drag = false;
 let old = {x: null, y: null};
-// let actualPos = null;
+let pressed = false;
 
 export class PlayerController {
 
@@ -110,21 +110,22 @@ export class PlayerController {
             // case 32: // space
             //     queue.x.n = true
             //     break
+
             case 83: // 's' ma METTERE QUELLO DI SOPRA
-                // actualPos = obj.position.y;
                 queue.x.n = true
                 break
-            // case 87: // w
-            //     queue.z.p = true
-            //     break
-            // case 65: // a
-            //     queue.x.p = true;
-            //     break;
+            case 65: // a
+                queue.z.p = true;
+                break;
+            case 68: // d
+                queue.z.n = true
+                break
+
             // case 83: // s
             //     queue.z.n = true
             //     break
-            // case 68: // d
-            //     queue.x.n = true
+            // case 87: // w
+            //     queue.z.p = true
             //     break
             // case 73: // i
             //     ShadersManager.upAndDown(1)
@@ -153,53 +154,77 @@ export class PlayerController {
             //     })
             //     break
         }
+
     }
 
     keyUp(e) {
         // Basic key lift handling
         switch (e.keyCode) {
-            case 83: // space
+            case 83: // s ma METTERE SPAZIO
                 queue.x.n = false
                 break
             // case 87: // w
             //     queue.z.p = false
             //     break
-            // case 65: // a
-            //     queue.x.p = false;
-            //     break;
+            case 65: // a
+                queue.z.p = false;
+                break;
             // case 83: // s
             //     queue.z.n = false
             //     break
-            // case 68: // d
-            //     queue.x.n = false
-            //     break
+            case 68: // d
+                queue.z.n = false
+                break
         }
     }
 
     handler() {
         // Based on queue, applies acceleration to selected axis.
-        // if (queue.x.p) {
-        //     obj.accel.x = -0.3
-        // }
+        // console.log(obj.position.x)
+        // console.log(obj.position.y)
+        // console.log(obj.position.z)
+
+        if (queue.x.n) { // s
+            // obj.speed.y = 0.1
+            obj.speed.y = 0.4
+        } else if (queue.z.p) { // a
+
+            obj.speed.x = 0
+            obj.speed.z = -0.1
+            // else {
+            //     console.log("x=0")
+            //     obj.speed.x = 0.1
+            //     obj.speed.z = 0
+            // }
+
+        } else if (queue.z.n) { // d
+
+            obj.speed.x = 0
+            obj.speed.z = 0.1
+
+            // else {
+            //     obj.speed.x = 0.1
+            //     obj.speed.z = 0
+            // }
+
+        } else {
+            console.log("!zn")
+            obj.speed.x = 0.1
+            obj.speed.z = 0
+        }
+
+
         // if (queue.x.n) {
         //     obj.accel.x = 0.3
         // }
         // if (queue.z.p) {
         //     obj.accel.z = -0.3
         // }
-        // if (queue.z.n) {
-        //     obj.accel.z = 0.3
-        // }
+
         // if (queue.x.p) {
         //     obj.speed.y = -1
         // }
 
-        if (queue.x.n) {
-
-            // obj.speed.y = 0.1
-            obj.speed.y = 0.4
-
-        }
 
         // if (queue.z.p) {
         //     obj.speed.z = -0.3

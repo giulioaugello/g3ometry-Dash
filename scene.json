@@ -45,8 +45,34 @@
       }
     },
     {
-      "name": "cube3",
-      "path": "obj/cube3.obj",
+      "name": "cuboProva",
+      "path": "obj/cuboProva.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -10.0,
+        "y": 3.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "cuboProva2",
+      "path": "obj/cuboProva2.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -11.5,
+        "y": 3.5,
+        "z": 0.5
+      }
+    },
+    {
+      "name": "cuboProva3",
+      "path": "obj/cuboProva3.obj",
       "isPlayer": false,
       "isBall": false,
       "collider_type": "box",
@@ -54,20 +80,7 @@
       "coords": {
         "x": -11.0,
         "y": 3.5,
-        "z": 0.0
-      }
-    },
-    {
-      "name": "cone1",
-      "path": "obj/cone1.obj",
-      "isPlayer": false,
-      "isBall": false,
-      "collider_type": "box",
-      "dim": null,
-      "coords": {
-        "x": -10.0,
-        "y": 4.5,
-        "z": 0.0
+        "z": 2.0
       }
     },
     {
