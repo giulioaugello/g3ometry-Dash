@@ -107,13 +107,13 @@ export class PlayerController {
     keyDown(e) {
         // Basic key press handling
         switch (e.keyCode) {
-            // case 32: // space
-            //     queue.x.n = true
-            //     break
-
-            case 83: // 's' ma METTERE QUELLO DI SOPRA
+            case 32: // space
                 queue.x.n = true
                 break
+
+            // case 83: // 's' ma METTERE QUELLO DI SOPRA
+            //     queue.x.n = true
+            //     break
             case 65: // a
                 queue.z.p = true;
                 break;
@@ -133,21 +133,21 @@ export class PlayerController {
             // case 75: // k
             //     ShadersManager.upAndDown(-1)
             //     break
-            // case 74: // j
-            //     //ShadersManager.increaseCameraPositionAtIndexOfValue(0, 0.5)
-            //     break
-            // case 76: // l
-            //     //ShadersManager.increaseCameraPositionAtIndexOfValue(0, -0.5)
-            //     break
-            // case 86: // v
-            //     ShadersManager.increaseCameraPositionAtIndexOfValue(0, 0.5)
-            //     break
-            // case 66: // b
-            //     ShadersManager.increaseCameraPositionAtIndexOfValue(1, 0.5)
-            //     break
-            // case 78: // n
-            //     ShadersManager.increaseCameraPositionAtIndexOfValue(2, 0.5)
-            //     break
+            case 74: // j
+                //ShadersManager.increaseCameraPositionAtIndexOfValue(0, 0.5)
+                break
+            case 76: // l
+                //ShadersManager.increaseCameraPositionAtIndexOfValue(0, -0.5)
+                break
+            case 86: // v
+                ShadersManager.increaseCameraPositionAtIndexOfValue(0, 2)
+                break
+            case 66: // b
+                ShadersManager.increaseCameraPositionAtIndexOfValue(1, 2)
+                break
+            case 78: // n
+                ShadersManager.increaseCameraPositionAtIndexOfValue(2, 2)
+                break
             // case 27: // esc
             //     setTimeout(function () {
             //         window.location.reload();
@@ -160,9 +160,12 @@ export class PlayerController {
     keyUp(e) {
         // Basic key lift handling
         switch (e.keyCode) {
-            case 83: // s ma METTERE SPAZIO
+            case 32: // space
                 queue.x.n = false
                 break
+            // case 83: // s ma METTERE SPAZIO
+            //     queue.x.n = false
+            //     break
             // case 87: // w
             //     queue.z.p = false
             //     break

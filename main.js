@@ -45,6 +45,7 @@ const counterElem = document.querySelector('#counter');
 const startTimerButton = document.getElementById('startTimerButton');
 startTimerButton.addEventListener('click', () => {
     startTimerButton.blur();
+    disableScroll();
     window.dispatchEvent(new CustomEvent('start'))
 });
 
@@ -112,6 +113,47 @@ const al = document.getElementById('al');
 al.addEventListener("click", () => {
     alert("ciao")
 });
+
+/**
+ * Remove a default event action
+ * @param {*} e is the event to trigger
+ */
+function preventDefault(e) {
+    e.preventDefault();
+}
+
+/**
+ * Remove a default event action related to a key
+ * @param {*} e is the event of interest
+ * @returns false if it trigger an interested key
+ */
+// modern Chrome requires { passive: false } when adding event
+// let supportsPassive = false;
+// try {
+//     window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+//         get: function () { supportsPassive = true; }
+//     }));
+// } catch (e) { }
+let keys = {32: 1};
+// let wheelOpt = supportsPassive ? { passive: false } : false;
+// let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+/**
+ * Disable windows scrolls
+ */
+function disableScroll() {
+    window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+    // window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+    // window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+    window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
 
 // const playMusic = document.getElementById('playMusic')
 //

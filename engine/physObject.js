@@ -43,6 +43,7 @@ export class PhysObject {
         this.accel = {x: 0.0, y: 0.0, z: 0.0};
         this.translation = {x: 0, y: 0, z: 0}
 
+
         // this.rotation = {x: 0, y: 0}
         //
         // this.level_over = false;
@@ -102,9 +103,9 @@ export class PhysObject {
 
             if (check.coll) {
 
-                if (this.speed.y < 0) {
-                    this.speed.y = 0
-                }
+                // if (this.speed.y < 0) {
+                //     this.speed.y = 0
+                // }
 
                 // Se la palla sta collidendo sotto e non è ferma
                 if (check.data.y.bottom.is_colliding) {
@@ -209,6 +210,14 @@ export class PhysObject {
                 } else {
                     this.speed.y = -0.3
                 }
+
+                // if (this.speed.y > 0) {
+                //     if (this.position.y >= actualPosY + 4) {
+                //         this.speed.y = -0.3
+                //     }
+                // } else {
+                //     this.speed.y = -0.3
+                // }
             }
 
             this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
@@ -218,6 +227,8 @@ export class PhysObject {
             this.translation.x += this.speed.x;
             this.translation.y += this.speed.y;
             this.translation.z += this.speed.z;
+
+            // console.log(this.speed.x, this.speed.y)
 
             // console.log(actualPosY, this.position.y)
             //
@@ -318,6 +329,12 @@ export class PhysObject {
                     (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
                     isColliding = true;
 
+                    if (this.speed.y < 0) {
+                        this.speed.y = 0
+                        // this.position.y = physobjs[obj].position.y
+                        console.log(this.position.y, physobjs[obj].position.y)
+                    }
+
                     // if (this.isBall) {
                     //
                     //     if (physobjs[obj].collider_type === "goal") {
@@ -331,11 +348,6 @@ export class PhysObject {
                     //     }
                     // }
                     // console.log("ciao", physobjs[obj])
-
-                    if (physobjs[obj].collider_type === "evil") {
-                        console.log("over")
-                        window.dispatchEvent(new CustomEvent('game_over'))
-                    }
 
                     switch (this.whereIsColliding(bounds, targetBounds)) {
                         case 0:
@@ -370,6 +382,30 @@ export class PhysObject {
                             break
 
                     }
+
+                    if (physobjs[obj].collider_type === "evil") {
+                        console.log("over")
+                        window.dispatchEvent(new CustomEvent('game_over'))
+                    } else if (physobjs[obj].collider_type === "portal") {
+                        // come spawna la camera
+                        this.position.x = 0
+                        this.position.y = 4.5
+                        this.position.z = 0
+
+                        // dove spawna l'oggetto
+                        this.translation.x = 0;
+                        this.translation.y = 0;
+                        this.translation.z = 0;
+                    } else if (physobjs[obj].collider_type === "coin") {
+                        // delete coin
+                        physobjs[obj].translation.y = -9999
+                    } else if (physobjs[obj].collider_type === "bounce") {
+                        if (data.x.bottom.is_colliding) {
+                            this.speed.y = 5
+                        }
+                        // console.log(data)
+                    }
+
                 }
             }
 
@@ -424,6 +460,7 @@ export class PhysObject {
                 z: this.position.z - (this.dim.z / 2)
             }
         }
+
         // if (this.collider_type === "evil") {
         //     return {
         //         max: {
