@@ -103,6 +103,7 @@ export class PhysObject {
 
             if (check.coll) {
 
+
                 // if (this.speed.y < 0) {
                 //     this.speed.y = 0
                 // }
@@ -268,6 +269,8 @@ export class PhysObject {
         let bounds = this.compute_bounds()
         //let coll = false
         // let colliders = [];
+        let coll = false
+        let ramp = false;
 
         let isColliding = false;
 
@@ -313,14 +316,15 @@ export class PhysObject {
 
             if (this.isPlayer && !physobjs[obj].isPlayer) {
 
-
-                let targetBounds;
-
-                if (!physobjs[obj].isPlayer) {
-                    targetBounds = physobjs[obj].bounds;
-                } else {
-                    targetBounds = physobjs[obj].compute_bounds()
-                }
+                let targetBounds = physobjs[obj].bounds;
+                // console.log(targetBounds)
+                // if (!physobjs[obj].isPlayer) {
+                //     console.log(physobjs[obj].name)
+                //     targetBounds = physobjs[obj].bounds;
+                // } else {
+                //     console.log("ciao")
+                //     targetBounds = physobjs[obj].compute_bounds()
+                // }
 
 
                 // Se collide da qualche parte
@@ -330,9 +334,10 @@ export class PhysObject {
                     isColliding = true;
 
                     if (this.speed.y < 0) {
+
                         this.speed.y = 0
                         // this.position.y = physobjs[obj].position.y
-                        console.log(this.position.y, physobjs[obj].position.y)
+                        // console.log(this.position.y, physobjs[obj].position.y)
                     }
 
                     // if (this.isBall) {
@@ -382,6 +387,7 @@ export class PhysObject {
                             break
 
                     }
+                    coll = true;
 
                     if (physobjs[obj].collider_type === "evil") {
                         console.log("over")
@@ -403,7 +409,6 @@ export class PhysObject {
                         if (data.x.bottom.is_colliding) {
                             this.speed.y = 5
                         }
-                        // console.log(data)
                     }
 
                 }
@@ -460,6 +465,33 @@ export class PhysObject {
                 z: this.position.z - (this.dim.z / 2)
             }
         }
+
+        // if (this.isPlayer){
+        //     return {
+        //         max: {
+        //             x: this.position.x + 0.5,
+        //             y: this.position.y + 0.5,
+        //             z: this.position.z + 0.5
+        //         }, min: {
+        //             x: this.position.x - 0.5,
+        //             y: this.position.y - 0.5,
+        //             z: this.position.z - 0.5
+        //         }
+        //     }
+        // } else if (this.collider_type === "box") {
+        //     console.log("ciao")
+        //     return {
+        //         max: {
+        //             x: this.position.x + 1,
+        //             y: this.position.y + 10,
+        //             z: this.position.z + 1
+        //         }, min: {
+        //             x: this.position.x - 1,
+        //             y: this.position.y - 10,
+        //             z: this.position.z - 1
+        //         }
+        //     }
+        // }
 
         // if (this.collider_type === "evil") {
         //     return {

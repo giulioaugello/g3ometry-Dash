@@ -223,12 +223,12 @@ export class MeshLoader {
         return {
             max: {
                 x: Math.max(...xpos),
-                y: Math.max(...ypos),
+                y: Math.max(...ypos)+ 0.15,
                 z: Math.max(...zpos)
             },
             min: {
                 x: Math.min(...xpos),
-                y: Math.min(...ypos),
+                y: Math.min(...ypos) - 0.15,
                 z: Math.min(...zpos)
             }
         }

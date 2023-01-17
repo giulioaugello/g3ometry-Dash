@@ -86,7 +86,7 @@ window.addEventListener('game_over', async (e) => {
     //     counter--
     //     counterElem.textContent = counter;
     // }
-    alert("schifo")
+    alert("end")
     engine.stop()
 })
 
