@@ -10,6 +10,7 @@ let obj = null;
 let drag = false;
 let old = {x: null, y: null};
 let pressed = false;
+let isSpaceTr = true
 
 export class PlayerController {
 
@@ -54,6 +55,10 @@ export class PlayerController {
 
 
         console.log("Controller uninstalled.")
+    }
+
+    setSpace(boolSpace){
+        isSpaceTr = boolSpace
     }
 
     mouseMove(e) {
@@ -104,11 +109,23 @@ export class PlayerController {
         old = {x: null, y: null};
     }
 
+    getSpace(){
+        return isSpaceTr
+    }
+
     keyDown(e) {
         // Basic key press handling
         switch (e.keyCode) {
             case 32: // space
-                queue.x.n = true
+                // console.log("before if", isSpaceTr)
+
+                if (isSpaceTr){
+                    // isSpaceTr = false
+                    queue.x.n = true
+                    // console.log("inside if", isSpaceTr)
+                }
+
+                // console.log("after if", isSpaceTr)
                 break
 
             // case 83: // 's' ma METTERE QUELLO DI SOPRA
@@ -161,6 +178,7 @@ export class PlayerController {
         // Basic key lift handling
         switch (e.keyCode) {
             case 32: // space
+                // isSpaceTr = false
                 queue.x.n = false
                 break
             // case 83: // s ma METTERE SPAZIO
@@ -196,7 +214,9 @@ export class PlayerController {
             //     console.log("ciao")
             // }
 
-            obj.speed.y = 0.4
+            if (isSpaceTr){
+                obj.speed.y = 0.4
+            }
 
         } else if (queue.z.p) { // a
 

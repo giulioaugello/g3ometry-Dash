@@ -119,23 +119,6 @@
         "y": 0.0,
         "z": 0.0
       }
-    },
-    {
-      "name": "bounce",
-      "path": "obj/bounce.obj",
-      "isPlayer": false,
-      "isBall": false,
-      "collider_type": "bounce",
-      "dim": {
-        "x": 1,
-        "y": 0.2,
-        "z": 1
-      },
-      "coords": {
-        "x": -10.0,
-        "y": 4.0,
-        "z": 0.0
-      }
     }
   ]
 }

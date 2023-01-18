@@ -109,9 +109,13 @@ export class PhysObject {
 
             if (check.coll) {
 
-
+                console.log("collision done  ", this.playerController.getSpace())
+                // if(this.playerController.getSpace()) this.playerController.setSpace(false)
+                // else this.playerController.setSpace(true)
+                this.playerController.setSpace(true)
                 // if (this.speed.y < 0) {
-                //     this.speed.y = 0
+                //     // this.speed.y = 0
+                //
                 // }
 
                 // Se la palla sta collidendo sotto e non è ferma
@@ -214,6 +218,8 @@ export class PhysObject {
                     if (!bounceCollision){
                         if (this.position.y >= actualPosY + 4) {
                             this.speed.y = -0.3
+                            // alert("sium")
+
                         }
                     } else {
                         if (this.position.y >= actualPosY + 6) {
@@ -221,11 +227,12 @@ export class PhysObject {
                         }
                     }
 
-
                 } else {
                     this.speed.y = -0.3
                     bounceCollision = false
                 }
+                this.playerController.setSpace(false)
+
 
                 // if (this.speed.y > 0) {
                 //     if (this.position.y >= actualPosY + 4) {
