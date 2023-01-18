@@ -6,7 +6,13 @@ import {ShadersManager} from "./shadersManager.js";
     handles rendering for the object itself.
  */
 
+function degToRad(d) {
+    return d * Math.PI / 180;
+}
+
 let actualPosY = null
+let bounceCollision = false
+let rotation = [degToRad(40), degToRad(25), degToRad(325)];
 
 export class PhysObject {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
@@ -205,11 +211,20 @@ export class PhysObject {
                 //in aria
 
                 if (this.speed.y > 0) {
-                    if (this.position.y >= actualPosY + 4) {
-                        this.speed.y = -0.3
+                    if (!bounceCollision){
+                        if (this.position.y >= actualPosY + 4) {
+                            this.speed.y = -0.3
+                        }
+                    } else {
+                        if (this.position.y >= actualPosY + 6) {
+                            this.speed.y = -0.3
+                        }
                     }
+
+
                 } else {
                     this.speed.y = -0.3
+                    bounceCollision = false
                 }
 
                 // if (this.speed.y > 0) {
@@ -406,9 +421,11 @@ export class PhysObject {
                         // delete coin
                         physobjs[obj].translation.y = -9999
                     } else if (physobjs[obj].collider_type === "bounce") {
-                        if (data.x.bottom.is_colliding) {
-                            this.speed.y = 5
-                        }
+                        // if (data.x.bottom.is_colliding) {
+                        //     this.speed.y = 5
+                        // }
+                        this.speed.y = 0.4
+                        bounceCollision = true
                     }
 
                 }
@@ -568,11 +585,23 @@ export class PhysObject {
         let translation = gl.getUniformLocation(program, "u_translation")
         gl.uniform3fv(translation, [this.translation.z, this.translation.x, this.translation.y])
 
-        // Set up rotation matrix (u_normalMatrix)
+
+        // Compute the matrices
+        // var matrix = m4.projection(gl.canvas.clientWidth, gl.canvas.clientHeight, 400);
+        // matrix = m4.translate(matrix, translation[0], translation[1], translation[2]);
+        // matrix = m4.xRotate(matrix, rotation[0]);
+        // matrix = m4.yRotate(matrix, rotation[1]);
+        // matrix = m4.zRotate(matrix, rotation[2]);
+        //
+        //
+        // let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
+        // gl.uniformMatrix4fv(projectionMatrixLocation, false, matrix);
+
+
         let rotationMatrix = gl.getUniformLocation(program, 'u_normalMatrix')
         gl.uniformMatrix4fv(rotationMatrix, false, m4.identity())
 
-        // Set up the projection matrix (u_projection)
+        // // Set up the projection matrix (u_projection)
         let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
         gl.uniformMatrix4fv(projectionMatrixLocation, false, ShadersManager.getProjectionMatrix(gl.canvas.clientWidth, gl.canvas.clientHeight));
 
@@ -626,6 +655,15 @@ export class PhysObject {
         // Set up textureLocation (diffuseMap). Tell the shader to use texture unit 0 for diffuseMap
         let textureLocation = gl.getUniformLocation(program, "diffuseMap");
         gl.uniform1i(textureLocation, ShadersManager.getTextureLocation());
+
+
+
+        // Sets offsets
+        // if (this.isPlayer) {
+        //     gl.uniform3fv(gl.getUniformLocation(program, "offsets"), [this.offsets.x, this.offsets.z, this.offsets.y])
+        // } else {
+        //     gl.uniform3fv(gl.getUniformLocation(program, "offsets"), [0, 0, 0])
+        // }
 
         //drawScene(this.mesh, this.screen, mirrorText, this.mesh.numVertices)
         drawScene(this.mesh, this.mesh.numVertices)
