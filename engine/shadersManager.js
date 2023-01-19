@@ -132,4 +132,8 @@ export class ShadersManager {
     static getEmissive(){
         return this.fragmentShaderParameters.emissive
     }
+
+    static degToRad(d) {
+        return d * Math.PI / 180;
+    }
 }

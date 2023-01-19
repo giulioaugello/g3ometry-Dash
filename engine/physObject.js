@@ -1,18 +1,14 @@
 import {PlayerController} from "./playerController.js";
-import {ShadersManager} from "./shadersManager.js";
+import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 
 /*
     The PhysObject class is the abstraction that joins meshes with physics and user interaction, and also
     handles rendering for the object itself.
  */
 
-function degToRad(d) {
-    return d * Math.PI / 180;
-}
-
 let actualPosY = null
 let bounceCollision = false
-let rotation = [degToRad(40), degToRad(25), degToRad(325)];
+let rotation = [shadersManager.degToRad(40), shadersManager.degToRad(25), shadersManager.degToRad(325)];
 
 export class PhysObject {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
@@ -473,11 +469,6 @@ export class PhysObject {
 
 
     compute_bounds() {
-        //Function that computes the bounds of an object.
-        // let boxDimX = this.isPlayer ? (this.dim.x / 2) : 1
-        // let boxDimY = this.isPlayer ? (this.dim.y / 2) : 2
-        // let boxDimZ = this.isPlayer ? (this.dim.z / 2) : 1
-
         return {
             max: {
                 x: this.position.x + (this.dim.x / 2),
@@ -489,75 +480,11 @@ export class PhysObject {
                 z: this.position.z - (this.dim.z / 2)
             }
         }
-
-        // if (this.isPlayer){
-        //     return {
-        //         max: {
-        //             x: this.position.x + 0.5,
-        //             y: this.position.y + 0.5,
-        //             z: this.position.z + 0.5
-        //         }, min: {
-        //             x: this.position.x - 0.5,
-        //             y: this.position.y - 0.5,
-        //             z: this.position.z - 0.5
-        //         }
-        //     }
-        // } else if (this.collider_type === "box") {
-        //     console.log("ciao")
-        //     return {
-        //         max: {
-        //             x: this.position.x + 1,
-        //             y: this.position.y + 10,
-        //             z: this.position.z + 1
-        //         }, min: {
-        //             x: this.position.x - 1,
-        //             y: this.position.y - 10,
-        //             z: this.position.z - 1
-        //         }
-        //     }
-        // }
-
-        // if (this.collider_type === "evil") {
-        //     return {
-        //         max: {
-        //             x: this.position.x + 1,
-        //             y: this.position.y + 1,
-        //             z: this.position.z + 1
-        //         }, min: {
-        //             x: this.position.x - 1,
-        //             y: this.position.y - 1,
-        //             z: this.position.z - 1
-        //         }
-        //     }
-        // } else if (this.isPlayer){
-        //     return {
-        //         max: {
-        //             x: this.position.x + 0.5,
-        //             y: this.position.y + 0.5,
-        //             z: this.position.z + 0.5
-        //         }, min: {
-        //             x: this.position.x - 0.5,
-        //             y: this.position.y - 0.5,
-        //             z: this.position.z - 0.5
-        //         }
-        //     }
-        // } else if (this.collider_type === "box") {
-        //     return {
-        //         max: {
-        //             x: this.position.x + 1,
-        //             y: this.position.y + 0.5,
-        //             z: this.position.z + 1
-        //         }, min: {
-        //             x: this.position.x - 1,
-        //             y: this.position.y - 0.5,
-        //             z: this.position.z - 1
-        //         }
-        //     }
-        // }
-
     }
 
     render(gl, program, player_coords) {
+        gl.useProgram(program);
+
         const size = 3;
         const type = gl.FLOAT;
         const normalize = false;
@@ -591,19 +518,6 @@ export class PhysObject {
         // Set up translation vector (u_translation)
         let translation = gl.getUniformLocation(program, "u_translation")
         gl.uniform3fv(translation, [this.translation.z, this.translation.x, this.translation.y])
-
-
-        // Compute the matrices
-        // var matrix = m4.projection(gl.canvas.clientWidth, gl.canvas.clientHeight, 400);
-        // matrix = m4.translate(matrix, translation[0], translation[1], translation[2]);
-        // matrix = m4.xRotate(matrix, rotation[0]);
-        // matrix = m4.yRotate(matrix, rotation[1]);
-        // matrix = m4.zRotate(matrix, rotation[2]);
-        //
-        //
-        // let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
-        // gl.uniformMatrix4fv(projectionMatrixLocation, false, matrix);
-
 
         let rotationMatrix = gl.getUniformLocation(program, 'u_normalMatrix')
         gl.uniformMatrix4fv(rotationMatrix, false, m4.identity())
@@ -663,15 +577,6 @@ export class PhysObject {
         let textureLocation = gl.getUniformLocation(program, "diffuseMap");
         gl.uniform1i(textureLocation, ShadersManager.getTextureLocation());
 
-
-
-        // Sets offsets
-        // if (this.isPlayer) {
-        //     gl.uniform3fv(gl.getUniformLocation(program, "offsets"), [this.offsets.x, this.offsets.z, this.offsets.y])
-        // } else {
-        //     gl.uniform3fv(gl.getUniformLocation(program, "offsets"), [0, 0, 0])
-        // }
-
         //drawScene(this.mesh, this.screen, mirrorText, this.mesh.numVertices)
         drawScene(this.mesh, this.mesh.numVertices)
 
@@ -690,102 +595,4 @@ export class PhysObject {
             gl.drawArrays(gl.TRIANGLES, 0, vertNumber);
         }
     }
-
-
-    // function drawScene(mesh, vertNumber) {
-    //     // // Draw the scene, using textures and binding them when's appropriate.
-    //     gl.depthFunc(gl.LESS);  // use the default depth test
-    //     gl.useProgram(envmapProgramInfo.program);
-    //     webglUtils.setBuffersAndAttributes(gl, envmapProgramInfo, cubeBufferInfo);
-    //     webglUtils.setUniforms(envmapProgramInfo, {
-    //         u_world: viewWorldPositionLocation,
-    //         u_view: viewMatrixLocation,
-    //         u_projection: projectionMatrixLocation,
-    //         u_texture: mesh.texture,
-    //         u_worldCameraPosition: camera_positions,
-    //     });
-    //     webglUtils.drawBufferInfo(gl, cubeBufferInfo);
-    // }
-
-    // render(gl, program, uniforms, isColor) {
-    //     gl.useProgram(program);
-    //     webglUtils.setUniforms(program, uniforms);     // calls gl.uniform
-    //
-    //
-    //     const size = 3;
-    //     const type = gl.FLOAT;
-    //     const normalize = false;
-    //     const stride = 0;
-    //     const offset = 0;
-    //
-    //
-    //     // Binds and creates the position buffer for this object.
-    //     this.positionBuffer = gl.createBuffer();
-    //     gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
-    //     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.positions), gl.STATIC_DRAW);
-    //
-    //     // Set up position buffer (a_position)
-    //     let positionLocation = gl.getAttribLocation(program, "a_position");
-    //     gl.enableVertexAttribArray(positionLocation);
-    //     gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
-    //     gl.vertexAttribPointer(positionLocation, size, type, normalize, stride, offset);
-    //
-    //
-    //     if(!isColor) {
-    //
-    //
-    //         // Binds and creates the normals buffer for this object.
-    //         this.normalsBuffer = gl.createBuffer();
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
-    //         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.normals), gl.STATIC_DRAW);
-    //
-    //         // Set up normal buffer (a_normal)
-    //         let normalLocation = gl.getAttribLocation(program, "a_normal");
-    //         gl.enableVertexAttribArray(normalLocation);
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
-    //         gl.vertexAttribPointer(normalLocation, size, type, normalize, stride, offset);
-    //
-    //         // Binds and creates the texture coordinates buffer for this object.
-    //         this.texcoordBuffer = gl.createBuffer();
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.texcoordBuffer);
-    //         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.text_coords), gl.STATIC_DRAW);
-    //
-    //         // Set up textcoord buffer (a_texcoord)
-    //         let texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
-    //         gl.enableVertexAttribArray(texcoordLocation);
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.texcoordBuffer);
-    //         gl.vertexAttribPointer(texcoordLocation, size - 1, type, normalize, stride, offset);
-    //
-    //
-    //         // Binds and creates the position buffer for this object.
-    //         this.colorBuffer = gl.createBuffer();
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
-    //         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([1,1,1,1]), gl.STATIC_DRAW);
-    //
-    //         // Set up color buffer (a_color)
-    //         let colorLocation = gl.getAttribLocation(program, "a_color");
-    //         gl.enableVertexAttribArray(colorLocation);
-    //         gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
-    //         // gl.vertexAttribPointer(positionLocation, size, type, normalize, stride, offset);
-    //     }
-    //
-    //
-    //     drawScene(this.mesh, this.mesh.numVertices)
-    //
-    //     function drawScene(mesh, vertNumber) {
-    //         // // Draw the scene, using textures and binding them when's appropriate.
-    //         gl.bindTexture(gl.TEXTURE_2D, mesh.texture);
-    //         // gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    //         // gl.enable(gl.DEPTH_TEST);
-    //
-    //         // Set up matrixLocation (u_world)
-    //         let matrix = m4.identity();
-    //         let matrixLocation = gl.getUniformLocation(program, "u_world");
-    //         gl.uniformMatrix4fv(matrixLocation, false, matrix);
-    //
-    //         // Draw arrays contents on the canvas.
-    //         gl.drawArrays(gl.TRIANGLES, 0, vertNumber);
-    //     }
-    //
-    // }
 }
