@@ -104,19 +104,19 @@
       }
     },
     {
-      "name": "death",
-      "path": "obj/death.obj",
+      "name": "bounce",
+      "path": "obj/bounce.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "bounce",
       "dim": {
         "x": 70,
         "y": 2,
         "z": 20
       },
       "coords": {
-        "x": -24.0,
-        "y": 0.0,
+        "x": -10.0,
+        "y": 4.0,
         "z": 0.0
       }
     }

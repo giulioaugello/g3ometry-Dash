@@ -151,6 +151,26 @@ export class MeshLoader {
         // Adds mesh as PhysObject to internal list.
         this.list.push(new PhysObject(mesh, name, isPlayer, isBall, collider_type, dim, coords, this.generateBounds(mesh.positions)))
 
+        if (name === "Player"){
+            this.list.push(new PhysObject(mesh, "Death", false, isBall, "death", dim, {
+                x: -20.0,
+                y: -4.0,
+                z: 0.0
+            }, {
+                max: {
+                    x: 21,
+                    y: -3,
+                    z: 21
+                },
+                min: {
+                    x: -19,
+                    y: -5,
+                    z: -19
+                }
+            }))
+        }
+
+
         // if (name === "Pavimento") {
         //     this.list.push(new PhysObject(mesh, "Soffitto", isPlayer, isBall, "box", dim, {
         //         x: -0.5,

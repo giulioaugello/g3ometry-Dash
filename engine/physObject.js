@@ -40,7 +40,7 @@ export class PhysObject {
         this.offsets = coords
         this.position = {x: coords.x, y: coords.y, z: coords.z}
         this.positions = this.mesh.positions
-        this.speed = {x: 0.15, y: 0, z: 0};
+        this.speed = {x: 0.0, y: 0, z: 0};
 
         this.accel = {x: 0.0, y: 0.0, z: 0.0};
         this.translation = {x: 0, y: 0, z: 0}
@@ -238,6 +238,9 @@ export class PhysObject {
                 //     this.speed.y = -0.3
                 // }
             }
+            //
+            // this.speed.x += this.accel.x;
+            // this.speed.z += this.accel.z;
 
             this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
             this.position.y = ((bounds.max.y + bounds.min.y) / 2) + this.speed.y;
@@ -407,7 +410,7 @@ export class PhysObject {
                     }
                     coll = true;
 
-                    if (physobjs[obj].collider_type === "evil") {
+                    if (physobjs[obj].collider_type === "death") {
                         console.log("over")
                         window.dispatchEvent(new CustomEvent('game_over'))
                     } else if (physobjs[obj].collider_type === "portal") {

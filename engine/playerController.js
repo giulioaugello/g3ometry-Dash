@@ -215,6 +215,7 @@ export class PlayerController {
             // }
 
             if (isSpaceTr){
+                // obj.speed.y = 0.4
                 obj.speed.y = 0.4
             }
 
@@ -222,11 +223,7 @@ export class PlayerController {
 
             obj.speed.x = 0
             obj.speed.z = -0.1
-            // else {
-            //     console.log("x=0")
-            //     obj.speed.x = 0.1
-            //     obj.speed.z = 0
-            // }
+
 
         } else if (queue.z.n) { // d
 
