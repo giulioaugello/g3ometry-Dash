@@ -152,7 +152,7 @@ export class MeshLoader {
         this.list.push(new PhysObject(mesh, name, isPlayer, isBall, collider_type, dim, coords, this.generateBounds(mesh.positions)))
 
         if (name === "Player"){
-            this.list.push(new PhysObject(mesh, "Death", false, isBall, "death", dim, {
+            this.list.push(new PhysObject(mesh, "Death", false, true, "death", dim, {
                 x: -20.0,
                 y: -4.0,
                 z: 0.0

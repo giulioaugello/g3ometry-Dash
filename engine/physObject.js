@@ -12,14 +12,14 @@ let rotation = [shadersManager.degToRad(40), shadersManager.degToRad(25), shader
 
 export class PhysObject {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
-    constructor(mesh, name, isPlayer, isBall, collider_type, dim, coords, bounds) {
+    constructor(mesh, name, isPlayer, isDuplicated, collider_type, dim, coords, bounds) {
         // Save mesh data
         this.mesh = mesh;
 
         // Set the alias, an ideally unique name.
         this.name = name;
 
-        // this.isBall = isBall;
+        this.isDuplicated = isDuplicated;
 
         // Is this a player-controllable object (an actor)?
         this.isPlayer = isPlayer;
@@ -211,7 +211,7 @@ export class PhysObject {
                 //in aria
 
                 if (this.speed.y > 0) {
-                    if (!bounceCollision){
+                    if (!bounceCollision) {
                         if (this.position.y >= actualPosY + 4) {
                             this.speed.y = -0.3
                             // alert("sium")
@@ -486,116 +486,118 @@ export class PhysObject {
     }
 
     render(gl, program, player_coords) {
-        gl.useProgram(program);
+        if (!this.isDuplicated) {
+            gl.useProgram(program);
 
-        const size = 3;
-        const type = gl.FLOAT;
-        const normalize = false;
-        const stride = 0;
-        const offset = 0;
+            const size = 3;
+            const type = gl.FLOAT;
+            const normalize = false;
+            const stride = 0;
+            const offset = 0;
 
-        // Binds and creates the position buffer for this object.
-        this.positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.positions), gl.STATIC_DRAW);
-        let positionLocation = gl.getAttribLocation(program, "a_position");
-        gl.enableVertexAttribArray(positionLocation);
-        gl.vertexAttribPointer(positionLocation, size, type, normalize, stride, offset);
+            // Binds and creates the position buffer for this object.
+            this.positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.positions), gl.STATIC_DRAW);
+            let positionLocation = gl.getAttribLocation(program, "a_position");
+            gl.enableVertexAttribArray(positionLocation);
+            gl.vertexAttribPointer(positionLocation, size, type, normalize, stride, offset);
 
-        // Binds and creates the normals buffer for this object.
-        this.normalsBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.normals), gl.STATIC_DRAW);
-        let normalLocation = gl.getAttribLocation(program, "a_normal");
-        gl.enableVertexAttribArray(normalLocation);
-        gl.vertexAttribPointer(normalLocation, size, type, normalize, stride, offset);
+            // Binds and creates the normals buffer for this object.
+            this.normalsBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.normals), gl.STATIC_DRAW);
+            let normalLocation = gl.getAttribLocation(program, "a_normal");
+            gl.enableVertexAttribArray(normalLocation);
+            gl.vertexAttribPointer(normalLocation, size, type, normalize, stride, offset);
 
-        // Binds and creates the texture coordinates buffer for this object.
-        this.texcoordBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.texcoordBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.text_coords), gl.STATIC_DRAW);
-        let texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
-        gl.enableVertexAttribArray(texcoordLocation);
-        gl.vertexAttribPointer(texcoordLocation, size - 1, type, normalize, stride, offset);
+            // Binds and creates the texture coordinates buffer for this object.
+            this.texcoordBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, this.texcoordBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.mesh.text_coords), gl.STATIC_DRAW);
+            let texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
+            gl.enableVertexAttribArray(texcoordLocation);
+            gl.vertexAttribPointer(texcoordLocation, size - 1, type, normalize, stride, offset);
 
-        // Set up translation vector (u_translation)
-        let translation = gl.getUniformLocation(program, "u_translation")
-        gl.uniform3fv(translation, [this.translation.z, this.translation.x, this.translation.y])
+            // Set up translation vector (u_translation)
+            let translation = gl.getUniformLocation(program, "u_translation")
+            gl.uniform3fv(translation, [this.translation.z, this.translation.x, this.translation.y])
 
-        let rotationMatrix = gl.getUniformLocation(program, 'u_normalMatrix')
-        gl.uniformMatrix4fv(rotationMatrix, false, m4.identity())
+            let rotationMatrix = gl.getUniformLocation(program, 'u_normalMatrix')
+            gl.uniformMatrix4fv(rotationMatrix, false, m4.identity())
 
-        // // Set up the projection matrix (u_projection)
-        let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
-        gl.uniformMatrix4fv(projectionMatrixLocation, false, ShadersManager.getProjectionMatrix(gl.canvas.clientWidth, gl.canvas.clientHeight));
+            // // Set up the projection matrix (u_projection)
+            let projectionMatrixLocation = gl.getUniformLocation(program, "u_projection_matrix");
+            gl.uniformMatrix4fv(projectionMatrixLocation, false, ShadersManager.getProjectionMatrix(gl.canvas.clientWidth, gl.canvas.clientHeight));
 
-        let camera_positions = ShadersManager.getCameraPosition(player_coords)
-        // Set up viewWorldPositionLocation (u_viewWorldPosition)
-        let viewWorldPositionLocation = gl.getUniformLocation(program, "u_viewWorldPosition");
-        gl.uniform3fv(viewWorldPositionLocation, camera_positions);
+            let camera_positions = ShadersManager.getCameraPosition(player_coords)
+            // Set up viewWorldPositionLocation (u_viewWorldPosition)
+            let viewWorldPositionLocation = gl.getUniformLocation(program, "u_viewWorldPosition");
+            gl.uniform3fv(viewWorldPositionLocation, camera_positions);
 
-        // Set up viewMatrixLocation (u_view)
-        let viewMatrixLocation = gl.getUniformLocation(program, "u_view_matrix");
-        gl.uniformMatrix4fv(viewMatrixLocation, false, ShadersManager.getViewMatrix(camera_positions, player_coords));
+            // Set up viewMatrixLocation (u_view)
+            let viewMatrixLocation = gl.getUniformLocation(program, "u_view_matrix");
+            gl.uniformMatrix4fv(viewMatrixLocation, false, ShadersManager.getViewMatrix(camera_positions, player_coords));
 
-        // Fragment Shader
+            // Fragment Shader
 
-        // Set up lightWorldDirectionLocation (u_lightDirection)
-        let lightWorldDirectionLocation = gl.getUniformLocation(program, "u_lightDirection");
-        gl.uniform3fv(lightWorldDirectionLocation, ShadersManager.getLightDirection());
+            // Set up lightWorldDirectionLocation (u_lightDirection)
+            let lightWorldDirectionLocation = gl.getUniformLocation(program, "u_lightDirection");
+            gl.uniform3fv(lightWorldDirectionLocation, ShadersManager.getLightDirection());
 
-        // Set up the diffuse of the object. If none are found, default values are loaded.
-        let diffuse = gl.getUniformLocation(program, "diffuse")
-        gl.uniform3fv(diffuse, (this.mesh.diffuse ? this.mesh.diffuse : ShadersManager.getDiffuse()));
+            // Set up the diffuse of the object. If none are found, default values are loaded.
+            let diffuse = gl.getUniformLocation(program, "diffuse")
+            gl.uniform3fv(diffuse, (this.mesh.diffuse ? this.mesh.diffuse : ShadersManager.getDiffuse()));
 
-        // Set up the ambient of the object. If none are found, default values are loaded.
-        let ambient = gl.getUniformLocation(program, "ambient")
-        gl.uniform3fv(ambient, (this.mesh.ambient ? this.mesh.ambient : ShadersManager.getAmbient()));
+            // Set up the ambient of the object. If none are found, default values are loaded.
+            let ambient = gl.getUniformLocation(program, "ambient")
+            gl.uniform3fv(ambient, (this.mesh.ambient ? this.mesh.ambient : ShadersManager.getAmbient()));
 
-        // Set up the specular of the object. If none are found, default values are loaded.
-        let specular = gl.getUniformLocation(program, "specular")
-        gl.uniform3fv(specular, (this.mesh.specular ? this.mesh.specular : ShadersManager.getSpecular()));
+            // Set up the specular of the object. If none are found, default values are loaded.
+            let specular = gl.getUniformLocation(program, "specular")
+            gl.uniform3fv(specular, (this.mesh.specular ? this.mesh.specular : ShadersManager.getSpecular()));
 
-        // Set up the emissive of the object. If none are found, default values are loaded.
-        let emissive = gl.getUniformLocation(program, "emissive")
-        gl.uniform3fv(emissive, (this.mesh.emissive ? this.mesh.emissive : ShadersManager.getEmissive()));
+            // Set up the emissive of the object. If none are found, default values are loaded.
+            let emissive = gl.getUniformLocation(program, "emissive")
+            gl.uniform3fv(emissive, (this.mesh.emissive ? this.mesh.emissive : ShadersManager.getEmissive()));
 
-        // Set up the u_ambientLight of the object. If none are found, default values are loaded.
-        let u_ambientLight = gl.getUniformLocation(program, "u_ambientLight")
-        gl.uniform3fv(u_ambientLight, ShadersManager.getAmbientLight());
+            // Set up the u_ambientLight of the object. If none are found, default values are loaded.
+            let u_ambientLight = gl.getUniformLocation(program, "u_ambientLight")
+            gl.uniform3fv(u_ambientLight, ShadersManager.getAmbientLight());
 
-        // Set up the u_colorLight of the object. If none are found, default values are loaded.
-        let u_colorLight = gl.getUniformLocation(program, "u_colorLight")
-        gl.uniform3fv(u_colorLight, ShadersManager.getColorLight());
+            // Set up the u_colorLight of the object. If none are found, default values are loaded.
+            let u_colorLight = gl.getUniformLocation(program, "u_colorLight")
+            gl.uniform3fv(u_colorLight, ShadersManager.getColorLight());
 
-        // Set up the shininess of the object. If none are found, default values are loaded.
-        let shininess = gl.getUniformLocation(program, "shininess")
-        gl.uniform1f(shininess, (this.mesh.shininess ? this.mesh.shininess : ShadersManager.getShininess()));
+            // Set up the shininess of the object. If none are found, default values are loaded.
+            let shininess = gl.getUniformLocation(program, "shininess")
+            gl.uniform1f(shininess, (this.mesh.shininess ? this.mesh.shininess : ShadersManager.getShininess()));
 
-        // Set up the opacity of the object. If none are found, default values are loaded.
-        let opacity = gl.getUniformLocation(program, "opacity")
-        gl.uniform1f(opacity, (this.mesh.opacity ? this.mesh.opacity : ShadersManager.getOpacity()));
+            // Set up the opacity of the object. If none are found, default values are loaded.
+            let opacity = gl.getUniformLocation(program, "opacity")
+            gl.uniform1f(opacity, (this.mesh.opacity ? this.mesh.opacity : ShadersManager.getOpacity()));
 
-        // Set up textureLocation (diffuseMap). Tell the shader to use texture unit 0 for diffuseMap
-        let textureLocation = gl.getUniformLocation(program, "diffuseMap");
-        gl.uniform1i(textureLocation, ShadersManager.getTextureLocation());
+            // Set up textureLocation (diffuseMap). Tell the shader to use texture unit 0 for diffuseMap
+            let textureLocation = gl.getUniformLocation(program, "diffuseMap");
+            gl.uniform1i(textureLocation, ShadersManager.getTextureLocation());
 
-        //drawScene(this.mesh, this.screen, mirrorText, this.mesh.numVertices)
-        drawScene(this.mesh, this.mesh.numVertices)
+            //drawScene(this.mesh, this.screen, mirrorText, this.mesh.numVertices)
+            drawScene(this.mesh, this.mesh.numVertices)
 
-        function drawScene(mesh, vertNumber) {
-            // // Draw the scene, using textures and binding them when's appropriate.
-            gl.bindTexture(gl.TEXTURE_2D, mesh.texture);
-            gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-            gl.enable(gl.DEPTH_TEST);
+            function drawScene(mesh, vertNumber) {
+                // // Draw the scene, using textures and binding them when's appropriate.
+                gl.bindTexture(gl.TEXTURE_2D, mesh.texture);
+                gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+                gl.enable(gl.DEPTH_TEST);
 
-            // Set up matrixLocation (u_world)
-            let matrix = m4.identity();
-            let matrixLocation = gl.getUniformLocation(program, "u_world");
-            gl.uniformMatrix4fv(matrixLocation, false, matrix);
+                // Set up matrixLocation (u_world)
+                let matrix = m4.identity();
+                let matrixLocation = gl.getUniformLocation(program, "u_world");
+                gl.uniformMatrix4fv(matrixLocation, false, matrix);
 
-            // Draw arrays contents on the canvas.
-            gl.drawArrays(gl.TRIANGLES, 0, vertNumber);
+                // Draw arrays contents on the canvas.
+                gl.drawArrays(gl.TRIANGLES, 0, vertNumber);
+            }
         }
     }
 }
