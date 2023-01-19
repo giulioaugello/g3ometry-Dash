@@ -17,123 +17,92 @@
 
     <script type="module" src="main.js" defer></script>
 
-    <!-- Vertex Shader FUNZIONA-->
-    <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute vec3 a_position; // Position vector
-        attribute vec3 a_normal; // Normals vector
-        attribute vec2 a_texcoord; // Texture coordinates vector
+    <!-- Vertex Shader -->
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            attribute vec3 a_position; // Position vector
+            attribute vec3 a_normal; // Normals vector
+            attribute vec2 a_texcoord; // Texture coordinates vector
 
-        uniform mat4 u_projection_matrix; // Prospective projection matrix
-        uniform mat4 u_view_matrix; // View Matrix
-        uniform vec3 u_viewWorldPosition; // Camera position
+            uniform mat4 u_projection_matrix; // Prospective projection matrix
+            uniform mat4 u_view_matrix; // View Matrix
+            uniform vec3 u_viewWorldPosition; // Camera position
 
-        // Translation vector
-        uniform vec3 u_translation;
-        uniform mat4 u_normalMatrix;
+            // Translation vector
+            uniform vec3 u_translation;
+            uniform mat4 u_normalMatrix;
 
-        // Fragment shader varyings
-        varying vec3 v_normal;
-        varying vec4 v_world_matrix;
-        varying vec3 v_surfaceToView;
-        varying vec2 v_texcoord;
+            // Fragment shader varyings
+            varying vec3 v_normal;
+            varying vec4 v_world_matrix;
+            varying vec3 v_surfaceToView;
+            varying vec2 v_texcoord;
 
-        void main() {
-            // Compute the position by multiplying the projection matrix with the view matrix and the vector
-            // that's the vertex position + the translation of the object.
+            void main() {
+                // Compute the position by multiplying the projection matrix with the view matrix and the vector
+                // that's the vertex position + the translation of the object.
 
-            // La posizione nello schermo (gl_Position) è il prodotto fra posizione nel sistema dell'oggetto (world_position),
-            // posizione della camera (u_view) e posizione della proiezione del canvas (u_projection)
+                // La posizione nello schermo (gl_Position) è il prodotto fra posizione nel sistema dell'oggetto (world_position),
+                // posizione della camera (u_view) e posizione della proiezione del canvas (u_projection)
 
-            v_world_matrix = vec4(a_position + u_translation, 1.);
-            gl_Position = u_projection_matrix * u_view_matrix * v_world_matrix;
+                v_world_matrix = vec4(a_position + u_translation, 1.);
+                gl_Position = u_projection_matrix * u_view_matrix * v_world_matrix;
 
-            v_surfaceToView = u_viewWorldPosition - vec4(a_position, 1).xyz;
-            v_normal = (u_normalMatrix * vec4(a_normal, 1)).xyz;
-            v_texcoord = a_texcoord;
-        }
+                v_surfaceToView = u_viewWorldPosition - vec4(a_position, 1).xyz;
+                v_normal = (u_normalMatrix * vec4(a_normal, 1)).xyz;
+                v_texcoord = a_texcoord;
+            }
 
-    </script>
+        </script>
 
-<!--    <script id="vertex-shader" type="x-shader/x-vertex">-->
-<!--        attribute vec3 a_position; // Position vector-->
-<!--        attribute vec3 a_normal; // Normals vector-->
-<!--        attribute vec2 a_texcoord; // Texture coordinates vector-->
 
-<!--        uniform mat4 u_view_matrix; // View Matrix-->
-<!--        uniform vec3 u_viewWorldPosition; // Camera position-->
+        <!--     Fragment Shader-->
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision highp float;
 
-<!--        // Translation vector-->
-<!--        uniform mat4 u_normalMatrix;-->
+            // Varying from the vertex shader
+            varying vec3 v_normal;
+            varying vec3 v_surfaceToView;
+            varying vec2 v_texcoord;
 
-<!--        // Fragment shader varyings-->
-<!--        varying vec3 v_normal;-->
-<!--        varying vec3 v_surfaceToView;-->
-<!--        varying vec2 v_texcoord;-->
+            // Uniforms
+            uniform vec3 diffuse;
+            uniform vec3 ambient;
+            uniform vec3 emissive;
+            uniform vec3 specular;
+            uniform float shininess;
+            uniform float opacity;
+            uniform vec3 u_lightDirection;
+            uniform vec3 u_ambientLight;
+            uniform vec3 u_colorLight;
+            uniform sampler2D diffuseMap;
 
-<!--        void main() {-->
-<!--            // Compute the position by multiplying the projection matrix with the view matrix and the vector-->
-<!--            // that's the vertex position + the translation of the object.-->
+            void main () {
+                vec3 normal = normalize(v_normal);
+                vec3 surfaceToViewDirection = normalize(v_surfaceToView);
+                vec3 halfVector = normalize(u_lightDirection + surfaceToViewDirection);
 
-<!--            // La posizione nello schermo (gl_Position) è il prodotto fra posizione nel sistema dell'oggetto (world_position),-->
-<!--            // posizione della camera (u_view) e posizione della proiezione del canvas (u_projection)-->
+                // Lights setup
+                float fakeLight = dot(u_lightDirection, normal) * .5 + .5;
+                float specularLight = clamp(dot(normal, halfVector), 0.0, 1.0);
 
-<!--            gl_Position = u_view_matrix * a_position;-->
+                // Diffusion calculation
+                vec4 diffuseMapColor = texture2D(diffuseMap, v_texcoord);
+                vec3 effectiveDiffuse = diffuse * diffuseMapColor.rgb * u_colorLight.rgb;
+                float effectiveOpacity = opacity * diffuseMapColor.a;
 
-<!--            v_surfaceToView = u_viewWorldPosition - vec4(a_position, 1).xyz;-->
-<!--            v_normal = (u_normalMatrix * vec4(a_normal, 1)).xyz;-->
-<!--            v_texcoord = a_texcoord;-->
-<!--        }-->
+                // Final fragment color computation
+                gl_FragColor = vec4(
+                    emissive +
+                    ambient * u_ambientLight +
+                    effectiveDiffuse * fakeLight +
+                    specular * pow(specularLight, shininess),
+                    effectiveOpacity
+                );
+            }
 
-<!--    </script>-->
+        </script>
 
-    <!-- Fragment Shader -->
-    <script id="fragment-shader" type="x-shader/x-fragment">
-        precision highp float;
-
-        // Varying from the vertex shader
-        varying vec3 v_normal;
-        varying vec3 v_surfaceToView;
-        varying vec2 v_texcoord;
-
-        // Uniforms
-        uniform vec3 diffuse;
-        uniform vec3 ambient;
-        uniform vec3 emissive;
-        uniform vec3 specular;
-        uniform float shininess;
-        uniform float opacity;
-        uniform vec3 u_lightDirection;
-        uniform vec3 u_ambientLight;
-        uniform vec3 u_colorLight;
-        uniform sampler2D diffuseMap;
-
-        void main () {
-            vec3 normal = normalize(v_normal);
-            vec3 surfaceToViewDirection = normalize(v_surfaceToView);
-            vec3 halfVector = normalize(u_lightDirection + surfaceToViewDirection);
-
-            // Lights setup
-            float fakeLight = dot(u_lightDirection, normal) * .5 + .5;
-            float specularLight = clamp(dot(normal, halfVector), 0.0, 1.0);
-
-            // Diffusion calculation
-            vec4 diffuseMapColor = texture2D(diffuseMap, v_texcoord);
-            vec3 effectiveDiffuse = diffuse * diffuseMapColor.rgb * u_colorLight.rgb;
-            float effectiveOpacity = opacity * diffuseMapColor.a;
-
-            // Final fragment color computation
-            gl_FragColor = vec4(
-                emissive +
-                ambient * u_ambientLight +
-                effectiveDiffuse * fakeLight +
-                specular * pow(specularLight, shininess),
-                effectiveOpacity
-            );
-        }
-
-    </script>
-
-    <script  id="vertex-shader-skybox" type="x-shader/x-vertex">
+    <script id="vertex-shader-skybox" type="x-shader/x-vertex">
         attribute vec4 a_position;
         varying vec4 v_position;
         void main() {
@@ -141,9 +110,10 @@
           gl_Position = a_position;
           gl_Position.z = 1.0;
         }
+
     </script>
-            <!-- fragment shader -->
-    <script  id="fragment-shader-skybox" type="x-shader/x-fragment">
+    <!-- fragment shader -->
+    <script id="fragment-shader-skybox" type="x-shader/x-fragment">
         precision mediump float;
 
         uniform samplerCube u_skybox;
@@ -154,6 +124,7 @@
           vec4 t = u_viewDirectionProjectionInverse * v_position;
           gl_FragColor = textureCube(u_skybox, normalize(t.xyz / t.w));
         }
+
     </script>
 
 </head>
@@ -214,9 +185,9 @@
                 <option value="12">12</option>
                 <option value="24">24</option>
                 <option value="30">30</option>
-                <option value="60" selected>60</option>
+                <option value="60">60</option>
                 <option value="90">90</option>
-                <option value="120">120</option>
+                <option value="120" selected>120</option>
             </select>
         </label>
         <div id="gui"></div>
@@ -235,8 +206,8 @@
         </div>
     </div>
 
-<!--    <audio id="bouncing" src="sound_effects/bouncing.mp3"></audio>-->
-<!--    <audio id="soundtracks"></audio>-->
+    <!--    <audio id="bouncing" src="sound_effects/bouncing.mp3"></audio>-->
+    <!--    <audio id="soundtracks"></audio>-->
 </div>
 
 </body>

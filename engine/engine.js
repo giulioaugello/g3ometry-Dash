@@ -255,27 +255,27 @@ export class Engine {
         const faceInfos = [
             {
                 target: this.gl.TEXTURE_CUBE_MAP_NEGATIVE_Y,
-                url: 'obj/skybox/top.png',
+                url: 'img/skybox/blue.png',
             },
             {
                 target: this.gl.TEXTURE_CUBE_MAP_POSITIVE_Y,
-                url: 'obj/skybox/bottom.png',
+                url: 'img/skybox/blue.png',
             },
             {
                 target: this.gl.TEXTURE_CUBE_MAP_POSITIVE_X,
-                url: 'obj/skybox/right.png',
+                url: 'img/skybox/blue.png',
             },
             {
                 target: this.gl.TEXTURE_CUBE_MAP_NEGATIVE_X,
-                url: 'obj/skybox/left.png',
+                url: 'img/skybox/blue.png',
             },
             {
                 target: this.gl.TEXTURE_CUBE_MAP_POSITIVE_Z,
-                url: 'obj/skybox/front.png',
+                url: 'img/skybox/blue.png',
             },
             {
                 target: this.gl.TEXTURE_CUBE_MAP_NEGATIVE_Z,
-                url: 'obj/skybox/back.png',
+                url: 'img/skybox/blue.png',
             },
         ];
         faceInfos.forEach((faceInfo) => {
@@ -339,10 +339,5 @@ export class Engine {
             indices: [0, 1, 2, 2, 1, 3],
         };
     }
-
-
-
-
-
 
 }
