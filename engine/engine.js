@@ -41,6 +41,17 @@ export class Engine {
         // this.skyboxProgramInfo = webglUtils.createProgramInfo(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"])
         // this.gl.useProgram(this.skyboxProgramInfo)
 
+
+        this.positionLocation = this.gl.getAttribLocation(this.skyboxProgramInfo, "a_position");
+
+        // lookup uniforms
+        this.skyboxLocation = this.gl.getUniformLocation(this.skyboxProgramInfo, "u_skybox");
+        this.viewDirectionProjectionInverseLocation =
+            this.gl.getUniformLocation(this.skyboxProgramInfo, "u_viewDirectionProjectionInverse");
+
+        // Create a buffer for positions
+        this.positionBuffer = this.gl.createBuffer();
+
         this.photo = photo;
 
         this.loadMeshes()
@@ -69,8 +80,8 @@ export class Engine {
 
     start(fps) {
         this.setFPS(fps);
-        this.drawScene(undefined)
-        // window.requestAnimationFrame(this.drawScene.bind(this))
+
+        window.requestAnimationFrame(this.drawScene.bind(this))
         // window.requestAnimationFrame(this.render.bind(this))
         // window.requestAnimationFrame(this.sky.bind(this))
 
@@ -321,17 +332,9 @@ export class Engine {
 
         console.log(this.gl)
         // look up where the vertex data needs to go.
-        var positionLocation = this.gl.getAttribLocation(this.skyboxProgramInfo, "a_position");
 
-        // lookup uniforms
-        var skyboxLocation = this.gl.getUniformLocation(this.skyboxProgramInfo, "u_skybox");
-        var viewDirectionProjectionInverseLocation =
-            this.gl.getUniformLocation(this.skyboxProgramInfo, "u_viewDirectionProjectionInverse");
-
-        // Create a buffer for positions
-        var positionBuffer = this.gl.createBuffer();
         // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
-        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
         // Put the positions in the buffer
         this.setGeometry(this.gl);
 
@@ -374,10 +377,10 @@ export class Engine {
         this.gl.useProgram(this.skyboxProgramInfo);
 
         // Turn on the position attribute
-        this.gl.enableVertexAttribArray(positionLocation);
+        this.gl.enableVertexAttribArray(this.positionLocation);
 
         // Bind the position buffer.
-        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
 
         // Tell the position attribute how to get data out of positionBuffer (ARRAY_BUFFER)
         var size = 2;          // 2 components per iteration
@@ -386,7 +389,7 @@ export class Engine {
         var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
         var offset = 0;        // start at the beginning of the buffer
         this.gl.vertexAttribPointer(
-            positionLocation, size, type, normalize, stride, offset);
+            this.positionLocation, size, type, normalize, stride, offset);
 
         // Compute the projection matrix
         var aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
@@ -415,11 +418,11 @@ export class Engine {
 
         // Set the uniforms
         this.gl.uniformMatrix4fv(
-            viewDirectionProjectionInverseLocation, false,
+            this.viewDirectionProjectionInverseLocation, false,
             viewDirectionProjectionInverseMatrix);
 
         // Tell the shader to use texture unit 0 for u_skybox
-        this.gl.uniform1i(skyboxLocation, 0);
+        this.gl.uniform1i(this.skyboxLocation, 0);
 
         // let our quad pass the depth test at 1.0
         this.gl.depthFunc(this.gl.LEQUAL);
