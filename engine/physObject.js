@@ -691,6 +691,22 @@ export class PhysObject {
         }
     }
 
+
+    // function drawScene(mesh, vertNumber) {
+    //     // // Draw the scene, using textures and binding them when's appropriate.
+    //     gl.depthFunc(gl.LESS);  // use the default depth test
+    //     gl.useProgram(envmapProgramInfo.program);
+    //     webglUtils.setBuffersAndAttributes(gl, envmapProgramInfo, cubeBufferInfo);
+    //     webglUtils.setUniforms(envmapProgramInfo, {
+    //         u_world: viewWorldPositionLocation,
+    //         u_view: viewMatrixLocation,
+    //         u_projection: projectionMatrixLocation,
+    //         u_texture: mesh.texture,
+    //         u_worldCameraPosition: camera_positions,
+    //     });
+    //     webglUtils.drawBufferInfo(gl, cubeBufferInfo);
+    // }
+
     // render(gl, program, uniforms, isColor) {
     //     gl.useProgram(program);
     //     webglUtils.setUniforms(program, uniforms);     // calls gl.uniform
