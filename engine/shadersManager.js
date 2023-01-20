@@ -35,11 +35,27 @@ export class ShadersManager {
     }
 
     static increaseFieldOfViewRadiansOf(value) {
-        this.vertexShaderParameters.fieldOfViewDegrees += value;
+        if (this.vertexShaderParameters.fieldOfViewDegrees < 20) {
+            this.vertexShaderParameters.fieldOfViewDegrees += value;
+        }
+    }
+
+    static decreaseFieldOfViewRadiansOf(value) {
+        if (this.vertexShaderParameters.fieldOfViewDegrees > 13) {
+            this.vertexShaderParameters.fieldOfViewDegrees -= value;
+        }
     }
 
     static increaseCameraPositionAtIndexOfValue(index, value) {
-        this.vertexShaderParameters.cameraPosition[index] += value;
+        if (this.vertexShaderParameters.cameraPosition[index] < 75) {
+            this.vertexShaderParameters.cameraPosition[index] += value;
+        }
+    }
+
+    static decreaseCameraPositionAtIndexOfValue(index, value) {
+        if (this.vertexShaderParameters.cameraPosition[index] > -60) {
+            this.vertexShaderParameters.cameraPosition[index] -= value;
+        }
     }
 
     static getCameraTar() {
@@ -97,40 +113,40 @@ export class ShadersManager {
     }
 
     // Fragment Shader parameters
-    static getAmbientLight(){
+    static getAmbientLight() {
         return this.fragmentShaderParameters.ambientLight;
     }
 
     // Fragment Shader parameters
-    static getColorLight(){
+    static getColorLight() {
         return this.fragmentShaderParameters.colorLight;
     }
 
-    static getShininess(){
+    static getShininess() {
         return this.fragmentShaderParameters.shininess
     }
 
-    static getOpacity(){
+    static getOpacity() {
         return this.fragmentShaderParameters.opacity
     }
 
-    static getTextureLocation(){
+    static getTextureLocation() {
         return this.fragmentShaderParameters.textureLocation
     }
 
-    static getDiffuse(){
+    static getDiffuse() {
         return this.fragmentShaderParameters.diffuse
     }
 
-    static getAmbient(){
+    static getAmbient() {
         return this.fragmentShaderParameters.ambient
     }
 
-    static getSpecular(){
+    static getSpecular() {
         return this.fragmentShaderParameters.specular
     }
 
-    static getEmissive(){
+    static getEmissive() {
         return this.fragmentShaderParameters.emissive
     }
 }

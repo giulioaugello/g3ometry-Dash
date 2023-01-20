@@ -1,7 +1,7 @@
 // Common variables in module
 
 // User input queue
-import {ShadersManager} from "./shadersManager.js";
+import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 
 
 let queue = {x: {p: false, n: false}, z: {p: false, n: false}};
@@ -30,9 +30,10 @@ export class PlayerController {
         } else {
             window.addEventListener("keydown", this.keyDown, true)
             window.addEventListener("keyup", this.keyUp, true)
-            // window.addEventListener("mousedown", this.mouseDown, true)
-            // window.addEventListener("mouseup", this.mouseUp, true)
-            // window.addEventListener("mousemove", this.mouseMove, true)
+            window.addEventListener("mousedown", this.mouseDown, true)
+            window.addEventListener("mouseup", this.mouseUp, true)
+            window.addEventListener("mousemove", this.mouseMove, true)
+            window.addEventListener("wheel", this.wheelMove, true);
         }
 
         console.log("Controller installed.")
@@ -46,16 +47,16 @@ export class PlayerController {
         } else {
             window.removeEventListener("keydown", this.keyDown, true)
             window.removeEventListener("keyup", this.keyUp, true)
-            // window.removeEventListener("mousedown", this.mouseDown, true)
-            // window.removeEventListener("mouseup", this.mouseUp, true)
-            // window.removeEventListener("mousemove", this.mouseMove, true)
+            window.removeEventListener("mousedown", this.mouseDown, true)
+            window.removeEventListener("mouseup", this.mouseUp, true)
+            window.removeEventListener("mousemove", this.mouseMove, true)
         }
 
 
         console.log("Controller uninstalled.")
     }
 
-    setSpace(boolSpace){
+    setSpace(boolSpace) {
         isSpaceTr = boolSpace
     }
 
@@ -65,28 +66,49 @@ export class PlayerController {
             if (e instanceof TouchEvent) {
                 e = e.changedTouches[0]
                 if (e.clientX > old.x) {
-                    queue.x.n = true;
+                    // queue.x.n = true;
+                    console.log("ciao1")
                 } else if (e.clientX < old.x) {
-                    queue.x.p = true;
-                } else queue.x.n = queue.x.p = false
+                    // queue.x.p = true;
+                } else {
+                    // queue.x.n = queue.x.p = false
+                    console.log("ciao2")
+                }
                 if (e.clientY < old.y) {
-                    queue.z.p = true;
+                    // queue.z.p = true;
+                    console.log("ciao3")
                 } else if (e.clientY > old.y) {
-                    queue.z.n = true;
-                } else queue.z.p = queue.z.n = false
+                    // queue.z.n = true;
+                    console.log("ciao4")
+                } else {
+                    // queue.z.p = queue.z.n = false
+                    console.log("ciao5")
+                }
                 old.x = e.clientX;
                 old.y = e.clientY;
             } else {
                 if (e.movementX > 0) {
-                    queue.x.n = true;
+                    // queue.x.n = true;
+                    console.log("destra")
+                    shadersManager.increaseCameraPositionAtIndexOfValue(0, 1)
                 } else if (e.movementX < 0) {
-                    queue.x.p = true;
-                } else queue.x.n = queue.x.p = false
+                    // queue.x.p = true;
+                    console.log("sinistra")
+                    shadersManager.decreaseCameraPositionAtIndexOfValue(0, 1)
+                } else {
+                    // queue.x.n = queue.x.p = false
+                    console.log("ciao8")
+                }
                 if (e.movementY < 0) {
-                    queue.z.p = true;
+                    // queue.z.p = true;
+                    console.log("ciao9")
                 } else if (e.movementY > 0) {
-                    queue.z.n = true;
-                } else queue.z.p = queue.z.n = false
+                    // queue.z.n = true;
+                    console.log("ciao10")
+                } else {
+                    // queue.z.p = queue.z.n = false
+                    console.log("ciao11")
+                }
             }
         }
     }
@@ -107,8 +129,16 @@ export class PlayerController {
         old = {x: null, y: null};
     }
 
-    getSpace(){
+    getSpace() {
         return isSpaceTr
+    }
+
+    wheelMove(e){
+        if (e.deltaY < 0){
+            shadersManager.increaseFieldOfViewRadiansOf(1)
+        } else {
+            shadersManager.decreaseFieldOfViewRadiansOf(1)
+        }
     }
 
     keyDown(e) {
@@ -117,7 +147,7 @@ export class PlayerController {
             case 32: // space
                 // console.log("before if", isSpaceTr)
 
-                if (isSpaceTr){
+                if (isSpaceTr) {
                     // isSpaceTr = false
                     queue.x.n = true
                     // console.log("inside if", isSpaceTr)
@@ -155,13 +185,13 @@ export class PlayerController {
                 //ShadersManager.increaseCameraPositionAtIndexOfValue(0, -0.5)
                 break
             case 86: // v
-                ShadersManager.increaseCameraPositionAtIndexOfValue(0, 2)
+                // ShadersManager.increaseCameraPositionAtIndexOfValue(0, 2)
                 break
             case 66: // b
-                ShadersManager.increaseCameraPositionAtIndexOfValue(1, 2)
+                // ShadersManager.increaseCameraPositionAtIndexOfValue(1, 2)
                 break
             case 78: // n
-                ShadersManager.increaseCameraPositionAtIndexOfValue(2, 2)
+                // ShadersManager.increaseCameraPositionAtIndexOfValue(2, 2)
                 break
             // case 27: // esc
             //     setTimeout(function () {
@@ -212,7 +242,7 @@ export class PlayerController {
             //     console.log("ciao")
             // }
 
-            if (isSpaceTr){
+            if (isSpaceTr) {
                 // obj.speed.y = 0.4
                 obj.speed.y = 0.4
             }
