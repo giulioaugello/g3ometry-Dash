@@ -99,10 +99,8 @@ const skyboxElement = document.getElementById('showSkybox');
 skyboxElement.addEventListener("change", () => {
     if (skyboxElement.checked) {
         engine.setFPS(120)
-        engine.startSkybox()
         $('#fpsDiv').hide();
     } else {
-        engine.stopSkybox()
         $('#fpsDiv').show();
     }
 });

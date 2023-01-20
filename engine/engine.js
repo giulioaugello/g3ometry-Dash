@@ -24,23 +24,6 @@ export class Engine {
         // // SKYBOX
         this.skyboxProgram = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"]);
         this.sky()
-        // // this.skyboxProgramInfo = webglUtils.createProgramInfo(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"]);
-        // this.skyboxProgramInfo = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"])
-        // // this.gl.useProgram(this.skyboxProgramInfo)
-        //
-        // // Create buffers and fill with vertex data
-        // this.quadBufferInfo = this.createXYQuadBufferInfo(this.gl);
-        // // Create a texture.
-        // this.texture = this.createSkyboxTexture(this.gl)
-        //
-        // this.positionLocation = this.gl.getAttribLocation(this.skyboxProgramInfo, "a_position");
-        //
-        // // lookup uniforms
-        // this.skyboxLocation = this.gl.getUniformLocation(this.skyboxProgramInfo, "u_skybox");
-        // this.viewDirectionProjectionInverseLocation = this.gl.getUniformLocation(this.skyboxProgramInfo, "u_viewDirectionProjectionInverse");
-        //
-        // // Create a buffer for positions
-        // this.positionBuffer = this.gl.createBuffer();
 
         this.photo = photo;
 
@@ -119,14 +102,6 @@ export class Engine {
         this.loadMeshes()
     }
     // SKYBOX
-
-    startSkybox() {
-        //window.requestAnimationFrame(this.sky.bind(this))
-    }
-
-    stopSkybox() {
-        // window.cancelAnimationFrame(this.skyboxAnimationId)
-    }
 
     sky() {
         // look up where the vertex data needs to go.
