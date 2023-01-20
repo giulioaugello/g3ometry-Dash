@@ -67,7 +67,8 @@ export class PhysObject {
         if (this.isPlayer) {
             let check = this.is_colliding(physobjs)
             // console.log(check, physobjs)
-            let bounds = this.compute_bounds()
+            // let bounds = this.compute_bounds()
+            let bounds = check.playerBound
 
             // if (this.isPlayer) {
             //     if (check.coll) {
@@ -105,7 +106,7 @@ export class PhysObject {
 
             if (check.coll) {
 
-                console.log("collision done  ", this.playerController.getSpace())
+                // console.log("collision done  ", this.playerController.getSpace())
                 // if(this.playerController.getSpace()) this.playerController.setSpace(false)
                 // else this.playerController.setSpace(true)
                 this.playerController.setSpace(true)
@@ -130,7 +131,7 @@ export class PhysObject {
 
                 //Se la palla sta collidendo sopra e non è ferma
                 if (check.data.y.top.is_colliding) {
-                    console.log("y top")
+                    // console.log("y top")
                     // //// Y
                     // // Rimando la palla verso l'alto con la stessa velocità con cui è arrivata
                     // this.speed.y = -this.speed.y
@@ -144,7 +145,7 @@ export class PhysObject {
 
                 // Se la palla sta collidendo sulla parete dietro e non è fermo
                 if (check.data.x.top.is_colliding) {
-                    console.log("x top")
+                    // console.log("x top")
                     // //// X
                     // // Inverto la speed di x
                     // this.speed.x = -this.speed.x
@@ -158,7 +159,7 @@ export class PhysObject {
 
                 // Se la palla sta collidendo sulla parete davanti e non è fermo
                 if (check.data.x.bottom.is_colliding) {
-                    console.log("x bottom")
+                    // console.log("x bottom")
                     // //// X
                     // // Inverto la speed di x
                     // this.speed.x = -this.speed.x
@@ -172,7 +173,7 @@ export class PhysObject {
 
                 // Se la palla sta collidendo sulla parete sinistra e non è ferma
                 if (check.data.z.bottom.is_colliding) {
-                    console.log("z bottom")
+                    // console.log("z bottom")
                     // //// Z
                     // this.speed.z = -this.speed.z
                     //
@@ -185,7 +186,7 @@ export class PhysObject {
 
                 // Se la palla sta collidendo sulla parete destra e non è ferma
                 if (check.data.z.top.is_colliding) {
-                    console.log("z top")
+                    // console.log("z top")
                     // //// Z
                     // this.speed.z = -this.speed.z
                     //
@@ -411,7 +412,9 @@ export class PhysObject {
                     coll = true;
 
                     if (physobjs[obj].collider_type === "death") {
+
                         console.log("over")
+
                         window.dispatchEvent(new CustomEvent('game_over'))
                     } else if (physobjs[obj].collider_type === "portal") {
                         // come spawna la camera
@@ -453,6 +456,7 @@ export class PhysObject {
             // }
         }
         return {
+            playerBound: bounds,
             coll: isColliding, data: data
         };
     }

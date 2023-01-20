@@ -42,6 +42,19 @@
         "y": 3.5,
         "z": 0.0
       }
+    },
+    {
+      "name": "evil001",
+      "path": "obj/evil001.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "death",
+      "dim": null,
+      "coords": {
+        "x": -13.0,
+        "y": 4.5,
+        "z": 0.0
+      }
     }
   ]
 }
