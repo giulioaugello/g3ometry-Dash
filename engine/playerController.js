@@ -146,7 +146,7 @@ export class PlayerController {
         switch (e.keyCode) {
             case 32: // space
                 // console.log("before if", isSpaceTr)
-
+                // queue.x.n = true
                 if (isSpaceTr) {
                     // isSpaceTr = false
                     queue.x.n = true
@@ -242,8 +242,8 @@ export class PlayerController {
             //     console.log("ciao")
             // }
 
+            // obj.speed.y = 0.4
             if (isSpaceTr) {
-                // obj.speed.y = 0.4
                 obj.speed.y = 0.4
             }
 

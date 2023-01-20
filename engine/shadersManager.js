@@ -96,11 +96,11 @@ export class ShadersManager {
         let camera = shadersControls.addFolder('Camera');
 
         let camera_position = camera.addFolder('Position');
-        camera_position.add(this.vertexShaderParameters.cameraPosition, 0).min(0).max(75).step(1);
+        camera_position.add(this.vertexShaderParameters.cameraPosition, 0).min(-60).max(60).step(1);
         camera_position.add(this.vertexShaderParameters.cameraPosition, 1).min(-75).max(15).step(1);
         camera_position.add(this.vertexShaderParameters.cameraPosition, 2).min(-200).max(200).step(1)
 
-        camera.add(this.vertexShaderParameters, "fieldOfViewDegrees").min(15).max(30).step(1)
+        camera.add(this.vertexShaderParameters, "fieldOfViewDegrees").min(13).max(20).step(1)
 
         let lights = shadersControls.addFolder('Lights');
         lights.add(this.fragmentShaderParameters.lightDirection, 0).min(-360).max(360).step(1);
