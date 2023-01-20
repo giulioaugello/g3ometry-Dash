@@ -221,7 +221,7 @@ export class PhysObject {
 
                         }
                     } else {
-                        if (this.position.y >= actualPosY + 6) {
+                        if (this.position.y >= actualPosY + 8) {
                             this.speed.y = -0.3
                         }
                     }

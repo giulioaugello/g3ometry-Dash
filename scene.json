@@ -304,6 +304,19 @@
       }
     },
     {
+      "name": "bounce",
+      "path": "obj/bounce.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "bounce",
+      "dim": null,
+      "coords": {
+        "x": -93.0,
+        "y": 6.0,
+        "z": 4.0
+      }
+    },
+    {
       "name": "portal002",
       "path": "obj/portal002.obj",
       "isPlayer": false,
