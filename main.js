@@ -78,14 +78,12 @@ window.addEventListener('point', async (e) => {
 })
 
 window.addEventListener('game_over', async (e) => {
-    // if (document.getElementById('stopOnFloorReached').checked) {
+
     //     startTimerButton.value = "Start"
     //     engine.stop()
     //     alert("Il tuo punteggio è " + counter)
-    // } else {
-    //     counter--
-    //     counterElem.textContent = counter;
-    // }
+
+
     alert("end")
     engine.stop()
 })
@@ -94,6 +92,19 @@ window.addEventListener('game_over', async (e) => {
 const fpsDomElement = document.getElementById('fpsID');
 fpsDomElement.addEventListener("change", () => {
     engine.setFPS(fpsDomElement.value)
+});
+
+// Skybox Listener
+const skyboxElement = document.getElementById('showSkybox');
+skyboxElement.addEventListener("change", () => {
+    if (skyboxElement.checked) {
+        engine.setFPS(120)
+        engine.startSkybox()
+        $('#fpsDiv').hide();
+    } else {
+        engine.stopSkybox()
+        $('#fpsDiv').show();
+    }
 });
 
 window.addEventListener('start', async (e) => {

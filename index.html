@@ -18,7 +18,7 @@
     <script type="module" src="main.js" defer></script>
 
     <!-- Vertex Shader -->
-        <script id="vertex-shader" type="x-shader/x-vertex">
+    <script id="vertex-shader" type="x-shader/x-vertex">
             attribute vec3 a_position; // Position vector
             attribute vec3 a_normal; // Normals vector
             attribute vec2 a_texcoord; // Texture coordinates vector
@@ -52,11 +52,12 @@
                 v_texcoord = a_texcoord;
             }
 
-        </script>
+
+    </script>
 
 
-        <!--     Fragment Shader-->
-        <script id="fragment-shader" type="x-shader/x-fragment">
+    <!--     Fragment Shader-->
+    <script id="fragment-shader" type="x-shader/x-fragment">
             precision highp float;
 
             // Varying from the vertex shader
@@ -100,7 +101,8 @@
                 );
             }
 
-        </script>
+
+    </script>
 
     <script id="vertex-shader-skybox" type="x-shader/x-vertex">
         attribute vec4 a_position;
@@ -110,6 +112,7 @@
           gl_Position = a_position;
           gl_Position.z = 1.0;
         }
+
 
     </script>
     <!-- fragment shader -->
@@ -124,6 +127,7 @@
           vec4 t = u_viewDirectionProjectionInverse * v_position;
           gl_FragColor = textureCube(u_skybox, normalize(t.xyz / t.w));
         }
+
 
     </script>
 
@@ -164,32 +168,37 @@
     <div class="menu column2 show-on-desktop hide-on-mobile">
         <p class="title">Settings</p>
 
-        <label for="toggleMyPhoto">Show my photo (restart required)</label>
         <input id="toggleMyPhoto" type="checkbox"/>
+        <label for="toggleMyPhoto">Show my photo (restart required)</label>
+
 
         <br>
 
-        <label for="stopOnFloorReached">Stop game on floor reached</label>
-        <input id="stopOnFloorReached" type="checkbox"/>
+        <input id="showSkybox" type="checkbox"/>
+        <label for="showSkybox">Show Skybox</label>
+
 
         <br>
 
-        <label for="playMusic">Play sound effects</label>
         <input id="playMusic" type="checkbox" checked/>
+        <label for="playMusic">Play sound effects</label>
+
 
         <br>
 
-        <label>
-            FPS:
-            <select id="fpsID">
-                <option value="12">12</option>
-                <option value="24">24</option>
-                <option value="30">30</option>
-                <option value="60">60</option>
-                <option value="90">90</option>
-                <option value="120" selected>120</option>
-            </select>
-        </label>
+        <div id="fpsDiv">
+            <label>
+                FPS:
+                <select id="fpsID">
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                    <option value="90">90</option>
+                    <option value="120" selected>120</option>
+                </select>
+            </label>
+        </div>
         <div id="gui"></div>
     </div>
     <!--    <audio id="bouncing" src="sound_effects/bouncing.mp3"></audio>-->

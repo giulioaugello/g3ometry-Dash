@@ -1,5 +1,4 @@
 import {MeshLoader} from "./meshLoader.js";
-import "./skybox.js";
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 import '../main.js'
 
@@ -72,10 +71,7 @@ export class Engine {
     start(fps) {
         this.setFPS(fps);
         window.requestAnimationFrame(this.render.bind(this))
-
-        // window.requestAnimationFrame(this.drawScene.bind(this))
-        // window.requestAnimationFrame(this.sky.bind(this))
-        // window.requestAnimationFrame(this.renderSkybox.bind(this))
+        // this.startSkybox()
     }
 
     setFPS(fps) {
@@ -118,16 +114,21 @@ export class Engine {
 
     stop() {
         window.cancelAnimationFrame(this.animationId)
+        // this.stopSkybox()
 
         this.loadMeshes()
     }
-
     // SKYBOX
 
+    startSkybox() {
+        //window.requestAnimationFrame(this.sky.bind(this))
+    }
+
+    stopSkybox() {
+        // window.cancelAnimationFrame(this.skyboxAnimationId)
+    }
+
     sky() {
-        // setup GLSL program
-
-
         // look up where the vertex data needs to go.
         this.posLocation = this.gl.getAttribLocation(this.skyboxProgram, "a_position");
 
@@ -228,8 +229,10 @@ export class Engine {
         // let our quad pass the depth test at 1.0
         this.gl.depthFunc(this.gl.LEQUAL);
 
-        // Draw the geometry.
-        this.gl.drawArrays(this.gl.TRIANGLES, 0, 1 * 6);
+        if (document.getElementById('showSkybox').checked) {
+            // Draw the geometry.
+            this.gl.drawArrays(this.gl.TRIANGLES, 0, 1 * 6);
+        }
 
         requestAnimationFrame(this.drawScene.bind(this));
     }
