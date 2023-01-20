@@ -100,7 +100,7 @@
       "path": "obj/evil001.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "death",
+      "collider_type": "box",
       "dim": null,
       "coords": {
         "x": -13.0,
@@ -178,7 +178,7 @@
       "path": "obj/coin001.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "coin",
       "dim": null,
       "coords": {
         "x": -52.0,
@@ -195,8 +195,21 @@
       "dim": null,
       "coords": {
         "x": -54.0,
-        "y": 7.8,
+        "y": 8,
         "z": -1.0
+      }
+    },
+    {
+      "name": "coin003",
+      "path": "obj/coin003.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "coin",
+      "dim": null,
+      "coords": {
+        "x": -56.5,
+        "y": 7.5,
+        "z": 0.0
       }
     },
     {
@@ -208,7 +221,7 @@
       "dim": null,
       "coords": {
         "x": -59.0,
-        "y": 7.8,
+        "y": 8,
         "z": 1.0
       }
     },
@@ -222,7 +235,7 @@
       "coords": {
         "x": -63.0,
         "y": 7.5,
-        "z": 0.0
+        "z": 1.0
       }
     },
     {
@@ -230,12 +243,116 @@
       "path": "obj/coin002.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "coin",
       "dim": null,
       "coords": {
         "x": -64.0,
         "y": 7.5,
         "z": 4.0
+      }
+    },
+    {
+      "name": "cube007",
+      "path": "obj/cube007.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -68,
+        "y": 5.5,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "cube008",
+      "path": "obj/cube008.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -71,
+        "y": 4.5,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "cube009",
+      "path": "obj/cube009.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -74,
+        "y": 5.5,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "cube010",
+      "path": "obj/cube010.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -86,
+        "y": 5.5,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "portal002",
+      "path": "obj/portal002.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "portal",
+      "dim": null,
+      "coords": {
+        "x": -95.5,
+        "y": 7.0,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "cube011",
+      "path": "obj/cube011.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -80.5,
+        "y": 6.5,
+        "z": -3.5
+      }
+    },
+    {
+      "name": "portal001",
+      "path": "obj/portal001.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "evilPortal",
+      "dim": null,
+      "coords": {
+        "x": -95.5,
+        "y": 8.0,
+        "z": -3.5
+      }
+    },
+    {
+      "name": "win",
+      "path": "obj/win.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -110.0,
+        "y": 5.5,
+        "z": 0.0
       }
     }
   ]

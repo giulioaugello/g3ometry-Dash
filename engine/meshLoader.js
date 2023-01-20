@@ -158,7 +158,7 @@ export class MeshLoader {
                 z: 0.0
             }, {
                 max: {
-                    x: 21,
+                    x: -21,
                     y: -3,
                     z: 21
                 },
@@ -166,6 +166,23 @@ export class MeshLoader {
                     x: -19,
                     y: -5,
                     z: -19
+                }
+            }))
+
+            this.list.push(new PhysObject(mesh, "portal", false, true, "evilPortal", dim, {
+                x: 5.6,
+                y: 6.0,
+                z: 0.0
+            }, {
+                max: {
+                    x: -5.45,
+                    y: 8.15,
+                    z: 2.0
+                },
+                min: {
+                    x: -5.75,
+                    y: 3.85,
+                    z: -2.0
                 }
             }))
         }

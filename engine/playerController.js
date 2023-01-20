@@ -146,12 +146,12 @@ export class PlayerController {
         switch (e.keyCode) {
             case 32: // space
                 // console.log("before if", isSpaceTr)
-                // queue.x.n = true
-                if (isSpaceTr) {
-                    // isSpaceTr = false
-                    queue.x.n = true
-                    // console.log("inside if", isSpaceTr)
-                }
+                queue.x.n = true
+                // if (isSpaceTr) {
+                //     // isSpaceTr = false
+                //     queue.x.n = true
+                //     // console.log("inside if", isSpaceTr)
+                // }
 
                 // console.log("after if", isSpaceTr)
                 break
@@ -164,6 +164,9 @@ export class PlayerController {
                 break;
             case 68: // d
                 queue.z.n = true
+                break
+            case 80: // d
+                queue.x.p = true
                 break
 
             // case 83: // s
@@ -224,6 +227,9 @@ export class PlayerController {
             case 68: // d
                 queue.z.n = false
                 break
+            case 80: // d
+                queue.x.p = false
+                break
         }
     }
 
@@ -233,7 +239,7 @@ export class PlayerController {
         // console.log(obj.position.y)
         // console.log(obj.position.z)
 
-        if (queue.x.n) { // s
+        if (queue.x.n) { // space
             // obj.speed.y = 0.1
 
             // if (obj.speed.y <= 0){
@@ -242,10 +248,10 @@ export class PlayerController {
             //     console.log("ciao")
             // }
 
-            // obj.speed.y = 0.4
-            if (isSpaceTr) {
-                obj.speed.y = 0.4
-            }
+            obj.speed.y = 0.4
+            // if (isSpaceTr) {
+            //     obj.speed.y = 0.4
+            // }
 
         } else if (queue.z.p) { // a
 
@@ -263,7 +269,11 @@ export class PlayerController {
             //     obj.speed.z = 0
             // }
 
-        } else {
+        } else if (queue.x.p) {
+
+            obj.speed.x = -0.15
+
+        } else{
             // console.log("!zn")
             obj.speed.x = 0.15
             obj.speed.z = 0

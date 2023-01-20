@@ -110,7 +110,7 @@ export class PhysObject {
                 // if(this.playerController.getSpace()) this.playerController.setSpace(false)
                 // else this.playerController.setSpace(true)
 
-                this.playerController.setSpace(true)
+                // this.playerController.setSpace(true)
 
                 // if (this.speed.y < 0) {
                 //     // this.speed.y = 0
@@ -253,6 +253,12 @@ export class PhysObject {
             this.translation.y += this.speed.y;
             this.translation.z += this.speed.z;
 
+
+            // console.log("-------------")
+            // console.log("x: ", this.position.x)
+            // console.log("y: ", this.position.y)
+            // console.log("z: ", this.position.z)
+
             // console.log(this.speed.x, this.speed.y)
 
             // console.log(actualPosY, this.position.y)
@@ -340,6 +346,10 @@ export class PhysObject {
 
             if (this.isPlayer && !physobjs[obj].isPlayer) {
 
+                // if (physobjs[obj].name === "portal"){
+                //     console.log(physobjs[obj].bounds)
+                // }
+
                 let targetBounds = physobjs[obj].bounds;
                 // console.log(targetBounds)
                 // if (!physobjs[obj].isPlayer) {
@@ -418,7 +428,7 @@ export class PhysObject {
                         console.log("over")
 
                         window.dispatchEvent(new CustomEvent('game_over'))
-                    } else if (physobjs[obj].collider_type === "portal") {
+                    } else if (physobjs[obj].collider_type === "evilPortal") {
                         // come spawna la camera
                         this.position.x = 0
                         this.position.y = 4.5
@@ -428,6 +438,18 @@ export class PhysObject {
                         this.translation.x = 0;
                         this.translation.y = 0;
                         this.translation.z = 0;
+                    } else if (physobjs[obj].collider_type === "portal") {
+                        console.log("touch")
+                        // come spawna la camera
+                        this.position.x = -110
+                        this.position.y = 8.5
+                        this.position.z = 0
+
+                        // dove spawna l'oggetto
+                        this.translation.x = -110;
+                        this.translation.y = 6.5;
+                        this.translation.z = 0;
+                        this.speed.x = 0.0
                     } else if (physobjs[obj].collider_type === "coin") {
                         // delete coin
                         physobjs[obj].translation.y = -9999
