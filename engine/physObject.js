@@ -112,7 +112,7 @@ export class PhysObject {
                 // if(this.playerController.getSpace()) this.playerController.setSpace(false)
                 // else this.playerController.setSpace(true)
 
-                // this.playerController.setSpace(true)
+                this.playerController.setSpace(true)
 
                 // if (this.speed.y < 0) {
                 //     // this.speed.y = 0

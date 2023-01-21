@@ -367,6 +367,45 @@
         "y": 5.5,
         "z": 0.0
       }
+    },
+    {
+      "name": "flag",
+      "path": "obj/flag.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -110.0,
+        "y": 11.8,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "palo",
+      "path": "obj/palo.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -110.0,
+        "y": 11.8,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "text",
+      "path": "obj/text.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "box",
+      "dim": null,
+      "coords": {
+        "x": -109.9,
+        "y": 11.4,
+        "z": -3.2
+      }
     }
   ]
 }
