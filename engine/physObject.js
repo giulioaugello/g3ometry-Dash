@@ -428,6 +428,10 @@ export class PhysObject {
 
                     } else if (physobjs[obj].collider_type === "evilPortal") {
                         // come spawna la camera
+
+
+                        isPortalized = true;
+
                         this.position.x = 0
                         this.position.y = 4.5
                         this.position.z = 0
@@ -436,6 +440,11 @@ export class PhysObject {
                         this.translation.x = 0;
                         this.translation.y = 0;
                         this.translation.z = 0;
+
+                        // this.speed.x = 0.0
+
+                        newPositions = this.position;
+                        newTranslations = this.translation;
 
                     } else if (physobjs[obj].collider_type === "portal") {
                         isPortalized = true;
