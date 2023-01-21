@@ -469,7 +469,9 @@ export class PhysObject {
                     } else if (physobjs[obj].collider_type === "bounce") {
                         this.speed.y = 0.4
                         bounceCollision = true
-                    }
+                    }else if (physobjs[obj].collider_type === "win") {
+                        console.log("win")
+                        window.dispatchEvent(new CustomEvent('win'))                    }
                 }
             }
 

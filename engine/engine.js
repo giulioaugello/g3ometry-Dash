@@ -101,6 +101,11 @@ export class Engine {
 
         this.loadMeshes()
     }
+
+    win(){
+        console.log("speed")
+        this.player.playerController.stopSpeed()
+    }
     // SKYBOX
 
     sky() {

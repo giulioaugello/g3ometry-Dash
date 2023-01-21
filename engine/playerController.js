@@ -20,6 +20,8 @@ export class PlayerController {
         obj = object
         // canvas = document.getElementById("canvas");
         this.install();
+
+        this.move = true;
     }
 
     install() {
@@ -133,8 +135,8 @@ export class PlayerController {
         return isSpaceTr
     }
 
-    wheelMove(e){
-        if (e.deltaY < 0){
+    wheelMove(e) {
+        if (e.deltaY < 0) {
             shadersManager.increaseFieldOfViewRadiansOf(1)
         } else {
             shadersManager.decreaseFieldOfViewRadiansOf(1)
@@ -233,6 +235,11 @@ export class PlayerController {
         }
     }
 
+    stopSpeed() {
+        obj.speed.x = 0
+        this.move = false;
+    }
+
     handler() {
         // Based on queue, applies acceleration to selected axis.
         // console.log(obj.position.x)
@@ -273,9 +280,12 @@ export class PlayerController {
 
             obj.speed.x = -0.15
 
-        } else{
+        } else {
             // console.log("!zn")
-            obj.speed.x = -0.15
+            if (this.move) {
+                obj.speed.x = 0.15
+            }
+
             obj.speed.z = 0
         }
 

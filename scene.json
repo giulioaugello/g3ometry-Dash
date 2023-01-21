@@ -360,7 +360,7 @@
       "path": "obj/win.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "win",
       "dim": null,
       "coords": {
         "x": -110.0,

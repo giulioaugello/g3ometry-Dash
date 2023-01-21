@@ -88,6 +88,15 @@ window.addEventListener('game_over', async (e) => {
     engine.stop()
 })
 
+window.addEventListener('win', async (e) => {
+
+    //     startTimerButton.value = "Start"
+    //     engine.stop()
+    //     alert("Il tuo punteggio è " + counter)
+    console.log("www")
+    engine.win()
+})
+
 // FPS Listener
 const fpsDomElement = document.getElementById('fpsID');
 fpsDomElement.addEventListener("change", () => {
