@@ -28,6 +28,7 @@ export class ShadersManager {
     // Vertex Shader parameters
 
     static getCameraPosition(player_coords) {
+        // console.log(player_coords)
         return [this.vertexShaderParameters.cameraPosition[0] + player_coords[0], this.vertexShaderParameters.cameraPosition[1] + player_coords[1],
             this.vertexShaderParameters.cameraPosition[2] + player_coords[2]];
     }

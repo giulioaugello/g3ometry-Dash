@@ -66,6 +66,8 @@ export class PhysObject {
         // Compute phys routine. If object is active, it checks for collisions and applies the correct forces to it.
         if (this.isPlayer) {
             let check = this.is_colliding(physobjs)
+
+            // console.log(this.position)
             // console.log(check, physobjs)
             // let bounds = this.compute_bounds()
             let bounds = check.playerBound
@@ -245,14 +247,23 @@ export class PhysObject {
             // this.speed.x += this.accel.x;
             // this.speed.z += this.accel.z;
 
-            this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
-            this.position.y = ((bounds.max.y + bounds.min.y) / 2) + this.speed.y;
-            this.position.z = ((bounds.max.z + bounds.min.z) / 2) + this.speed.z;
+            if(check.portalized) {
+                console.log("ciao")
+                this.position = check.newPositions;
 
-            this.translation.x += this.speed.x;
-            this.translation.y += this.speed.y;
-            this.translation.z += this.speed.z;
+                this.translation = check.newTranslations;
+            } else {
+                this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
+                this.position.y = ((bounds.max.y + bounds.min.y) / 2) + this.speed.y;
+                this.position.z = ((bounds.max.z + bounds.min.z) / 2) + this.speed.z;
 
+                this.translation.x += this.speed.x;
+                this.translation.y += this.speed.y;
+                this.translation.z += this.speed.z;
+            }
+
+
+            // console.log(this.position)
 
             // console.log("-------------")
             // console.log("x: ", this.position.x)
@@ -303,6 +314,9 @@ export class PhysObject {
         let ramp = false;
 
         let isColliding = false;
+        let isPortalized = false;
+        let newPositions = null;
+        let newTranslations = null;
 
         let data = {
             x: {
@@ -424,17 +438,28 @@ export class PhysObject {
                         this.translation.z = 0;
 
                     } else if (physobjs[obj].collider_type === "portal") {
-                        console.log("touch")
-                        // come spawna la camera
-                        this.position.x = -110
-                        this.position.y = 8.5
+                        isPortalized = true;
+
+                        this.position.x = 110
+                        this.position.y = 6
                         this.position.z = 0
 
-                        // dove spawna l'oggetto
-                        this.translation.x = -110;
-                        this.translation.y = 6.5;
+                        this.translation.x = 110;
+                        this.translation.y = 2;
                         this.translation.z = 0;
-                        this.speed.x = 0.0
+
+                        // this.speed.x = 0.0
+
+                        newPositions = this.position;
+                        newTranslations = this.translation;
+                        //
+                        // this.position.x = 0;
+                        // this.position.y = 4.5;
+                        // this.position.z = 0;
+                        //
+                        // this.translation.x = 0;
+                        // this.translation.y = 0;
+                        // this.translation.z = 0;
 
                     } else if (physobjs[obj].collider_type === "coin") {
                         // delete coin
@@ -464,8 +489,12 @@ export class PhysObject {
             // }
         }
         return {
-            playerBound: bounds,
-            coll: isColliding, data: data
+            'portalized': isPortalized,
+            'newPositions': newPositions,
+            'newTranslations': newTranslations,
+            'playerBound': bounds,
+            'coll': isColliding,
+            'data': data
         };
     }
 
