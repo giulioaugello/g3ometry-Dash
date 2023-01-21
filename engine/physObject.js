@@ -368,25 +368,9 @@ export class PhysObject {
                     isColliding = true;
 
                     if (this.speed.y < 0) {
-
                         this.speed.y = 0
-                        // this.position.y = physobjs[obj].position.y
-                        // console.log(this.position.y, physobjs[obj].position.y)
                     }
 
-                    // if (this.isBall) {
-                    //
-                    //     if (physobjs[obj].collider_type === "goal") {
-                    //         this.speed.y += this.speed.y / 10
-                    //
-                    //         window.dispatchEvent(new CustomEvent('point'))
-                    //     }
-                    //
-                    //     if (physobjs[obj].collider_type === "death") {
-                    //         window.dispatchEvent(new CustomEvent('game_over'))
-                    //     }
-                    // }
-                    // console.log("ciao", physobjs[obj])
 
                     switch (this.whereIsColliding(bounds, targetBounds)) {
                         case 0:
@@ -426,8 +410,8 @@ export class PhysObject {
                     if (physobjs[obj].collider_type === "death") {
 
                         console.log("over")
-
                         window.dispatchEvent(new CustomEvent('game_over'))
+
                     } else if (physobjs[obj].collider_type === "evilPortal") {
                         // come spawna la camera
                         this.position.x = 0
@@ -438,6 +422,7 @@ export class PhysObject {
                         this.translation.x = 0;
                         this.translation.y = 0;
                         this.translation.z = 0;
+
                     } else if (physobjs[obj].collider_type === "portal") {
                         console.log("touch")
                         // come spawna la camera
@@ -450,17 +435,16 @@ export class PhysObject {
                         this.translation.y = 6.5;
                         this.translation.z = 0;
                         this.speed.x = 0.0
+
                     } else if (physobjs[obj].collider_type === "coin") {
                         // delete coin
                         physobjs[obj].translation.y = -9999
+                        window.dispatchEvent(new CustomEvent('point'))
+
                     } else if (physobjs[obj].collider_type === "bounce") {
-                        // if (data.x.bottom.is_colliding) {
-                        //     this.speed.y = 5
-                        // }
                         this.speed.y = 0.4
                         bounceCollision = true
                     }
-
                 }
             }
 

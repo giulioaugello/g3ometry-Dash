@@ -169,7 +169,7 @@ export class MeshLoader {
                 }
             }))
 
-            this.list.push(new PhysObject(mesh, "portal", false, true, "evilPortal", dim, {
+            this.list.push(new PhysObject(mesh, "portal", false, true, "portal", dim, {
                 x: 5.6,
                 y: 6.0,
                 z: 0.0
