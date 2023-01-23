@@ -272,7 +272,7 @@
       "collider_type": "box",
       "dim": null,
       "coords": {
-        "x": -67.5,
+        "x": -67,
         "y": 5.5,
         "z": 4.0
       }
@@ -285,7 +285,7 @@
       "collider_type": "box",
       "dim": null,
       "coords": {
-        "x": -70.75,
+        "x": -70.25,
         "y": 4.5,
         "z": 4.0
       }

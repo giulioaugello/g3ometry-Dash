@@ -94,6 +94,10 @@ h1{
     outline: none;
 }
 
+#left_panel{
+    position: absolute;
+}
+
 #gui{
     position: absolute;
     left: 1em;
@@ -122,6 +126,7 @@ h1{
     clear: both;
 }
 
+.
 
 @media screen and (max-width: 600px) {
     .column1 {

@@ -141,8 +141,6 @@
 
 <canvas id="canvas" width="900" height="600"></canvas>
 
-<div id="gui"></div>
-
 <div id="right_panel">
     <input id="startTimerButton" type="button" value="Start" disabled/>
 
@@ -156,23 +154,28 @@
     </div>
 </div>
 
-<div class="hide-on-desktop" id="left_panel">
-    <p class="title">Settings</p>
+
+<div id="left_panel">
+<!--<div class="hide-on-desktop" id="left_panel">-->
+
+    <div id="gui"></div>
+
+    <p class="sett">Settings</p>
 
 
-    <input id="showSkybox" type="checkbox"/>
-    <label for="showSkybox">Show Skybox</label>
+    <input id="showSkybox" type="checkbox" class="sett"/>
+    <label for="showSkybox" class="sett">Show Skybox</label>
 
 
     <br>
 
-    <input id="playMusic" type="checkbox" checked/>
-    <label for="playMusic">Play sound effects</label>
+    <input id="playMusic" type="checkbox" checked class="sett"/>
+    <label for="playMusic" class="sett">Play sound effects</label>
 
 
     <br>
 
-    <div id="fpsDiv">
+    <div id="fpsDiv" class="sett">
         <label>
             FPS:
             <select id="fpsID">
