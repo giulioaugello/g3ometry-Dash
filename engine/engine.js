@@ -3,7 +3,7 @@ import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager
 import '../main.js'
 
 export class Engine {
-    constructor(id, photo) {
+    constructor(id) {
         this.meshlist = []
         this.gl = null;
         this.canvas = document.getElementById(id);
@@ -20,8 +20,6 @@ export class Engine {
         // // SKYBOX
         this.skyboxProgram = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"]);
         this.sky()
-
-        this.photo = photo;
 
         this.loadMeshes()
     }

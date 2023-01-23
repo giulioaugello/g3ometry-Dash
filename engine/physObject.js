@@ -89,7 +89,7 @@ export class PhysObject {
 
 
                 if (check.data.x.top.is_colliding && this.speed.x > 0) {
-                    console.log("x top")
+                    // console.log("x top")
                     this.speed.x = 0
                     // this.speed.y = -0.15
                 }
@@ -221,7 +221,7 @@ export class PhysObject {
 
                     if (physobjs[obj].collider_type === "death") {
 
-                        console.log("over")
+                        // console.log("over")
                         window.dispatchEvent(new CustomEvent('game_over'))
 
                     } else if (physobjs[obj].collider_type === "evilPortal") {
@@ -240,11 +240,11 @@ export class PhysObject {
                     } else if (physobjs[obj].collider_type === "portal") {
                         isPortalized = true;
 
-                        this.position.x = 110
+                        this.position.x = 114
                         this.position.y = 6
                         this.position.z = 0
 
-                        this.translation.x = 110;
+                        this.translation.x = 114;
                         this.translation.y = 2;
                         this.translation.z = 0;
 

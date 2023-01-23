@@ -2,120 +2,44 @@ import {Engine} from "./engine/engine.js";
 import {PlayerController} from "./engine/playerController.js";
 import {ShadersManager} from "./engine/shadersManager.js";
 
-export class Photo {
-    // constructor() {
-    //     this.showMyPhoto = false;
-    // }
-
-    // toggleShowMyPhoto(){
-    //     this.showMyPhoto = !this.showMyPhoto
-    // }
-
-    // getShowMyPhoto() {
-    //     // return this.showMyPhoto
-    //
-    //     return document.getElementById('toggleMyPhoto').checked
-    // }
-}
-
-let photo = new Photo()
-// const toggleMyPhotoButton = document.getElementById('toggleMyPhoto');
-// toggleMyPhotoButton.addEventListener('click', () => {
-//     photo.toggleShowMyPhoto()
-// });
-
 // Engine
-let engine = new Engine("canvas", photo);
+let engine = new Engine("canvas");
 
 // Add gui elements
 document.getElementById("gui").append(ShadersManager.generateGuiControls().domElement)
 
-// Sound effects
-// const bouncing = document.getElementById("bouncing");
-// // const bouncingSrc = "sound_effects/bouncing.mp3";
-// const soundtracks = document.getElementById("soundtracks");
-// const mainThemeSrc = "sound_effects/main_theme.mp3";
-// const rohanSrc = "sound_effects/rohan.mp3";
-// const theShireSrc = "sound_effects/the_Shire.mp3";
+// Soundtrack
+const soundtrack = document.getElementById("soundtrack");
+soundtrack.src = "sound_effects/soundtrack.mp3";
 
 // Counter
 let counter;
 const counterElem = document.querySelector('#counter');
 
-const startTimerButton = document.getElementById('startTimerButton');
-startTimerButton.addEventListener('click', () => {
-    startTimerButton.blur();
-    disableScroll();
-    window.dispatchEvent(new CustomEvent('start'))
+// Start Button
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', () => {
+    if(startButton.value === "Restart"){
+        reload()
+    } else {
+        disableScroll();
+        window.dispatchEvent(new CustomEvent('start'))
+    }
 });
 
-// function changeSoundtracks(src) {
-//     if (shouldMusicBePlayed()) {
-//         soundtracks.src = src
-//         soundtracks.play();
-//     }
-// }
+// Quit Button
+const quitButton = document.getElementById('quitButton');
+quitButton.addEventListener("click", () => {
+    quit()
+});
 
-// window.addEventListener('hit', async (e) => {
-//     if (shouldMusicBePlayed()) {
-//         bouncing.play()
-//     }
-// })
-
-window.addEventListener('point', async (e) => {
-    setCounterTo(counter + 1)
-
-    // counter++;
-    // console.log(counter)
-    // counterElem.textContent = counter;
-
-    // switch (counter) {
-    //     case 5:
-    //         changeSoundtracks(mainThemeSrc)
-    //         break;
-    //     case 10:
-    //         changeSoundtracks(rohanSrc)
-    //         break;
-    // }
-})
-
-window.addEventListener('game_over', async (e) => {
-
-    //     startTimerButton.value = "Start"
-    //     engine.stop()
-    //     alert("Il tuo punteggio è " + counter)
-
-
-    // alert("end")
-    // engine.stop()
-    let url = window.location.href.split("&param")[0];
-
-    if (url.indexOf('?') > -1) {
-        url += '&param=1'
-    } else {
-        url += '?param=1'
-    }
-
-    window.location.href = url;
-
-    // document.location.reload()
-})
-
-window.addEventListener('win', async (e) => {
-
-    //     startTimerButton.value = "Start"
-    //     engine.stop()
-    //     alert("Il tuo punteggio è " + counter)
-    engine.win()
-})
-
-// FPS Listener
+// FPS
 const fpsDomElement = document.getElementById('fpsID');
 fpsDomElement.addEventListener("change", () => {
     engine.setFPS(fpsDomElement.value)
 });
 
-// Skybox Listener
+// Skybox
 const skyboxElement = document.getElementById('showSkybox');
 skyboxElement.addEventListener("change", () => {
     if (skyboxElement.checked) {
@@ -126,12 +50,72 @@ skyboxElement.addEventListener("change", () => {
     }
 });
 
+// Soundtrack
+const playMusic = document.getElementById('playMusic')
+playMusic.addEventListener('change', () => {
+    if (playMusic.checked) {
+        soundtrack.play()
+    } else {
+        soundtrack.pause()
+    }
+});
+
+window.addEventListener('start', async (e) => {
+    engine.start(fpsDomElement.value)
+
+    soundtrack.play()
+
+    startButton.value = "Restart"
+
+    // setCounterTo(0)
+})
+
+window.addEventListener('ready', async (e) => {
+    startButton.disabled = false
+
+    let params = (new URL(document.location)).searchParams;
+
+    if (params.get("param")) {
+        window.dispatchEvent(new CustomEvent('start'))
+    }
+})
+
+window.addEventListener('point', async (e) => {
+    setCounterTo(counter + 1)
+})
+
+window.addEventListener('game_over', async (e) => {
+    quit()
+
+    reload()
+})
+
+window.addEventListener('win', async (e) => {
+    engine.win()
+})
+
+function reload(){
+    let url = window.location.href.split("&param")[0];
+
+    if (url.indexOf('?') > -1) {
+        url += '&param=1'
+    } else {
+        url += '?param=1'
+    }
+
+    window.location.href = url;
+}
+
 function quit(){
     engine.stop()
 
-    startTimerButton.value = "Start"
+    soundtrack.pause();
+
+    startButton.value = "Start"
 
     setCounterTo(0)
+
+    console.log("ciao")
 
     skyboxElement.checked = false;
 }
@@ -144,54 +128,14 @@ function setCounterTo(value){
     counterElem.textContent = counter;
 }
 
-window.addEventListener('start', async (e) => {
-    startTimerButton.value = "Restart"
 
-    setCounterTo(0)
+// Disable windows scrolls
 
-    engine.start(fpsDomElement.value)
-
-    // changeSoundtracks(theShireSrc)
-})
-
-window.addEventListener('ready', async (e) => {
-    startTimerButton.disabled = false
-
-    let params = (new URL(document.location)).searchParams;
-
-    if (params.get("param")) {
-        window.dispatchEvent(new CustomEvent('start'))
-    }
-})
-
-const quitButton = document.getElementById('quitButton');
-quitButton.addEventListener("click", () => {
-    quit()
-});
-
-/**
- * Remove a default event action
- * @param {*} e is the event to trigger
- */
 function preventDefault(e) {
     e.preventDefault();
 }
 
-/**
- * Remove a default event action related to a key
- * @param {*} e is the event of interest
- * @returns false if it trigger an interested key
- */
-// modern Chrome requires { passive: false } when adding event
-// let supportsPassive = false;
-// try {
-//     window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-//         get: function () { supportsPassive = true; }
-//     }));
-// } catch (e) { }
 let keys = {32: 1};
-// let wheelOpt = supportsPassive ? { passive: false } : false;
-// let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
 function preventDefaultForScrollKeys(e) {
     if (keys[e.keyCode]) {
@@ -200,84 +144,7 @@ function preventDefaultForScrollKeys(e) {
     }
 }
 
-/**
- * Disable windows scrolls
- */
 function disableScroll() {
     window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-    // window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-    // window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
     window.addEventListener('keydown', preventDefaultForScrollKeys, false);
 }
-
-// const playMusic = document.getElementById('playMusic')
-//
-// function shouldMusicBePlayed() {
-//     return playMusic.checked
-// }
-//
-// playMusic.addEventListener('change', () => {
-//     if (shouldMusicBePlayed()) {
-//         changeSoundtracks(theShireSrc)
-//     } else {
-//         soundtracks.pause()
-//     }
-// });
-
-// // TIMER
-// const timeLimit = 3000;
-// let timePassed = 0;
-// let timeLeft = timeLimit;
-// let timerInterval = null;
-//
-// function onTimesUp() {
-//     document.getElementById("timer").innerHTML = "00:00";
-//
-//     clearInterval(timerInterval);
-//
-//     timerInterval = null;
-//
-//     window.dispatchEvent(new CustomEvent('game_over'))
-// }
-//
-// function startTimer() {
-//     if (!timerInterval) {
-//         timerInterval = setInterval(() => {
-//             timePassed = timePassed += 1;
-//             timeLeft = timeLimit - timePassed;
-//             document.getElementById("timer").innerHTML = formatTime(timeLeft);
-//
-//             if (timeLeft === 0) {
-//                 onTimesUp();
-//             }
-//         }, 1000);
-//     }
-// }
-//
-// function formatTime(time) {
-//     const minutes = Math.floor(time / 60);
-//     let seconds = time % 60;
-//
-//     if (seconds < 10) {
-//         seconds = `0${seconds}`;
-//     }
-//
-//     return `${minutes}:${seconds}`;
-// }
-//
-// function pauseTimer() {
-//     onTimesUp();
-// }
-//
-// function resumeTimer() {
-//     if (!timerInterval)
-//         startTimer();
-// }
-//
-// function resetTimer() {
-//     timePassed = 0;
-//     timeLeft = timeLimit;
-//     timerInterval = null;
-//
-//     document.getElementById("timer").innerHTML = formatTime(timeLeft);
-// }

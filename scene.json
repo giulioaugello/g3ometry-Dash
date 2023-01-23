@@ -373,7 +373,7 @@
       "path": "obj/portal001.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "evilPortal",
       "dim": null,
       "coords": {
         "x": -95.87,
