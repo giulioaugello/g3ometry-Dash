@@ -68,7 +68,7 @@ export class PhysObject {
             let check = this.is_colliding(physobjs)
             let bounds = check.playerBound
 
-            console.log(this.position)
+            // console.log(this.position)
 
             if (check.coll) {
                 this.playerController.setSpace(true)
@@ -76,6 +76,10 @@ export class PhysObject {
                 // Se la palla sta collidendo sotto e non è ferma
                 if (check.data.y.bottom.is_colliding) {
                     actualPosY = this.position.y
+                    if (this.speed.y < 0) {
+                        this.speed.y = 0
+                    }
+
                 }
 
                 //Se la palla sta collidendo sopra e non è ferma
@@ -87,6 +91,7 @@ export class PhysObject {
                 if (check.data.x.top.is_colliding && this.speed.x > 0) {
                     console.log("x top")
                     this.speed.x = 0
+                    // this.speed.y = -0.15
                 }
 
                 if (check.data.x.bottom.is_colliding) {
@@ -208,9 +213,9 @@ export class PhysObject {
                     (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
                     isColliding = true;
 
-                    if (this.speed.y < 0) {
-                        this.speed.y = 0
-                    }
+                    // if (this.speed.y < 0) {
+                    //     this.speed.y = 0
+                    // }
 
                     switch (this.whereIsColliding(bounds, targetBounds)) {
                         case 0:

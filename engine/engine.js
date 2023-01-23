@@ -42,6 +42,8 @@ export class Engine {
                     // Loads up the meshes using the MeshLoader object.
                     await this.loader.load(obj.path, this.gl, obj.name, obj.isPlayer, obj.isBall, obj.collider_type, obj.dim, obj.coords, !!(obj.isPlayer && this.photo.getShowMyPhoto()))
                 }
+
+                window.dispatchEvent(new CustomEvent('ready'))
             })
 
         // Player
@@ -97,9 +99,8 @@ export class Engine {
 
     stop() {
         window.cancelAnimationFrame(this.animationId)
-        // this.stopSkybox()
 
-        this.loadMeshes()
+        //this.loadMeshes()
     }
 
     win(){

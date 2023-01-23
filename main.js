@@ -84,8 +84,19 @@ window.addEventListener('game_over', async (e) => {
     //     alert("Il tuo punteggio è " + counter)
 
 
-    alert("end")
-    engine.stop()
+    // alert("end")
+    // engine.stop()
+    let url = window.location.href.split("&param")[0];
+
+    if (url.indexOf('?') > -1) {
+        url += '&param=1'
+    } else {
+        url += '?param=1'
+    }
+
+    window.location.href = url;
+
+    // document.location.reload()
 })
 
 window.addEventListener('win', async (e) => {
@@ -127,6 +138,17 @@ window.addEventListener('start', async (e) => {
 
     // changeSoundtracks(theShireSrc)
 })
+
+window.addEventListener('ready', async (e) => {
+    startTimerButton.disabled = false
+
+    let params = (new URL(document.location)).searchParams;
+
+    if (params.get("param")) {
+        window.dispatchEvent(new CustomEvent('start'))
+    }
+})
+
 const al = document.getElementById('al');
 al.addEventListener("click", () => {
     alert("ciao")
