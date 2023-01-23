@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-image: url("/img/background.jpg");
 }
 
@@ -16,7 +16,7 @@ body{
     src: url("/fonts/OXYGENE1.TTF");
 }
 
-#title{
+#title {
     font-size: 2.3em;
     text-align: center;
     font-family: geometryDash, serif;
@@ -27,253 +27,190 @@ body{
     border-radius: 15px;
     padding: 10px 0 10px 0;
 }
-.titleObj{
+
+.titleObj {
     font-size: 1.5em;
     color: red;
 }
 
-/*.column {*/
-/*    float: left;*/
-/*    width: 12%;*/
-/*}*/
-/*.column1 {*/
-/*    float: left;*/
-/*    width: 80.66%;*/
-/*}*/
+.column {
+    float: left;
+    padding: 10px;
+}
 
-/*!* Clear floats after the columns *!*/
-/*.row:after {*/
-/*    content: "";*/
-/*    display: table;*/
-/*    clear: both;*/
-/*}*/
+.left{
+    width: 20%;
+}
 
-/*.column1 {*/
-/*    float: left;*/
-/*    padding: 10px;*/
-/*    !*width: 70vw;*!*/
-/*    !*height: 84vh;*!*/
-/*}*/
+.right {
+    text-align: center;
+    width: 20%;
+}
+
+.middle {
+    text-align: center;
+    width: 60%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
 #canvas {
-    /*background: #dddddd;*/
-    position: absolute;
-    top: 6em;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: block;
-    margin: 0 auto;
+    /*position: absolute;*/
+    /*top: 6em;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*display: block;*/
+    /*margin: 0 auto;*/
     border: 5px solid #cccccc;
     border-radius: 15px;
     outline: 1px solid #000000;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
 /*******************************/
 
 
-#startButton{
-    position: absolute;
-    right: 2em;
+#startButton {
+    /*position: absolute;*/
+    /*right: 2em;*/
     color: #f8f8ff;
     font-family: Pusab, serif;
     height: 2em;
-    width: 6em;
+    width: 5em;
     font-size: 1.8em;
     background: lightgrey;
-    border: 3px solid #cccccc;
-    border-radius: 15px;
-    outline: 1px solid #000000;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-#quitButton{
-    position: absolute;
-    right: 2em;
-    bottom: 0.5em;
+#score {
+    /*position: absolute;*/
+    /*right: 2em;*/
+    /*top: 8em;*/
     font-family: Pusab, serif;
-    color: #f8f8ff;
-    height: 2em;
-    width: 6em;
-    font-size: 1.8em;
-    background: orangered;
-    border: 3px solid #cccccc;
-    border-radius: 15px;
-    outline: 1px solid #000000;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
-}
-
-#score{
-    position: absolute;
-    right: 2em;
-    top: 8em;
-    font-family: Pusab, serif;
-    width: 6em;
+    margin: 2em auto 0;
+    width: 5em;
     text-align: center;
     color: #f8f8ff;
     font-size: 1.8em;
     background: darkorange;
-    border: 3px solid #cccccc;
-    border-radius: 15px;
-    outline: 1px solid #000000;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-#score_text{
+#quitButton {
+    /*position: absolute;*/
+    /*bottom: 1.1em;*/
+    font-family: Pusab, serif;
+    margin-top: 5em;
+    color: #f8f8ff;
+    height: 2em;
+    width: 5em;
+    font-size: 1.8em;
+    background: orangered;
+}
+
+
+#score_text {
     text-align: center;
     color: #f8f8ff;
     background: darkorange;
     outline: none;
 }
 
-#instruction{
-    position: absolute;
-    left: 1.5em;
-    top: 20em;
+
+#instruction {
     font-family: Pusab, serif;
-    padding: 5px;
-    width: 14em;
-    text-align: center;
+    padding: 10px;
+    width: 18em;
     color: black;
-    font-size: 1.1em;
+    font-size: 1em;
     background: ghostwhite;
-    border: 3px solid #cccccc;
-    border-radius: 15px;
-    outline: 1px solid #000000;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-.key{
+.key {
     border: 2px solid black;
     border-radius: 5px;
     padding: 2px;
     font-weight: bold;
 }
 
-#left_panel{
-    position: absolute;
+#mySettings {
+    margin-top: 1em;
+    padding: 0.5em;
+    font-family: Pusab, serif;
+    font-size: 1em;
+    color: ghostwhite;
+    background: darkorange;
+}
+
+.subTitle {
+    font-size: 1.5em;
+    margin: 0 0 0.5em 0;
 }
 
 #gui{
-    position: absolute;
-    left: 1em;
-    text-align: center;
+    margin-top: 1em;
 }
 
-
-#left_panel{
-    position: absolute;
-    bottom: 1em;
-    left: 1em;
-    padding: 1em;
-    font-family: Pusab, serif;
-    font-size: 1.2em;
-    color: ghostwhite;
-    background: darkorange;
+.borderCss{
     border: 3px solid #cccccc;
     border-radius: 15px;
     outline: 1px solid #000000;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-#s{
-    font-size: 1.5em;
-    text-align: center;
-    margin: 0 0 1em 0;
-}
-
-
-
-
-
-
-
 
 /********************/
 
 
-/*#line1, #line2, #line3{*/
-/*    padding: 0;*/
+
+
+
+/*@media screen and (max-width: 600px) {*/
+/*    .column1 {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    .column2 {*/
+/*        width: 96.7%;*/
+/*        max-width: 96.7%;*/
+/*        height: 100%;*/
+/*        margin-left: 10px;*/
+/*        margin-right: 200px;*/
+/*    }*/
+
+/*    #canvas {*/
+/*        max-height: 30vh;*/
+/*    }*/
 /*}*/
 
-/*#fpsID{*/
-/*    margin-bottom: 1em;*/
+/*@media screen and (max-width: 480px) {*/
+/*    .show-on-desktop {*/
+/*        display: none;*/
+/*    }*/
 /*}*/
 
-/*.column2 {*/
-/*    float: left;*/
-/*    width: 30%;*/
-/*    padding: 10px;*/
-/*    max-width: 29%;*/
+/*@media screen and (min-width: 481px) {*/
+/*    .hide-on-desktop {*/
+/*        display: none;*/
+/*    }*/
+/*    !*#instruction, #gui{*!*/
+/*    !*    display: none;*!*/
+/*    !*}*!*/
+
+/*    !*#startButton{*!*/
+/*    !*    bottom: 0.5em;*!*/
+/*    !*    right: 10em;*!*/
+/*    !*}*!*/
 /*}*/
-
-/*.row:after {*/
-/*    content: "";*/
-/*    display: table;*/
-/*    clear: both;*/
-/*}*/
-
-
-@media screen and (max-width: 600px) {
-    .column1 {
-        width: 100%;
-    }
-
-    .column2 {
-        width: 96.7%;
-        max-width: 96.7%;
-        height: 100%;
-        margin-left: 10px;
-        margin-right: 200px;
-    }
-
-    #canvas {
-        max-height: 30vh;
-    }
-}
-
-
-.menu.column2{
-    text-align: center;
-}
-
-.title {
-    font-weight: bold;
-}
-
-.col-inside {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Clear floats after the columns */
-.row-inside:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-@media screen and (max-width: 480px) {
-    .show-on-desktop {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 481px) {
-    .hide-on-desktop {
-        display: none;
-    }
-    /*#instruction, #gui{*/
-    /*    display: none;*/
-    /*}*/
-
-    /*#startButton{*/
-    /*    bottom: 0.5em;*/
-    /*    right: 10em;*/
-    /*}*/
-}
 
 

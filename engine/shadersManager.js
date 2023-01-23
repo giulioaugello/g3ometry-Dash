@@ -91,7 +91,7 @@ export class ShadersManager {
     static generateGuiControls() {
         let shadersControls = new dat.GUI({
             autoPlace: false,
-            width: 280
+            width: 250
         });
 
         let camera = shadersControls.addFolder('Camera');

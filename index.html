@@ -53,6 +53,7 @@
             }
 
 
+
     </script>
 
 
@@ -102,6 +103,7 @@
             }
 
 
+
     </script>
 
     <script id="vertex-shader-skybox" type="x-shader/x-vertex">
@@ -112,6 +114,7 @@
           gl_Position = a_position;
           gl_Position.z = 1.0;
         }
+
 
 
     </script>
@@ -129,6 +132,7 @@
         }
 
 
+
     </script>
 
 </head>
@@ -137,122 +141,103 @@
 
 <p id="title">G<span class="titleObj">3</span>OMETRY <span class="titleObj">D</span>ASH</p>
 
-<!--<div class="row">-->
-<!--    <div class="column">-->
-<!--        <div id="gui"></div>-->
+<div class="row">
+    <div class="column left">
 
-<!--        <p id="s">Settings</p>-->
+        <div id="instruction" class="borderCss">
+            <p class="subTitle">Instructions</p>
+            <p>Hold <span class="key">A</span> or <span class="key">D</span> for left and right move</p>
+            <p>Click or hold <span class="key">SPACE</span> to jump</p>
+        </div>
 
-<!--        <input id="showSkybox" type="checkbox"/>-->
-<!--        <label for="showSkybox">Show Skybox</label>-->
+        <div id="mySettings" class="borderCss">
+            <p class="subTitle">Settings</p>
 
-<!--        <br>-->
+            <input id="showSkybox" type="checkbox"/>
+            <label for="showSkybox">Show Skybox</label>
 
-<!--        <div id="fpsDiv">-->
-<!--            <label>-->
-<!--                FPS:-->
-<!--                <select id="fpsID">-->
-<!--                    <option value="12">12</option>-->
-<!--                    <option value="24">24</option>-->
-<!--                    <option value="30">30</option>-->
-<!--                    <option value="60">60</option>-->
-<!--                    <option value="90">90</option>-->
-<!--                    <option value="120" selected>120</option>-->
-<!--                </select>-->
-<!--            </label>-->
-<!--        </div>-->
+            <br>
 
-<!--        <br>-->
+            <input id="playMusic" type="checkbox" checked class="sett"/>
+            <label for="playMusic" class="sett">Play sound effects</label>
+            <audio id="soundtrack"></audio>
+        </div>
 
-<!--        <input id="playMusic" type="checkbox" checked class="sett"/>-->
-<!--        <label for="playMusic" class="sett">Play sound effects</label>-->
-<!--        <audio id="soundtrack"></audio>-->
-<!--    </div>-->
-
-<!--    <div class="column1">-->
-<!--        <canvas id="canvas" width="900" height="600"></canvas>-->
-<!--    </div>-->
-
-<!--    <div class="column">-->
-<!--        <input id="startButton" type="button" value="Start" disabled/>-->
-
-<!--        <div id="score">-->
-<!--            <p id="score_text">Coins</p>-->
-<!--            <p id="counter"></p>-->
-<!--        </div>-->
-
-<!--        <div id="instruction">-->
-<!--            <p>Instructions</p>-->
-<!--            <p>Hold <span class="key">A</span> and <span class="key">D</span> for left and right move</p>-->
-<!--            <p>Click or hold <span class="key">SPACE</span> to jump</p>-->
-
-<!--        </div>-->
-
-<!--        <input type="button" id="quitButton" value="Quit">-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
-<canvas id="canvas" width="900" height="600"></canvas>
-
-<div id="right_panel">
-    <input id="startButton" type="button" value="Start" disabled/>
-
-    <div id="score">
-        <p id="score_text">Coins</p>
-        <p id="counter">0</p>
+        <div id="gui"></div>
     </div>
 
-    <input type="button" id="quitButton" value="Quit">
+    <div class="column middle">
+        <canvas class="borderCss" id="canvas" width="800" height="580"></canvas>
+    </div>
 
+    <div class="column right">
+        <input id="startButton" class="borderCss" type="button" value="Start" disabled/>
+
+        <div id="score" class="borderCss">
+            <p id="score_text">Coins</p>
+            <p id="counter">0</p>
+        </div>
+
+        <input type="button" id="quitButton" class="borderCss" value="Quit">
+    </div>
 </div>
 
-<div id="gui"></div>
 
-<div id="instruction">
-    <p>Instructions</p>
-    <p>Hold <span class="key">A</span> or <span class="key">D</span> for left and right move</p>
-    <p>Click or hold <span class="key">SPACE</span> to jump</p>
+<!--<canvas id="canvas" width="800" height="600"></canvas>-->
 
-</div>
+<!--<div id="right_panel">-->
+<!--    <input id="startButton" type="button" value="Start" disabled/>-->
 
-<div id="left_panel">
-<!--<div class="hide-on-desktop" id="left_panel">-->
-
-
-
-
-    <p id="s">Settings</p>
-
-
-    <input id="showSkybox" type="checkbox"/>
-    <label for="showSkybox">Show Skybox</label>
-
-    <br>
-
-<!--    <div id="fpsDiv">-->
-<!--        <label>-->
-<!--            FPS:-->
-<!--            <select id="fpsID">-->
-<!--                <option value="12">12</option>-->
-<!--                <option value="24">24</option>-->
-<!--                <option value="30">30</option>-->
-<!--                <option value="60">60</option>-->
-<!--                <option value="90">90</option>-->
-<!--                <option value="120" selected>120</option>-->
-<!--            </select>-->
-<!--        </label>-->
+<!--    <div id="score">-->
+<!--        <p id="score_text">Coins</p>-->
+<!--        <p id="counter">0</p>-->
 <!--    </div>-->
+
+<!--    <input type="button" id="quitButton" value="Quit">-->
+
+<!--</div>-->
+
+<!--<div id="gui"></div>-->
+
+<!--<div id="instruction">-->
+<!--    <p>Instructions</p>-->
+<!--    <p>Hold <span class="key">A</span> or <span class="key">D</span> for left and right move</p>-->
+<!--    <p>Click or hold <span class="key">SPACE</span> to jump</p>-->
+
+<!--</div>-->
+
+<!--<div id="left_panel">-->
+<!--&lt;!&ndash;<div class="hide-on-desktop" id="left_panel">&ndash;&gt;-->
+
+
+<!--    <p id="s">Settings</p>-->
+
+
+<!--    <input id="showSkybox" type="checkbox"/>-->
+<!--    <label for="showSkybox">Show Skybox</label>-->
 
 <!--    <br>-->
 
-    <input id="playMusic" type="checkbox" checked class="sett"/>
-    <label for="playMusic" class="sett">Play sound effects</label>
-    <audio id="soundtrack"></audio>
-</div>
+<!--&lt;!&ndash;    <div id="fpsDiv">&ndash;&gt;-->
+<!--&lt;!&ndash;        <label>&ndash;&gt;-->
+<!--&lt;!&ndash;            FPS:&ndash;&gt;-->
+<!--&lt;!&ndash;            <select id="fpsID">&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="12">12</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="24">24</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="30">30</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="60">60</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="90">90</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="120" selected>120</option>&ndash;&gt;-->
+<!--&lt;!&ndash;            </select>&ndash;&gt;-->
+<!--&lt;!&ndash;        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
 
+<!--&lt;!&ndash;    <br>&ndash;&gt;-->
 
+<!--    <input id="playMusic" type="checkbox"/>-->
+<!--    <label for="playMusic">Play sound effects</label>-->
+<!--    <audio id="soundtrack"></audio>-->
+<!--</div>-->
 
 
 <!--<h1>The Ball of the Rings</h1>-->
