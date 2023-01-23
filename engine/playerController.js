@@ -21,6 +21,8 @@ export class PlayerController {
         // canvas = document.getElementById("canvas");
         this.install();
 
+        this.mobileController();
+
         this.move = true;
     }
 
@@ -57,6 +59,39 @@ export class PlayerController {
 
         console.log("Controller uninstalled.")
     }
+
+
+    mobileController() {
+        const controller_left = document.getElementById('controller_left');
+        controller_left.addEventListener("touchstart", () => {
+            queue.z.p = true;
+        });
+
+        controller_left.addEventListener("touchend", () => {
+            queue.z.p = false;
+        });
+
+        const controller_jump = document.getElementById('controller_jump');
+        controller_jump.addEventListener("touchstart", () => {
+            if (isSpaceTr) {
+                queue.x.n = true
+            }
+        });
+
+        controller_jump.addEventListener("touchend", () => {
+            queue.x.n = false
+        });
+
+        const controller_right = document.getElementById('controller_right');
+        controller_right.addEventListener("touchstart", () => {
+            queue.z.p = true;
+        });
+
+        controller_right.addEventListener("touchend", () => {
+            queue.z.p = false;
+        });
+    }
+
 
     setSpace(boolSpace) {
         isSpaceTr = boolSpace
@@ -167,7 +202,7 @@ export class PlayerController {
             case 68: // d
                 queue.z.n = true
                 break
-            case 80: // d
+            case 80: // p
                 queue.x.p = true
                 break
 
