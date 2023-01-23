@@ -67,7 +67,7 @@ window.addEventListener('start', async (e) => {
 
     startButton.value = "Restart"
 
-    // setCounterTo(0)
+    setCounterTo(0)
 })
 
 window.addEventListener('ready', async (e) => {

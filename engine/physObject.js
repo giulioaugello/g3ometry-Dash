@@ -211,19 +211,9 @@ export class PhysObject {
                 if ((bounds.min.x <= targetBounds.max.x && bounds.max.x >= targetBounds.min.x) &&
                     (bounds.min.z <= targetBounds.max.z && bounds.max.z >= targetBounds.min.z) &&
                     (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
-                    isColliding = true;
-
-                    // if (this.speed.y < 0) {
-                    //     this.speed.y = 0
-                    // }
-
-
 
                     if (physobjs[obj].collider_type === "death") {
-
-                        // console.log("over")
                         window.dispatchEvent(new CustomEvent('game_over'))
-
                     } else if (physobjs[obj].collider_type === "evilPortal") {
                         isPortalized = true;
 
@@ -251,53 +241,64 @@ export class PhysObject {
                         newPositions = this.position;
                         newTranslations = this.translation;
                     } else if (physobjs[obj].collider_type === "coin") {
-                        // delete coin
                         physobjs[obj].collider_type = "box"
                         physobjs[obj].translation.y = -9999
+                        physobjs[obj].position.y = -9999
+                        physobjs[obj].bounds = {
+                            max: {
+                                x: -9999,
+                                y: -9999,
+                                z: -9999
+                            }, min: {
+                                x: -9999,
+                                y: -9999,
+                                z: -9999
+                            }
+                        }
 
                         window.dispatchEvent(new CustomEvent('point'))
                     } else if (physobjs[obj].collider_type === "bounce") {
                         this.speed.y = 0.4
                         bounceCollision = true
                     } else if (physobjs[obj].collider_type === "win") {
-                        console.log("win")
                         window.dispatchEvent(new CustomEvent('win'))
-                    } else {
-                        switch (this.whereIsColliding(bounds, targetBounds)) {
-                            case 0:
-                                data.z.bottom.is_colliding = true
-                                data.z.bottom.bounds = bounds
-                                data.z.bottom.target_bounds = targetBounds
-                                break
-                            case 1:
-                                data.z.top.is_colliding = true
-                                data.z.top.bounds = bounds
-                                data.z.top.target_bounds = targetBounds
-                                break
-                            case 2:
-                                data.y.bottom.is_colliding = true
-                                data.y.bottom.bounds = bounds
-                                data.y.bottom.target_bounds = targetBounds
-                                break
-                            case 3:
-                                data.y.top.is_colliding = true
-                                data.y.top.bounds = bounds
-                                data.y.top.target_bounds = targetBounds
-                                break
-                            case 4:
-                                data.x.bottom.is_colliding = true
-                                data.x.bottom.bounds = bounds
-                                data.x.bottom.target_bounds = targetBounds
-                                break
-                            case 5:
-                                data.x.top.is_colliding = true
-                                data.x.top.bounds = bounds
-                                data.x.top.target_bounds = targetBounds
-                                break
-
-                        }
-                        coll = true;
                     }
+
+                    switch (this.whereIsColliding(bounds, targetBounds)) {
+                        case 0:
+                            data.z.bottom.is_colliding = true
+                            data.z.bottom.bounds = bounds
+                            data.z.bottom.target_bounds = targetBounds
+                            break
+                        case 1:
+                            data.z.top.is_colliding = true
+                            data.z.top.bounds = bounds
+                            data.z.top.target_bounds = targetBounds
+                            break
+                        case 2:
+                            data.y.bottom.is_colliding = true
+                            data.y.bottom.bounds = bounds
+                            data.y.bottom.target_bounds = targetBounds
+                            break
+                        case 3:
+                            data.y.top.is_colliding = true
+                            data.y.top.bounds = bounds
+                            data.y.top.target_bounds = targetBounds
+                            break
+                        case 4:
+                            data.x.bottom.is_colliding = true
+                            data.x.bottom.bounds = bounds
+                            data.x.bottom.target_bounds = targetBounds
+                            break
+                        case 5:
+                            data.x.top.is_colliding = true
+                            data.x.top.bounds = bounds
+                            data.x.top.target_bounds = targetBounds
+                            break
+
+                    }
+                    isColliding = true;
+
                 }
             }
         }
