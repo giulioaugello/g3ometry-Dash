@@ -217,40 +217,7 @@ export class PhysObject {
                     //     this.speed.y = 0
                     // }
 
-                    switch (this.whereIsColliding(bounds, targetBounds)) {
-                        case 0:
-                            data.z.bottom.is_colliding = true
-                            data.z.bottom.bounds = bounds
-                            data.z.bottom.target_bounds = targetBounds
-                            break
-                        case 1:
-                            data.z.top.is_colliding = true
-                            data.z.top.bounds = bounds
-                            data.z.top.target_bounds = targetBounds
-                            break
-                        case 2:
-                            data.y.bottom.is_colliding = true
-                            data.y.bottom.bounds = bounds
-                            data.y.bottom.target_bounds = targetBounds
-                            break
-                        case 3:
-                            data.y.top.is_colliding = true
-                            data.y.top.bounds = bounds
-                            data.y.top.target_bounds = targetBounds
-                            break
-                        case 4:
-                            data.x.bottom.is_colliding = true
-                            data.x.bottom.bounds = bounds
-                            data.x.bottom.target_bounds = targetBounds
-                            break
-                        case 5:
-                            data.x.top.is_colliding = true
-                            data.x.top.bounds = bounds
-                            data.x.top.target_bounds = targetBounds
-                            break
 
-                    }
-                    coll = true;
 
                     if (physobjs[obj].collider_type === "death") {
 
@@ -295,6 +262,41 @@ export class PhysObject {
                     } else if (physobjs[obj].collider_type === "win") {
                         console.log("win")
                         window.dispatchEvent(new CustomEvent('win'))
+                    } else {
+                        switch (this.whereIsColliding(bounds, targetBounds)) {
+                            case 0:
+                                data.z.bottom.is_colliding = true
+                                data.z.bottom.bounds = bounds
+                                data.z.bottom.target_bounds = targetBounds
+                                break
+                            case 1:
+                                data.z.top.is_colliding = true
+                                data.z.top.bounds = bounds
+                                data.z.top.target_bounds = targetBounds
+                                break
+                            case 2:
+                                data.y.bottom.is_colliding = true
+                                data.y.bottom.bounds = bounds
+                                data.y.bottom.target_bounds = targetBounds
+                                break
+                            case 3:
+                                data.y.top.is_colliding = true
+                                data.y.top.bounds = bounds
+                                data.y.top.target_bounds = targetBounds
+                                break
+                            case 4:
+                                data.x.bottom.is_colliding = true
+                                data.x.bottom.bounds = bounds
+                                data.x.bottom.target_bounds = targetBounds
+                                break
+                            case 5:
+                                data.x.top.is_colliding = true
+                                data.x.top.bounds = bounds
+                                data.x.top.target_bounds = targetBounds
+                                break
+
+                        }
+                        coll = true;
                     }
                 }
             }

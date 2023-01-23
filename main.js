@@ -63,9 +63,11 @@ startTimerButton.addEventListener('click', () => {
 // })
 
 window.addEventListener('point', async (e) => {
-    counter++;
-    console.log(counter)
-    counterElem.textContent = counter;
+    setCounterTo(counter + 1)
+
+    // counter++;
+    // console.log(counter)
+    // counterElem.textContent = counter;
 
     // switch (counter) {
     //     case 5:
@@ -104,7 +106,6 @@ window.addEventListener('win', async (e) => {
     //     startTimerButton.value = "Start"
     //     engine.stop()
     //     alert("Il tuo punteggio è " + counter)
-    console.log("www")
     engine.win()
 })
 
@@ -125,14 +126,28 @@ skyboxElement.addEventListener("change", () => {
     }
 });
 
+function quit(){
+    engine.stop()
+
+    startTimerButton.value = "Start"
+
+    setCounterTo(0)
+
+    skyboxElement.checked = false;
+}
+
+function setCounterTo(value){
+    counter = value;
+
+    console.log("new value of counter: " + counter)
+
+    counterElem.textContent = counter;
+}
+
 window.addEventListener('start', async (e) => {
     startTimerButton.value = "Restart"
 
-    engine.stop()
-
-    counter = 0;
-
-    counterElem.textContent = counter;
+    setCounterTo(0)
 
     engine.start(fpsDomElement.value)
 
@@ -149,9 +164,9 @@ window.addEventListener('ready', async (e) => {
     }
 })
 
-const al = document.getElementById('al');
-al.addEventListener("click", () => {
-    alert("ciao")
+const quitButton = document.getElementById('quitButton');
+quitButton.addEventListener("click", () => {
+    quit()
 });
 
 /**

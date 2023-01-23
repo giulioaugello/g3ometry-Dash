@@ -15,11 +15,7 @@ export class Engine {
             return;
         }
 
-        // this.program = webglUtils.createProgramInfo(this.gl, ["vertex-shader", "fragment-shader"]);
-        // this.gl.useProgram(this.program.program);
-
         this.program = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader", "fragment-shader"])
-        // this.gl.useProgram(this.program);
 
         // // SKYBOX
         this.skyboxProgram = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"]);
@@ -100,11 +96,11 @@ export class Engine {
     stop() {
         window.cancelAnimationFrame(this.animationId)
 
+        // console.log("ciao")
         //this.loadMeshes()
     }
 
     win(){
-        console.log("speed")
         this.player.playerController.stopSpeed()
     }
     // SKYBOX
