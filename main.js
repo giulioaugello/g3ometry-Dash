@@ -2,6 +2,30 @@ import {Engine} from "./engine/engine.js";
 import {PlayerController} from "./engine/playerController.js";
 import {ShadersManager} from "./engine/shadersManager.js";
 
+let params = (new URL(document.location)).searchParams;
+
+document.addEventListener("DOMContentLoaded", () => {
+    // let fpsParam = params.get('fps')
+    // if (fpsParam) {
+    //     fpsDomElement.value = fpsParam
+    // }
+
+    let playMusicParam = params.get('playMusic')
+    if (playMusicParam === 'true') {
+        playMusic.checked = true
+    } else if (playMusicParam === 'false') {
+        playMusic.checked = false
+    }
+
+    let showSkyboxParam = params.get("showSkybox")
+
+    if (showSkyboxParam === 'true') {
+        skyboxElement.checked = true
+    } else if (showSkyboxParam === 'false') {
+        skyboxElement.checked = false
+    }
+});
+
 // Engine
 let engine = new Engine("canvas");
 
@@ -19,7 +43,7 @@ const counterElem = document.querySelector('#counter');
 // Start Button
 const startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {
-    if(startButton.value === "Restart"){
+    if (startButton.value === "Restart") {
         reload()
     } else {
         disableScroll();
@@ -33,17 +57,16 @@ quitButton.addEventListener("click", () => {
     quit()
 });
 
-// FPS
-const fpsDomElement = document.getElementById('fpsID');
-fpsDomElement.addEventListener("change", () => {
-    engine.setFPS(fpsDomElement.value)
-});
+// // FPS
+// const fpsDomElement = document.getElementById('fpsID');
+// fpsDomElement.addEventListener("change", () => {
+//     engine.setFPS(fpsDomElement.value)
+// });
 
 // Skybox
 const skyboxElement = document.getElementById('showSkybox');
 skyboxElement.addEventListener("change", () => {
     if (skyboxElement.checked) {
-        engine.setFPS(120)
         $('#fpsDiv').hide();
     } else {
         $('#fpsDiv').show();
@@ -61,7 +84,7 @@ playMusic.addEventListener('change', () => {
 });
 
 window.addEventListener('start', async (e) => {
-    engine.start(fpsDomElement.value)
+    engine.start(120)
 
     soundtrack.play()
 
@@ -73,9 +96,7 @@ window.addEventListener('start', async (e) => {
 window.addEventListener('ready', async (e) => {
     startButton.disabled = false
 
-    let params = (new URL(document.location)).searchParams;
-
-    if (params.get("param")) {
+    if (params.get("auto_start") === 'true') {
         window.dispatchEvent(new CustomEvent('start'))
     }
 })
@@ -94,19 +115,17 @@ window.addEventListener('win', async (e) => {
     engine.win()
 })
 
-function reload(){
-    let url = window.location.href.split("&param")[0];
+function reload() {
+    let url = window.location.href.split('?')[0];
 
-    if (url.indexOf('?') > -1) {
-        url += '&param=1'
-    } else {
-        url += '?param=1'
-    }
+    // url += '?auto_start=true&fps=' + fpsDomElement.value + '&playMusic=' + playMusic.checked + '&showSkybox=' + skyboxElement.checked
+
+    url += '?auto_start=true&playMusic=' + playMusic.checked + '&showSkybox=' + skyboxElement.checked
 
     window.location.href = url;
 }
 
-function quit(){
+function quit() {
     engine.stop()
 
     soundtrack.pause();
@@ -114,13 +133,9 @@ function quit(){
     startButton.value = "Start"
 
     setCounterTo(0)
-
-    console.log("ciao")
-
-    skyboxElement.checked = false;
 }
 
-function setCounterTo(value){
+function setCounterTo(value) {
     counter = value;
 
     console.log("new value of counter: " + counter)
