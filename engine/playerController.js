@@ -313,13 +313,13 @@ export class PlayerController {
 
         } else if (queue.x.p) {
 
-            obj.speed.x = -0.15
+            // obj.speed.x = -0.15
 
         } else {
-            // console.log("!zn")
-            if (this.move) {
-                obj.speed.x = 0.15
-            }
+
+            // if (this.move) {
+            //     obj.speed.x = 0.15
+            // }
 
             obj.speed.z = 0
         }

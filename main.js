@@ -11,11 +11,11 @@ export class Photo {
     //     this.showMyPhoto = !this.showMyPhoto
     // }
 
-    getShowMyPhoto() {
-        // return this.showMyPhoto
-
-        return document.getElementById('toggleMyPhoto').checked
-    }
+    // getShowMyPhoto() {
+    //     // return this.showMyPhoto
+    //
+    //     return document.getElementById('toggleMyPhoto').checked
+    // }
 }
 
 let photo = new Photo()

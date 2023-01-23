@@ -2,18 +2,17 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: hobbiton;
-    src: url(fonts/HobbitonBrushhandhobbitonBrush-WygA.ttf);
+body{
+    background-image: url("/img/background.jpg");
 }
 
 @font-face {
-    font-family: middleEarth;
-    src: url(fonts/Middleearth-ao6m.ttf);
+    font-family: Pusab;
+    src: url("/fonts/PUSAB___.otf");
 }
 
 h1{
-    font-size: 2.5em;
+    font-size: 2.3em;
     text-align: center;
     font-family: middleEarth, serif;
 }
@@ -27,10 +26,80 @@ h1{
 
 #canvas {
     /*background: #dddddd;*/
+    position: absolute;
+    top: 6em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    margin: 0 auto;
     border: 5px solid #cccccc;
+    border-radius: 15px;
     outline: 1px solid #000000;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
+
+
+#startTimerButton{
+    position: absolute;
+    right: 2em;
+    color: #f8f8ff;
+    font-family: Pusab, serif;
+    height: 2em;
+    width: 6em;
+    font-size: 1.8em;
+    background: lawngreen;
+    border: 3px solid #cccccc;
+    border-radius: 15px;
+    outline: 1px solid #000000;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+#quitButton{
+    position: absolute;
+    right: 2em;
+    bottom: 0.5em;
+    font-family: Pusab, serif;
+    color: #f8f8ff;
+    height: 2em;
+    width: 6em;
+    font-size: 1.8em;
+    background: orangered;
+    border: 3px solid #cccccc;
+    border-radius: 15px;
+    outline: 1px solid #000000;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+#score{
+    position: absolute;
+    right: 2em;
+    top: 8em;
+    font-family: Pusab, serif;
+    width: 6em;
+    text-align: center;
+    color: #f8f8ff;
+    font-size: 1.8em;
+    background: darkorange;
+    border: 3px solid #cccccc;
+    border-radius: 15px;
+    outline: 1px solid #000000;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+#score_text{
+    text-align: center;
+    color: #f8f8ff;
+    background: darkorange;
+    outline: none;
+}
+
+#gui{
+    position: absolute;
+    left: 1em;
+    text-align: center;
+}
+
 
 #line1, #line2, #line3{
     padding: 0;

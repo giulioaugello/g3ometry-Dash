@@ -79,7 +79,7 @@ export class MeshLoader {
         }
     }
 
-    async load(filepath, gl, name, isPlayer, isBall, collider_type, dim, coords, loadProfilePhoto) {
+    async load(filepath, gl, name, isPlayer, isBall, collider_type, dim, coords) {
         // Mesh loader. Loads a mesh through an async method
         let mesh = [];
         mesh.source = filepath;
@@ -90,12 +90,7 @@ export class MeshLoader {
             let path = mesh.source.substring(0, mesh.source.lastIndexOf("/") + 1);
             // Loads up the texture for the main webgl context and the screens one.
 
-            let a;
-            if(loadProfilePhoto){
-                a = await this.texture_loader(gl, path, "../img/myPhoto.png", false)
-            } else {
-                a = await this.texture_loader(gl, path, map.get("map_Kd"), false)
-            }
+            let a = await this.texture_loader(gl, path, map.get("map_Kd"), false)
 
             map.set("map_Kd", a);
 
