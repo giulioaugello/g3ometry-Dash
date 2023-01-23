@@ -12,7 +12,7 @@
         "z": 1
       },
       "coords": {
-        "x": 0.0,
+        "x": -4.0,
         "y": 4.5,
         "z": 0.0
       }
@@ -352,6 +352,19 @@
       "coords": {
         "x": -80.5,
         "y": 6.5,
+        "z": -3.5
+      }
+    },
+    {
+      "name": "evil010",
+      "path": "obj/evil010.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "death",
+      "dim": null,
+      "coords": {
+        "x": -65.5,
+        "y": 7.5,
         "z": -3.5
       }
     },
