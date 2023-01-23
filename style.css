@@ -11,18 +11,49 @@ body{
     src: url("/fonts/PUSAB___.otf");
 }
 
-h1{
-    font-size: 2.3em;
-    text-align: center;
-    font-family: middleEarth, serif;
+@font-face {
+    font-family: geometryDash;
+    src: url("/fonts/OXYGENE1.TTF");
 }
 
-.column1 {
-    float: left;
-    padding: 10px;
-    /*width: 70vw;*/
-    /*height: 84vh;*/
+#title{
+    font-size: 2.3em;
+    text-align: center;
+    font-family: geometryDash, serif;
+    color: #7eeb2d;
+    background: ghostwhite;
+    border: 2px solid black;
+    margin: 0 10em 0 10em;
+    border-radius: 15px;
+    padding: 10px 0 10px 0;
 }
+.titleObj{
+    font-size: 1.5em;
+    color: red;
+}
+
+/*.column {*/
+/*    float: left;*/
+/*    width: 12%;*/
+/*}*/
+/*.column1 {*/
+/*    float: left;*/
+/*    width: 80.66%;*/
+/*}*/
+
+/*!* Clear floats after the columns *!*/
+/*.row:after {*/
+/*    content: "";*/
+/*    display: table;*/
+/*    clear: both;*/
+/*}*/
+
+/*.column1 {*/
+/*    float: left;*/
+/*    padding: 10px;*/
+/*    !*width: 70vw;*!*/
+/*    !*height: 84vh;*!*/
+/*}*/
 
 #canvas {
     /*background: #dddddd;*/
@@ -38,6 +69,8 @@ h1{
     outline: 1px solid #000000;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
+
+/*******************************/
 
 
 #startButton{
@@ -94,6 +127,29 @@ h1{
     outline: none;
 }
 
+#instruction{
+    position: absolute;
+    right: 3em;
+    top: 23em;
+    font-family: Pusab, serif;
+    width: 10em;
+    text-align: center;
+    color: #f8f8ff;
+    font-size: 1.1em;
+    background: darkorange;
+    border: 3px solid #cccccc;
+    border-radius: 15px;
+    outline: 1px solid #000000;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+.key{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    font-weight: bold;
+}
+
 #left_panel{
     position: absolute;
 }
@@ -105,28 +161,58 @@ h1{
 }
 
 
-#line1, #line2, #line3{
-    padding: 0;
+#left_panel{
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    padding: 1em;
+    font-family: Pusab, serif;
+    font-size: 1.2em;
+    color: ghostwhite;
+    background: darkorange;
+    border: 3px solid #cccccc;
+    border-radius: 15px;
+    outline: 1px solid #000000;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-#fpsID{
-    margin-bottom: 1em;
+#s{
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0 0 1em 0;
 }
 
-.column2 {
-    float: left;
-    width: 30%;
-    padding: 10px;
-    max-width: 29%;
-}
 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
-.
+
+
+
+
+
+/********************/
+
+
+/*#line1, #line2, #line3{*/
+/*    padding: 0;*/
+/*}*/
+
+/*#fpsID{*/
+/*    margin-bottom: 1em;*/
+/*}*/
+
+/*.column2 {*/
+/*    float: left;*/
+/*    width: 30%;*/
+/*    padding: 10px;*/
+/*    max-width: 29%;*/
+/*}*/
+
+/*.row:after {*/
+/*    content: "";*/
+/*    display: table;*/
+/*    clear: both;*/
+/*}*/
+
 
 @media screen and (max-width: 600px) {
     .column1 {
@@ -146,13 +232,6 @@ h1{
     }
 }
 
-/*.menu{*/
-/*    !*background: #dddddd;*!*/
-/*    margin-top: 10px;*/
-/*    border:5px solid;*/
-/*    outline: 1px solid;*/
-/*    !*box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);*!*/
-/*}*/
 
 .menu.column2{
     text-align: center;
@@ -186,10 +265,14 @@ h1{
     .hide-on-desktop {
         display: none;
     }
+    /*#instruction, #gui{*/
+    /*    display: none;*/
+    /*}*/
+
+    /*#startButton{*/
+    /*    bottom: 0.5em;*/
+    /*    right: 10em;*/
+    /*}*/
 }
 
-#left_panel{
-    position: absolute;
-    left: 0;
-}
 
