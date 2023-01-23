@@ -23,9 +23,9 @@ export class PhysObject {
 
         // Is this a player-controllable object (an actor)?
         this.isPlayer = isPlayer;
+
         if (this.isPlayer) {
             // If object is player-controllable, a controller is created.
-            console.log(this)
             this.playerController = new PlayerController(this)
         }
 
@@ -66,151 +66,45 @@ export class PhysObject {
         // Compute phys routine. If object is active, it checks for collisions and applies the correct forces to it.
         if (this.isPlayer) {
             let check = this.is_colliding(physobjs)
-
-            // console.log(this.position)
-            // console.log(check, physobjs)
-            // let bounds = this.compute_bounds()
             let bounds = check.playerBound
 
-            // if (this.isPlayer) {
-            //     if (check.coll) {
-            //         if (check.data.z.bottom.is_colliding && this.accel.z < 0) {
-            //             this.speed.z = this.accel.z = 0;
-            //         }
-            //
-            //         if (check.data.z.top.is_colliding && this.accel.z > 0) {
-            //             this.speed.z = this.accel.z = 0;
-            //         }
-            //
-            //         if (check.data.x.bottom.is_colliding && this.accel.x < 0) {
-            //             this.speed.x = this.accel.x = 0;
-            //         }
-            //
-            //         if (check.data.x.top.is_colliding && this.accel.x > 0) {
-            //             this.speed.x = this.accel.x = 0;
-            //         }
-            //     }
-            //
-            //     this.speed.x += this.accel.x;
-            //     this.speed.z += this.accel.z;
-            //
-            //     this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
-            //     this.position.z = ((bounds.max.z + bounds.min.z) / 2) + this.speed.z;
-            //
-            //     this.translation.x += this.speed.x;
-            //     this.translation.z += this.speed.z;
-            //
-            //     this.speed.x = this.speed.z = 0;
-            //     this.accel.x = this.accel.z = 0;
-            //
-            // }
-            // else if (this.isBall) {
+            console.log(this.position)
 
             if (check.coll) {
-
-                // console.log("collision done  ", this.playerController.getSpace())
-                // if(this.playerController.getSpace()) this.playerController.setSpace(false)
-                // else this.playerController.setSpace(true)
-
                 this.playerController.setSpace(true)
-
-                // if (this.speed.y < 0) {
-                //     // this.speed.y = 0
-                //
-                // }
 
                 // Se la palla sta collidendo sotto e non è ferma
                 if (check.data.y.bottom.is_colliding) {
-                    // console.log("y bottom")
                     actualPosY = this.position.y
-                    // //// Y
-                    // this.speed.y = -this.speed.y
-                    //
-                    // //// X
-                    // this.calculateSpeeds('y', 'x', check.data.y.bottom.target_bounds, 7.5, false)
-                    //
-                    // //// Z
-                    // this.calculateSpeeds('y', 'z', check.data.y.bottom.target_bounds, 7.5, false)
                 }
 
                 //Se la palla sta collidendo sopra e non è ferma
                 if (check.data.y.top.is_colliding) {
-                    // console.log("y top")
-                    // //// Y
-                    // // Rimando la palla verso l'alto con la stessa velocità con cui è arrivata
-                    // this.speed.y = -this.speed.y
-                    //
-                    // //// X
-                    // this.calculateSpeeds('y', 'x', check.data.y.top.target_bounds, 20, true)
-                    //
-                    // //// Z
-                    // this.calculateSpeeds('y', 'z', check.data.y.top.target_bounds, 20, true)
+
                 }
 
-                // Se la palla sta collidendo sulla parete dietro e non è fermo
-                if (check.data.x.top.is_colliding) {
-                    // console.log("x top")
-                    // //// X
-                    // // Inverto la speed di x
-                    // this.speed.x = -this.speed.x
-                    //
-                    // //// Y
-                    // this.calculateSpeeds('x', 'y', check.data.x.top.target_bounds, 20, true)
-                    //
-                    // //// Z
-                    // this.calculateSpeeds('x', 'z', check.data.x.top.target_bounds, 20, true)
+
+                if (check.data.x.top.is_colliding && this.speed.x > 0) {
+                    console.log("x top")
+                    this.speed.x = 0
                 }
 
-                // Se la palla sta collidendo sulla parete davanti e non è fermo
                 if (check.data.x.bottom.is_colliding) {
                     // console.log("x bottom")
-                    // //// X
-                    // // Inverto la speed di x
-                    // this.speed.x = -this.speed.x
-                    //
-                    // //// Y
-                    // this.calculateSpeeds('x', 'y', check.data.x.bottom.target_bounds, 20, false)
-                    //
-                    // //// Z
-                    // this.calculateSpeeds('x', 'z', check.data.x.bottom.target_bounds, 20, false)
+                    // this.speed.x = 0
                 }
 
-                // Se la palla sta collidendo sulla parete sinistra e non è ferma
                 if (check.data.z.bottom.is_colliding) {
                     // console.log("z bottom")
-                    // //// Z
-                    // this.speed.z = -this.speed.z
-                    //
-                    // //// X
-                    // this.calculateSpeeds('z', 'x', check.data.z.bottom.target_bounds, 20, false)
-                    //
-                    // //// Y
-                    // this.calculateSpeeds('z', 'y', check.data.z.bottom.target_bounds, 20, false)
+                    // this.speed.z = 0
+
                 }
 
-                // Se la palla sta collidendo sulla parete destra e non è ferma
                 if (check.data.z.top.is_colliding) {
                     // console.log("z top")
-                    // //// Z
-                    // this.speed.z = -this.speed.z
-                    //
-                    // //// X
-                    // this.calculateSpeeds('z', 'x', check.data.z.top.target_bounds, 20, true)
-                    //
-                    // //// Y
-                    // this.calculateSpeeds('z', 'y', check.data.z.top.target_bounds, 20, true)
+                    // this.speed.z = 0
                 }
-                // }
 
-                // this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
-                // this.position.y = ((bounds.max.y + bounds.min.y) / 2) + this.speed.y;
-                // this.position.z = ((bounds.max.z + bounds.min.z) / 2) + this.speed.z;
-                //
-                // this.translation.x += this.speed.x;
-                // this.translation.y += this.speed.y;
-                // this.translation.z += this.speed.z;
-
-                // console.log(this.speed.x)
 
             } else {
                 //in aria
@@ -233,21 +127,9 @@ export class PhysObject {
                     bounceCollision = false
                 }
                 this.playerController.setSpace(false)
-
-
-                // if (this.speed.y > 0) {
-                //     if (this.position.y >= actualPosY + 4) {
-                //         this.speed.y = -0.3
-                //     }
-                // } else {
-                //     this.speed.y = -0.3
-                // }
             }
-            //
-            // this.speed.x += this.accel.x;
-            // this.speed.z += this.accel.z;
 
-            if(check.portalized) {
+            if (check.portalized) {
                 console.log("ciao")
                 this.position = check.newPositions;
 
@@ -261,49 +143,8 @@ export class PhysObject {
                 this.translation.y += this.speed.y;
                 this.translation.z += this.speed.z;
             }
-
-
-            // console.log(this.position)
-
-            // console.log("-------------")
-            // console.log("x: ", this.position.x)
-            // console.log("y: ", this.position.y)
-            // console.log("z: ", this.position.z)
-
-            // console.log(this.speed.x, this.speed.y)
-
-            // console.log(actualPosY, this.position.y)
-            //
-            // if (this.speed.y > 0){
-            //     while(!check.coll){
-            //
-            //     }
-            //     console.log(actualPosY, this.position.y)
-            //     // if (actualPosY !== this.position.y && (this.position.y >= actualPosY + 0.2 && this.position.y <= actualPosY + 0.3)){
-            //     //     this.speed.y = -0.1
-            //     // }
-            // }
         }
     }
-
-    // calculateSpeeds(mainAxe, secondAxe, targetBounds, targetLength, plus) {
-    //     let secondAxeCenterOfTarget = (targetBounds.max[secondAxe] + targetBounds.min[secondAxe]) / 2
-    //     let secondAxeBallDistanceFromCenterOfTarget = Math.abs(this.position[secondAxe]) - Math.abs(secondAxeCenterOfTarget)
-    //
-    //     let toRemoveAtMainAxeAndGiveToSecondAxe = Math.abs(this.speed[secondAxe] / 2 * secondAxeBallDistanceFromCenterOfTarget) / Math.abs(targetLength)
-    //
-    //     if (plus) {
-    //         this.speed[mainAxe] += toRemoveAtMainAxeAndGiveToSecondAxe
-    //     } else {
-    //         this.speed[mainAxe] -= toRemoveAtMainAxeAndGiveToSecondAxe
-    //     }
-    //
-    //     if (this.speed[secondAxe] < 0) {
-    //         this.speed[secondAxe] -= toRemoveAtMainAxeAndGiveToSecondAxe
-    //     } else {
-    //         this.speed[secondAxe] += toRemoveAtMainAxeAndGiveToSecondAxe
-    //     }
-    // }
 
     is_colliding(physobjs) {
         // Main collision check routine
@@ -359,21 +200,7 @@ export class PhysObject {
         for (const obj in physobjs) {
 
             if (this.isPlayer && !physobjs[obj].isPlayer) {
-
-                // if (physobjs[obj].name === "portal"){
-                //     console.log(physobjs[obj].bounds)
-                // }
-
                 let targetBounds = physobjs[obj].bounds;
-                // console.log(targetBounds)
-                // if (!physobjs[obj].isPlayer) {
-                //     console.log(physobjs[obj].name)
-                //     targetBounds = physobjs[obj].bounds;
-                // } else {
-                //     console.log("ciao")
-                //     targetBounds = physobjs[obj].compute_bounds()
-                // }
-
 
                 // Se collide da qualche parte
                 if ((bounds.min.x <= targetBounds.max.x && bounds.max.x >= targetBounds.min.x) &&
@@ -384,7 +211,6 @@ export class PhysObject {
                     if (this.speed.y < 0) {
                         this.speed.y = 0
                     }
-
 
                     switch (this.whereIsColliding(bounds, targetBounds)) {
                         case 0:
@@ -427,25 +253,18 @@ export class PhysObject {
                         window.dispatchEvent(new CustomEvent('game_over'))
 
                     } else if (physobjs[obj].collider_type === "evilPortal") {
-                        // come spawna la camera
-
-
                         isPortalized = true;
 
                         this.position.x = 0
                         this.position.y = 4.5
                         this.position.z = 0
 
-                        // dove spawna l'oggetto
                         this.translation.x = 0;
                         this.translation.y = 0;
                         this.translation.z = 0;
 
-                        // this.speed.x = 0.0
-
                         newPositions = this.position;
                         newTranslations = this.translation;
-
                     } else if (physobjs[obj].collider_type === "portal") {
                         isPortalized = true;
 
@@ -457,19 +276,8 @@ export class PhysObject {
                         this.translation.y = 2;
                         this.translation.z = 0;
 
-                        // this.speed.x = 0.0
-
                         newPositions = this.position;
                         newTranslations = this.translation;
-                        //
-                        // this.position.x = 0;
-                        // this.position.y = 4.5;
-                        // this.position.z = 0;
-                        //
-                        // this.translation.x = 0;
-                        // this.translation.y = 0;
-                        // this.translation.z = 0;
-
                     } else if (physobjs[obj].collider_type === "coin") {
                         // delete coin
                         physobjs[obj].translation.y = -9999
@@ -478,26 +286,12 @@ export class PhysObject {
                     } else if (physobjs[obj].collider_type === "bounce") {
                         this.speed.y = 0.4
                         bounceCollision = true
-                    }else if (physobjs[obj].collider_type === "win") {
+                    } else if (physobjs[obj].collider_type === "win") {
                         console.log("win")
-                        window.dispatchEvent(new CustomEvent('win'))                    }
+                        window.dispatchEvent(new CustomEvent('win'))
+                    }
                 }
             }
-
-            // if (physobjs[obj].collider_type === "box") {
-            //     if (physobjs[obj].position.y <= this.position.y) {
-            //         data.y.bottom = true;
-            //     }
-            //     if (physobjs[obj].position.y > this.position.y) {
-            //         data.y.top = true;
-            //     }
-            //     if (physobjs[obj].bounds.max.y > this.position.y) {
-            //         data.x.top = data.x.bottom = data.z.top = data.z.bottom = true;
-            //         data.y.top = data.y.bottom = false;
-            //     }
-            // } else {
-            //     data.y.bottom = true;
-            // }
         }
         return {
             'portalized': isPortalized,

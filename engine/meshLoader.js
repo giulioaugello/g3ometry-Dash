@@ -153,19 +153,19 @@ export class MeshLoader {
 
         if (name === "Player"){
             this.list.push(new PhysObject(mesh, "Death", false, true, "death", dim, {
-                x: -20.0,
+                x: 0.0,
                 y: -4.0,
                 z: 0.0
             }, {
                 max: {
-                    x: -21,
+                    x: 500,
                     y: -3,
-                    z: 21
+                    z: 500
                 },
                 min: {
-                    x: -19,
+                    x: -500,
                     y: -5,
-                    z: -19
+                    z: -500
                 }
             }))
 

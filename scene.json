@@ -48,7 +48,7 @@
       "path": "obj/evil001.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -13.0,
@@ -61,7 +61,7 @@
       "path": "obj/evil002.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -13.0,
@@ -74,7 +74,7 @@
       "path": "obj/evil003.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -25.2,
@@ -100,7 +100,7 @@
       "path": "obj/evil001.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -13.0,
@@ -152,7 +152,7 @@
       "path": "obj/evil004.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -49.0,
@@ -191,7 +191,7 @@
       "path": "obj/evil005.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -54.0,
@@ -217,7 +217,7 @@
       "path": "obj/evil006.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -59.0,
@@ -230,7 +230,7 @@
       "path": "obj/evil007.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "box",
+      "collider_type": "death",
       "dim": null,
       "coords": {
         "x": -63.0,
