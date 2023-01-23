@@ -73,12 +73,6 @@ body {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
-}
-
 /*******************************/
 
 
@@ -99,7 +93,7 @@ body {
     /*top: 8em;*/
     font-family: Pusab, serif;
     margin: 2em auto 0;
-    width: 5em;
+    width: 5.2em;
     text-align: center;
     color: #f8f8ff;
     font-size: 1.8em;
@@ -124,6 +118,7 @@ body {
     color: #f8f8ff;
     background: darkorange;
     outline: none;
+    margin: 10px;
 }
 
 
@@ -168,11 +163,62 @@ body {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
 }
 
+.material-icons{
+    float: right;
+    margin: 0;
+}
+
+.colInside{
+    float: left;
+}
+
+.leftIn, .rightIn, .middleIn{
+    width: 100%;
+}
+
+
 
 /********************/
 
 
-
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .column{
+        width: 100%;
+    }
+    #title{
+        font-size: 1.6em;
+        margin: 0;
+    }
+    #canvas{
+        width: 380px;
+    }
+    #gui, #instruction{
+        display: none;
+    }
+    .subTitle{
+        font-size: 1.2em;
+        margin: 0.2em 0 0 0;
+    }
+    #mySettings {
+        margin: 0;
+        padding: 3px;
+    }
+    #startButton, #score, #quitButton{
+        font-size: 1.2em;
+        margin: 0;
+    }
+    #score{
+        width: 7em;
+    }
+    #score_text{
+        margin: 7px;
+    }
+    .leftIn, .rightIn, .middleIn{
+        text-align: center;
+        width: 33.33%;
+        margin: 0;
+    }
+}
 
 
 /*@media screen and (max-width: 600px) {*/

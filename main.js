@@ -26,6 +26,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+let screenSizeMediaQuery = window.matchMedia("(min-width: 320px) and (max-width: 480px)")
+let spanValue = false
+let icon = document.getElementById("icon")
+showIconSettings(screenSizeMediaQuery, icon)
+
+function showIconSettings(x, icon) {
+    if (x.matches) { // If media query matches
+        icon.style.display = '';
+        document.getElementById("showSkybox").style.display = 'none';
+        document.getElementById("showSkybox1").style.display = 'none';
+        document.getElementById("playMusic").style.display = 'none';
+        document.getElementById("playMusic1").style.display = 'none';
+    } else {
+        icon.style.display = 'none';
+    }
+}
+
+icon.onclick = function showSettings(){
+    if (!spanValue){
+        console.log("ciao")
+        spanValue = true
+        icon.textContent = "arrow_circle_up";
+        document.getElementById("showSkybox").style.display = '';
+        document.getElementById("showSkybox1").style.display = '';
+        document.getElementById("playMusic").style.display = '';
+        document.getElementById("playMusic1").style.display = '';
+    } else {
+        spanValue = false
+        icon.textContent = "arrow_circle_down";
+        document.getElementById("showSkybox").style.display = 'none';
+        document.getElementById("showSkybox1").style.display = 'none';
+        document.getElementById("playMusic").style.display = 'none';
+        document.getElementById("playMusic1").style.display = 'none';
+    }
+}
+
 // Engine
 let engine = new Engine("canvas");
 

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>G3ometry Dash</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS-->
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Libraries-->
     <script src="libs/glm_utils.js" defer></script>
@@ -51,6 +52,9 @@
                 v_normal = (u_normalMatrix * vec4(a_normal, 1)).xyz;
                 v_texcoord = a_texcoord;
             }
+
+
+
 
 
 
@@ -104,6 +108,9 @@
 
 
 
+
+
+
     </script>
 
     <script id="vertex-shader-skybox" type="x-shader/x-vertex">
@@ -114,6 +121,9 @@
           gl_Position = a_position;
           gl_Position.z = 1.0;
         }
+
+
+
 
 
 
@@ -133,6 +143,9 @@
 
 
 
+
+
+
     </script>
 
 </head>
@@ -145,21 +158,23 @@
     <div class="column left">
 
         <div id="instruction" class="borderCss">
+
             <p class="subTitle">Instructions</p>
             <p>Hold <span class="key">A</span> or <span class="key">D</span> for left and right move</p>
             <p>Click or hold <span class="key">SPACE</span> to jump</p>
         </div>
 
         <div id="mySettings" class="borderCss">
-            <p class="subTitle">Settings</p>
+            <p class="subTitle">Settings<span id="icon" class="material-icons">arrow_circle_down</span></p>
+
 
             <input id="showSkybox" type="checkbox"/>
-            <label for="showSkybox">Show Skybox</label>
+            <label id="showSkybox1" for="showSkybox">Show Skybox</label>
 
             <br>
 
             <input id="playMusic" type="checkbox" checked class="sett"/>
-            <label for="playMusic" class="sett">Play sound effects</label>
+            <label id="playMusic1" for="playMusic" class="sett">Play sound effects</label>
             <audio id="soundtrack"></audio>
         </div>
 
@@ -171,14 +186,18 @@
     </div>
 
     <div class="column right">
-        <input id="startButton" class="borderCss" type="button" value="Start" disabled/>
 
-        <div id="score" class="borderCss">
-            <p id="score_text">Coins</p>
-            <p id="counter">0</p>
+        <div class="colInside leftIn">
+            <input id="startButton" class="borderCss" type="button" value="Start" disabled/>
         </div>
-
-        <input type="button" id="quitButton" class="borderCss" value="Quit">
+        <div class="colInside middleIn">
+            <div id="score" class="borderCss">
+                <p id="score_text">Coins: <span id="counter">0</span></p>
+            </div>
+        </div>
+        <div class="colInside rightIn">
+            <input type="button" id="quitButton" class="borderCss" value="Quit">
+        </div>
     </div>
 </div>
 
