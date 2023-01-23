@@ -285,9 +285,10 @@ export class PhysObject {
                         newTranslations = this.translation;
                     } else if (physobjs[obj].collider_type === "coin") {
                         // delete coin
+                        physobjs[obj].collider_type = "box"
                         physobjs[obj].translation.y = -9999
-                        window.dispatchEvent(new CustomEvent('point'))
 
+                        window.dispatchEvent(new CustomEvent('point'))
                     } else if (physobjs[obj].collider_type === "bounce") {
                         this.speed.y = 0.4
                         bounceCollision = true
