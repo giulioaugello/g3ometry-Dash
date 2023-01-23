@@ -183,3 +183,8 @@ h1{
     }
 }
 
+#left_panel{
+    position: absolute;
+    left: 0;
+}
+

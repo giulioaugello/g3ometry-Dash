@@ -21,7 +21,7 @@ export class PlayerController {
         // canvas = document.getElementById("canvas");
         this.install();
 
-        this.mobileController();
+        // this.mobileController();
 
         this.move = true;
     }
