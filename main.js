@@ -95,7 +95,7 @@ window.addEventListener('start', async (e) => {
 
 window.addEventListener('ready', async (e) => {
     startButton.disabled = false
-
+    startButton.style.background = "lawngreen"
     if (params.get("auto_start") === 'true') {
         window.dispatchEvent(new CustomEvent('start'))
     }

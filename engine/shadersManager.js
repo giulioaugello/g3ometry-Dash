@@ -13,7 +13,7 @@ export class ShadersManager {
     }
 
     static fragmentShaderParameters = {
-        lightDirection: [300, -300, 300],
+        lightDirection: [355, -195, 360],
         ambientLight: [0.2, 0.2, 0.2],
         colorLight: [1.0, 1.0, 1.0],
         shininess: 359.999993,

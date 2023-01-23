@@ -18,7 +18,7 @@ export class PlayerController {
         // Controller constructor, saves actor object inside itself.
         this.object = object;
         obj = object
-        // canvas = document.getElementById("canvas");
+        this.canvas = document.getElementById("canvas");
         this.install();
 
         // this.mobileController();
@@ -34,10 +34,10 @@ export class PlayerController {
         } else {
             window.addEventListener("keydown", this.keyDown, true)
             window.addEventListener("keyup", this.keyUp, true)
-            window.addEventListener("mousedown", this.mouseDown, true)
-            window.addEventListener("mouseup", this.mouseUp, true)
-            window.addEventListener("mousemove", this.mouseMove, true)
-            window.addEventListener("wheel", this.wheelMove, true);
+            this.canvas.addEventListener("mousedown", this.mouseDown, true)
+            this.canvas.addEventListener("mouseup", this.mouseUp, true)
+            this.canvas.addEventListener("mousemove", this.mouseMove, true)
+            this.canvas.addEventListener("wheel", this.wheelMove, true);
         }
 
         console.log("Controller installed.")
@@ -51,9 +51,10 @@ export class PlayerController {
         } else {
             window.removeEventListener("keydown", this.keyDown, true)
             window.removeEventListener("keyup", this.keyUp, true)
-            window.removeEventListener("mousedown", this.mouseDown, true)
-            window.removeEventListener("mouseup", this.mouseUp, true)
-            window.removeEventListener("mousemove", this.mouseMove, true)
+            this.canvas.removeEventListener("mousedown", this.mouseDown, true)
+            this.canvas.removeEventListener("mouseup", this.mouseUp, true)
+            this.canvas.removeEventListener("mousemove", this.mouseMove, true)
+            this.canvas.removeEventListener("wheel", this.wheelMove, true);
         }
 
 
@@ -172,9 +173,9 @@ export class PlayerController {
 
     wheelMove(e) {
         if (e.deltaY < 0) {
-            shadersManager.increaseFieldOfViewRadiansOf(1)
-        } else {
             shadersManager.decreaseFieldOfViewRadiansOf(1)
+        } else {
+            shadersManager.increaseFieldOfViewRadiansOf(1)
         }
     }
 

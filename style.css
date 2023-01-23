@@ -81,7 +81,7 @@ body{
     height: 2em;
     width: 6em;
     font-size: 1.8em;
-    background: lawngreen;
+    background: lightgrey;
     border: 3px solid #cccccc;
     border-radius: 15px;
     outline: 1px solid #000000;
@@ -129,14 +129,15 @@ body{
 
 #instruction{
     position: absolute;
-    right: 3em;
-    top: 23em;
+    left: 1.5em;
+    top: 20em;
     font-family: Pusab, serif;
-    width: 10em;
+    padding: 5px;
+    width: 14em;
     text-align: center;
-    color: #f8f8ff;
+    color: black;
     font-size: 1.1em;
-    background: darkorange;
+    background: ghostwhite;
     border: 3px solid #cccccc;
     border-radius: 15px;
     outline: 1px solid #000000;
