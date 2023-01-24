@@ -205,7 +205,7 @@ export class Engine {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         if (document.getElementById('showSkybox').checked) {
-            console.log(document.getElementById('showSkybox').checked)
+            // console.log(document.getElementById('showSkybox').checked)
             // Draw the geometry.
             this.gl.drawArrays(this.gl.TRIANGLES, 0, 1 * 6);
         }

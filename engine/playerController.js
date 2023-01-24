@@ -21,7 +21,7 @@ export class PlayerController {
         this.canvas = document.getElementById("canvas");
         this.install();
 
-        // this.mobileController();
+        this.mobileController();
 
         this.move = true;
     }
@@ -85,11 +85,11 @@ export class PlayerController {
 
         const controller_right = document.getElementById('controller_right');
         controller_right.addEventListener("touchstart", () => {
-            queue.z.p = true;
+            queue.z.n = true;
         });
 
         controller_right.addEventListener("touchend", () => {
-            queue.z.p = false;
+            queue.z.n = false;
         });
     }
 

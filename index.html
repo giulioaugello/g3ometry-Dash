@@ -53,11 +53,6 @@
                 v_texcoord = a_texcoord;
             }
 
-
-
-
-
-
     </script>
 
 
@@ -106,11 +101,6 @@
                 );
             }
 
-
-
-
-
-
     </script>
 
     <script id="vertex-shader-skybox" type="x-shader/x-vertex">
@@ -121,11 +111,6 @@
           gl_Position = a_position;
           gl_Position.z = 1.0;
         }
-
-
-
-
-
 
     </script>
     <!-- fragment shader -->
@@ -140,11 +125,6 @@
           vec4 t = u_viewDirectionProjectionInverse * v_position;
           gl_FragColor = textureCube(u_skybox, normalize(t.xyz / t.w));
         }
-
-
-
-
-
 
     </script>
 
@@ -168,13 +148,13 @@
             <p class="subTitle">Settings<span id="icon" class="material-icons">arrow_circle_down</span></p>
 
 
-            <input id="showSkybox" type="checkbox"/>
-            <label id="showSkybox1" for="showSkybox">Show Skybox</label>
+            <input id="showSkybox" type="checkbox" class="hideOnMobile"/>
+            <label for="showSkybox" class="hideOnMobile">Show Skybox</label>
 
             <br>
 
-            <input id="playMusic" type="checkbox" checked class="sett"/>
-            <label id="playMusic1" for="playMusic" class="sett">Play sound effects</label>
+            <input id="playMusic" type="checkbox" class="hideOnMobile" checked/>
+            <label for="playMusic" class="hideOnMobile">Play sound effects</label>
             <audio id="soundtrack"></audio>
         </div>
 
@@ -189,53 +169,26 @@
 
         <div class="colInside leftIn">
             <input id="startButton" class="borderCss" type="button" value="Start" disabled/>
+            <img id="controller_left" src="img/controller_mobile/leftArrow.png">
         </div>
         <div class="colInside middleIn">
-            <div id="score" class="borderCss">
-                <p id="score_text">Coins: <span id="counter">0</span></p>
-            </div>
+            <input id="counter" class="borderCss" type="button" value="Coins: 0"/>
+<!--            <div id="score" class="borderCss">-->
+<!--                <p id="score_text">Coins: <span id="counter">0</span></p>-->
+<!--            </div>-->
+            <img id="controller_right" src="img/controller_mobile/rightArrow.png">
         </div>
         <div class="colInside rightIn">
             <input type="button" id="quitButton" class="borderCss" value="Quit">
+            <img id="controller_jump" src="img/controller_mobile/jumpArrow.png">
         </div>
+
     </div>
+
 </div>
 
 
-<!--<canvas id="canvas" width="800" height="600"></canvas>-->
 
-<!--<div id="right_panel">-->
-<!--    <input id="startButton" type="button" value="Start" disabled/>-->
-
-<!--    <div id="score">-->
-<!--        <p id="score_text">Coins</p>-->
-<!--        <p id="counter">0</p>-->
-<!--    </div>-->
-
-<!--    <input type="button" id="quitButton" value="Quit">-->
-
-<!--</div>-->
-
-<!--<div id="gui"></div>-->
-
-<!--<div id="instruction">-->
-<!--    <p>Instructions</p>-->
-<!--    <p>Hold <span class="key">A</span> or <span class="key">D</span> for left and right move</p>-->
-<!--    <p>Click or hold <span class="key">SPACE</span> to jump</p>-->
-
-<!--</div>-->
-
-<!--<div id="left_panel">-->
-<!--&lt;!&ndash;<div class="hide-on-desktop" id="left_panel">&ndash;&gt;-->
-
-
-<!--    <p id="s">Settings</p>-->
-
-
-<!--    <input id="showSkybox" type="checkbox"/>-->
-<!--    <label for="showSkybox">Show Skybox</label>-->
-
-<!--    <br>-->
 
 <!--&lt;!&ndash;    <div id="fpsDiv">&ndash;&gt;-->
 <!--&lt;!&ndash;        <label>&ndash;&gt;-->
@@ -250,77 +203,6 @@
 <!--&lt;!&ndash;            </select>&ndash;&gt;-->
 <!--&lt;!&ndash;        </label>&ndash;&gt;-->
 <!--&lt;!&ndash;    </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <br>&ndash;&gt;-->
-
-<!--    <input id="playMusic" type="checkbox"/>-->
-<!--    <label for="playMusic">Play sound effects</label>-->
-<!--    <audio id="soundtrack"></audio>-->
-<!--</div>-->
-
-
-<!--<h1>The Ball of the Rings</h1>-->
-
-<!--<div class="row">-->
-<!--    <div class="column1">-->
-<!--        <canvas id="canvas" width="950" height="650"></canvas>-->
-<!--    </div>-->
-
-<!--    <div class="menu column2">-->
-<!--        <input id="startTimerButton" type="button" value="Start"/>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash;    <hr id="line2" class="menu column2">&ndash;&gt;-->
-
-<!--    <div class="menu column2 row-inside">-->
-
-<!--        <div class="col-inside">-->
-<!--            <p class="title">Score</p>-->
-<!--            <p id="counter"></p>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash;        <div class="col-inside">&ndash;&gt;-->
-<!--        &lt;!&ndash;            <p class="title">Time</p>&ndash;&gt;-->
-<!--        &lt;!&ndash;            <p id="timer">00:00</p>&ndash;&gt;-->
-<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--    </div>-->
-
-<!--    <hr id="line1" class="menu column2">-->
-
-<!--    <div class="menu column2 show-on-desktop hide-on-mobile">-->
-<!--        <p class="title">Settings</p>-->
-
-
-<!--        <input id="showSkybox" type="checkbox"/>-->
-<!--        <label for="showSkybox">Show Skybox</label>-->
-
-
-<!--        <br>-->
-
-<!--        <input id="playMusic" type="checkbox" checked/>-->
-<!--        <label for="playMusic">Play sound effects</label>-->
-
-
-<!--        <br>-->
-
-<!--        <div id="fpsDiv">-->
-<!--            <label>-->
-<!--                FPS:-->
-<!--                <select id="fpsID">-->
-<!--                    <option value="12">12</option>-->
-<!--                    <option value="24">24</option>-->
-<!--                    <option value="30">30</option>-->
-<!--                    <option value="60">60</option>-->
-<!--                    <option value="90">90</option>-->
-<!--                    <option value="120" selected>120</option>-->
-<!--                </select>-->
-<!--            </label>-->
-<!--        </div>-->
-<!--        <div id="gui"></div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash;    <audio id="bouncing" src="sound_effects/bouncing.mp3"></audio>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <audio id="soundtracks"></audio>&ndash;&gt;-->
-<!--</div>-->
 
 </body>
 
