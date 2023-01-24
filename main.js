@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // if (fpsParam) {
     //     fpsDomElement.value = fpsParam
     // }
-
+    soundtrack.loop = true
     let playMusicParam = params.get('playMusic')
     if (playMusicParam === 'true') {
         playMusic.checked = true
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-let screenSizeMediaQuery = window.matchMedia("(min-width: 320px) and (max-width: 768px)")
+let screenSizeMediaQuery = window.matchMedia("(min-width: 320px) and (max-width: 1100px)")
 let spanValue = false
 let icon = document.getElementById("icon")
 showIconSettings(screenSizeMediaQuery, icon)
@@ -60,6 +60,27 @@ function displayNoneSettings(b){
     }
 }
 
+
+// prevent long press on mobile
+function absorbEvent_(event) {
+    var e = event || window.event;
+    e.preventDefault && e.preventDefault();
+    e.stopPropagation && e.stopPropagation();
+    e.cancelBubble = true;
+    e.returnValue = false;
+    return false;
+}
+function preventLongPressMenu(nodes) {
+    for(var i=0; i<nodes.length; i++){
+        nodes[i].ontouchstart = absorbEvent_;
+        nodes[i].ontouchmove = absorbEvent_;
+        nodes[i].ontouchend = absorbEvent_;
+        nodes[i].ontouchcancel = absorbEvent_;
+    }
+}
+preventLongPressMenu(document.getElementsByTagName('img'));
+
+
 // Engine
 let engine = new Engine("canvas");
 
@@ -92,6 +113,10 @@ quitButton.addEventListener("click", () => {
     quit()
 });
 
+// skyboxColor.addEventListener("change", () => {
+//     engine.setSkyboxColor(skyboxColor.value)
+// });
+
 // // FPS
 // const fpsDomElement = document.getElementById('fpsID');
 // fpsDomElement.addEventListener("change", () => {
@@ -100,28 +125,34 @@ quitButton.addEventListener("click", () => {
 
 // Skybox
 const skyboxElement = document.getElementById('showSkybox');
-skyboxElement.addEventListener("change", () => {
-    if (skyboxElement.checked) {
-        $('#fpsDiv').hide();
-    } else {
-        $('#fpsDiv').show();
-    }
-});
+// skyboxElement.addEventListener("change", () => {
+//     if (skyboxElement.checked) {
+//         $('#fpsDiv').hide();
+//     } else {
+//         $('#fpsDiv').show();
+//     }
+// });
 
 // Soundtrack
 const playMusic = document.getElementById('playMusic')
+console.log(playMusic.checked)
 playMusic.addEventListener('change', () => {
     if (playMusic.checked) {
+        console.log("if")
         soundtrack.play()
     } else {
+        console.log("else")
         soundtrack.pause()
     }
+    playMusic.blur()
 });
 
 window.addEventListener('start', async (e) => {
     engine.start(120)
 
-    soundtrack.play()
+    if (playMusic.checked) {
+        soundtrack.play()
+    }
 
     startButton.value = "Restart"
 
@@ -173,7 +204,7 @@ function quit() {
 function setCounterTo(value) {
     counter = value;
 
-    console.log("new value of counter: " + counter)
+    // console.log("new value of counter: " + counter)
 
     // counterElem.textContent = counter;
     counterElem.value = "Coins: " + counter

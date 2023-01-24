@@ -42,15 +42,11 @@ export class Engine {
 
         // Player
         this.player = this.meshlist.find(x => x.isPlayer)
-
-        // Ball
-        // this.ball = this.meshlist.find(x => x.isBall)
     }
 
     start(fps) {
         this.setFPS(fps);
         window.requestAnimationFrame(this.render.bind(this))
-        // this.startSkybox()
     }
 
     setFPS(fps) {
@@ -73,11 +69,8 @@ export class Engine {
             })
         }
 
-        // this.drawScene()
-
         this.player.playerController.handler()
         this.player.compute_phys(this.meshlist)
-        // this.ball.compute_phys(this.meshlist)
 
         this.animationId = requestAnimationFrame(this.render.bind(this))
     }
@@ -93,16 +86,13 @@ export class Engine {
 
     stop() {
         window.cancelAnimationFrame(this.animationId)
-
-        // console.log("ciao")
-        //this.loadMeshes()
     }
 
     win(){
         this.player.playerController.stopSpeed()
     }
-    // SKYBOX
 
+    // SKYBOX
     sky() {
         // look up where the vertex data needs to go.
         this.posLocation = this.gl.getAttribLocation(this.skyboxProgram, "a_position");
@@ -287,36 +277,6 @@ export class Engine {
         gl.texParameteri(gl.TEXTURE_CUBE_MAP, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
 
         return skyboxTexture;
-    }
-
-    createXYQuadBufferInfo() {
-        var xOffset = 0;
-        var yOffset = 0;
-        var size = 1;
-        return {
-            position: {
-                numComponents: 2,
-                data: [
-                    xOffset + -1 * size, yOffset + -1 * size,
-                    xOffset + 1 * size, yOffset + -1 * size,
-                    xOffset + -1 * size, yOffset + 1 * size,
-                    xOffset + 1 * size, yOffset + 1 * size,
-                ],
-            },
-            normal: [
-                0, 0, 1,
-                0, 0, 1,
-                0, 0, 1,
-                0, 0, 1,
-            ],
-            texcoord: [
-                0, 0,
-                1, 0,
-                0, 1,
-                1, 1,
-            ],
-            indices: [0, 1, 2, 2, 1, 3],
-        };
     }
 
 }
