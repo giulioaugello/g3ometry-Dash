@@ -135,13 +135,10 @@ const skyboxElement = document.getElementById('showSkybox');
 
 // Soundtrack
 const playMusic = document.getElementById('playMusic')
-console.log(playMusic.checked)
 playMusic.addEventListener('change', () => {
     if (playMusic.checked) {
-        console.log("if")
         soundtrack.play()
     } else {
-        console.log("else")
         soundtrack.pause()
     }
     playMusic.blur()

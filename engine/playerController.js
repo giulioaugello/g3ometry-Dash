@@ -6,10 +6,8 @@ import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager
 
 let queue = {x: {p: false, n: false}, z: {p: false, n: false}};
 let obj = null;
-// let canvas = null;
 let drag = false;
 let old = {x: null, y: null};
-let pressed = false;
 let isSpaceTr = true
 
 export class PlayerController {
@@ -61,7 +59,6 @@ export class PlayerController {
         console.log("Controller uninstalled.")
     }
 
-
     mobileController() {
         const controller_left = document.getElementById('controller_left');
         controller_left.addEventListener("touchstart", () => {
@@ -92,7 +89,6 @@ export class PlayerController {
             queue.z.n = false;
         });
     }
-
 
     setSpace(boolSpace) {
         isSpaceTr = boolSpace
@@ -183,19 +179,15 @@ export class PlayerController {
         // Basic key press handling
         switch (e.keyCode) {
             case 32: // space
-                // console.log("before if", isSpaceTr)
-                // queue.x.n = true
                 if (isSpaceTr) {
-                    // isSpaceTr = false
                     queue.x.n = true
-                    // console.log("inside if", isSpaceTr)
                 }
-
-                // console.log("after if", isSpaceTr)
                 break
 
             // case 83: // 's' ma METTERE QUELLO DI SOPRA
-            //     queue.x.n = true
+            //     if (isSpaceTr) {
+            //         queue.x.n = true
+            //     }
             //     break
             case 65: // a
                 queue.z.p = true;
@@ -206,19 +198,6 @@ export class PlayerController {
             case 80: // p
                 queue.x.p = true
                 break
-
-            // case 83: // s
-            //     queue.z.n = true
-            //     break
-            // case 87: // w
-            //     queue.z.p = true
-            //     break
-            // case 73: // i
-            //     ShadersManager.upAndDown(1)
-            //     break
-            // case 75: // k
-            //     ShadersManager.upAndDown(-1)
-            //     break
             case 74: // j
                 //ShadersManager.increaseCameraPositionAtIndexOfValue(0, 0.5)
                 break
@@ -234,11 +213,6 @@ export class PlayerController {
             case 78: // n
                 // ShadersManager.increaseCameraPositionAtIndexOfValue(2, 2)
                 break
-            // case 27: // esc
-            //     setTimeout(function () {
-            //         window.location.reload();
-            //     })
-            //     break
         }
 
     }
@@ -253,15 +227,9 @@ export class PlayerController {
             // case 83: // s ma METTERE SPAZIO
             //     queue.x.n = false
             //     break
-            // case 87: // w
-            //     queue.z.p = false
-            //     break
             case 65: // a
                 queue.z.p = false;
                 break;
-            // case 83: // s
-            //     queue.z.n = false
-            //     break
             case 68: // d
                 queue.z.n = false
                 break
@@ -278,71 +246,25 @@ export class PlayerController {
 
     handler() {
         // Based on queue, applies acceleration to selected axis.
-        // console.log(obj.position.x)
-        // console.log(obj.position.y)
-        // console.log(obj.position.z)
-
         if (queue.x.n) { // space
-            // obj.speed.y = 0.1
-
-            // if (obj.speed.y <= 0){
-            //     obj.speed.y = 0.4
-            // }else{
-            //     console.log("ciao")
-            // }
-
             // obj.speed.y = 0.4
             if (isSpaceTr) {
                 obj.speed.y = 0.4
             }
-
         } else if (queue.z.p) { // a
-
             obj.speed.x = 0
             obj.speed.z = -0.1
-
-
         } else if (queue.z.n) { // d
-
             obj.speed.x = 0
             obj.speed.z = 0.1
-
-            // else {
-            //     obj.speed.x = 0.1
-            //     obj.speed.z = 0
-            // }
-
         } else if (queue.x.p) {
-
-            // obj.speed.x = -0.15
-
+            obj.speed.x = -0.15
         } else {
-
-            // if (this.move) {
-            //     obj.speed.x = 0.15
-            // }
-
+            if (this.move) {
+                obj.speed.x = 0.15
+            }
             obj.speed.z = 0
         }
 
-
-        // if (queue.x.n) {
-        //     obj.accel.x = 0.3
-        // }
-        // if (queue.z.p) {
-        //     obj.accel.z = -0.3
-        // }
-
-        // if (queue.x.p) {
-        //     obj.speed.y = -1
-        // }
-
-
-        // if (queue.z.p) {
-        //     obj.speed.z = -0.3
-        // }
-        // if (queue.z.n) {
-        //     obj.speed.z = 0.3
-        // }
     }
 }

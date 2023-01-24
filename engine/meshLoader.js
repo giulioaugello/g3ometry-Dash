@@ -181,62 +181,6 @@ export class MeshLoader {
                 }
             }))
         }
-
-
-        // if (name === "Pavimento") {
-        //     this.list.push(new PhysObject(mesh, "Soffitto", isPlayer, isBall, "box", dim, {
-        //         x: -0.5,
-        //         y: 40.01,
-        //         z: -0.5
-        //     }, {
-        //         max: {
-        //             x: 21,
-        //             y: 40.009998,
-        //             z: 20
-        //         },
-        //         min: {
-        //             x: -20,
-        //             y: 40.009998,
-        //             z: -21
-        //         }
-        //     }))
-        // }
-        // else if (name === "Parete sinistra") {
-        //     this.list.push(new PhysObject(mesh, "Parete destra", isPlayer, isBall, collider_type, dim, {
-        //         x: -0.5,
-        //         y: 20,
-        //         z: 19.5
-        //     }, {
-        //         max: {
-        //             x: 21,
-        //             y: 40,
-        //             z: 20
-        //         },
-        //         min: {
-        //             x: -20,
-        //             y: 0,
-        //             z: 19
-        //         }
-        //     }))
-        // }
-        // else if (name === "Parete dietro") {
-        //     this.list.push(new PhysObject(mesh, "Parete davanti", isPlayer, isBall, collider_type, dim, {
-        //         x: 19.5,
-        //         y: 20,
-        //         z: 0
-        //     }, {
-        //         max: {
-        //             x: -19,
-        //             y: 40,
-        //             z: 20
-        //         },
-        //         min: {
-        //             x: -20,
-        //             y: 0,
-        //             z: -20
-        //         }
-        //     }))
-        // }
     }
 
     generateBounds(positions) {

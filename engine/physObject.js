@@ -37,23 +37,12 @@ export class PhysObject {
         this.bounds = bounds;
 
         // Speed, positions etc.
-        this.offsets = coords
         this.position = {x: coords.x, y: coords.y, z: coords.z}
         this.positions = this.mesh.positions
-        this.speed = {x: 0.0, y: 0, z: 0};
-
-        this.accel = {x: 0.0, y: 0.0, z: 0.0};
         this.translation = {x: 0, y: 0, z: 0}
 
+        this.speed = {x: 0.0, y: 0, z: 0};
 
-        // this.rotation = {x: 0, y: 0}
-        //
-        // this.level_over = false;
-
-        // let cameraPosition = [50, -60, 60]; // eye
-        // let cameraTar = [0, 2, 0]
-        // let cameraUp = [0, 0, 1]; // View-Up vector
-        // this.shadersManager = new ShadersManager(cameraPosition, cameraTar, cameraUp)
     }
 
     /*
@@ -67,8 +56,6 @@ export class PhysObject {
         if (this.isPlayer) {
             let check = this.is_colliding(physobjs)
             let bounds = check.playerBound
-
-            // console.log(this.position)
 
             if (check.coll) {
                 this.playerController.setSpace(true)
@@ -116,30 +103,33 @@ export class PhysObject {
 
                 if (this.speed.y > 0) {
                     if (!bounceCollision) {
+
                         if (this.position.y >= actualPosY + 4) {
                             this.speed.y = -0.3
-                            // alert("sium")
-
                         }
+
                     } else {
+
                         if (this.position.y >= actualPosY + 8) {
                             this.speed.y = -0.3
                         }
-                    }
 
+                    }
                 } else {
                     this.speed.y = -0.3
                     bounceCollision = false
                 }
+
                 this.playerController.setSpace(false)
             }
 
             if (check.portalized) {
-                console.log("ciao")
-                this.position = check.newPositions;
 
+                this.position = check.newPositions;
                 this.translation = check.newTranslations;
+
             } else {
+
                 this.position.x = ((bounds.max.x + bounds.min.x) / 2) + this.speed.x;
                 this.position.y = ((bounds.max.y + bounds.min.y) / 2) + this.speed.y;
                 this.position.z = ((bounds.max.z + bounds.min.z) / 2) + this.speed.z;
@@ -147,6 +137,7 @@ export class PhysObject {
                 this.translation.x += this.speed.x;
                 this.translation.y += this.speed.y;
                 this.translation.z += this.speed.z;
+
             }
         }
     }
@@ -154,10 +145,6 @@ export class PhysObject {
     is_colliding(physobjs) {
         // Main collision check routine
         let bounds = this.compute_bounds()
-        //let coll = false
-        // let colliders = [];
-        let coll = false
-        let ramp = false;
 
         let isColliding = false;
         let isPortalized = false;
@@ -298,7 +285,6 @@ export class PhysObject {
 
                     }
                     isColliding = true;
-
                 }
             }
         }

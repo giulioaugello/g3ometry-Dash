@@ -337,8 +337,21 @@
       "collider_type": "portal",
       "dim": null,
       "coords": {
-        "x": -95.5,
-        "y": 7.0,
+        "x": -95.87,
+        "y": 6.5,
+        "z": 4.0
+      }
+    },
+    {
+      "name": "myPhotoPlane",
+      "path": "obj/myPhotoPlane.obj",
+      "isPlayer": false,
+      "isBall": false,
+      "collider_type": "portal",
+      "dim": null,
+      "coords": {
+        "x": -95.75,
+        "y": 6.5,
         "z": 4.0
       }
     },
