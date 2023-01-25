@@ -79,9 +79,10 @@ body {
 #startButton {
     /*position: absolute;*/
     /*right: 2em;*/
+    margin-top: 2em;
     color: #f8f8ff;
     font-family: Pusab, serif;
-    height: 2em;
+    height: 2.5em;
     width: 5em;
     font-size: 1.8em;
     background: lightgrey;
@@ -93,7 +94,7 @@ body {
     /*top: 8em;*/
     font-family: Pusab, serif;
     margin-top: 2em;
-    height: 2em;
+    height: 2.5em;
     width: 5.2em;
     text-align: center;
     color: #f8f8ff;
@@ -107,7 +108,7 @@ body {
     font-family: Pusab, serif;
     margin-top: 5em;
     color: #f8f8ff;
-    height: 2em;
+    height: 2.5em;
     width: 5em;
     font-size: 1.8em;
     background: orangered;
@@ -387,44 +388,3 @@ body {
     }
 
 }
-
-
-/*@media screen and (max-width: 600px) {*/
-/*    .column1 {*/
-/*        width: 100%;*/
-/*    }*/
-
-/*    .column2 {*/
-/*        width: 96.7%;*/
-/*        max-width: 96.7%;*/
-/*        height: 100%;*/
-/*        margin-left: 10px;*/
-/*        margin-right: 200px;*/
-/*    }*/
-
-/*    #canvas {*/
-/*        max-height: 30vh;*/
-/*    }*/
-/*}*/
-
-/*@media screen and (max-width: 480px) {*/
-/*    .show-on-desktop {*/
-/*        display: none;*/
-/*    }*/
-/*}*/
-
-/*@media screen and (min-width: 481px) {*/
-/*    .hide-on-desktop {*/
-/*        display: none;*/
-/*    }*/
-/*    !*#instruction, #gui{*!*/
-/*    !*    display: none;*!*/
-/*    !*}*!*/
-
-/*    !*#startButton{*!*/
-/*    !*    bottom: 0.5em;*!*/
-/*    !*    right: 10em;*!*/
-/*    !*}*!*/
-/*}*/
-
-
