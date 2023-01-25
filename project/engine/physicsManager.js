@@ -2,7 +2,7 @@ import {Inputs} from "./inputs.js";
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 
 /*
-    The PhysObject class is the abstraction that joins meshes with physics and user interaction, and also
+    The PhysicsManager class is the abstraction that joins meshes with physics and user interaction, and also
     handles rendering for the object itself.
  */
 
@@ -10,7 +10,7 @@ let actualPosY = null
 let bounceCollision = false
 let rotation = [shadersManager.degToRad(40), shadersManager.degToRad(25), shadersManager.degToRad(325)];
 
-export class PhysObject {
+export class PhysicsManager {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
     constructor(mesh, name, isPlayer, isDuplicated, collider_type, dim, coords, bounds) {
         // Save mesh data

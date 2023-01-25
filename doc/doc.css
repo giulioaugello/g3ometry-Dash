@@ -6,6 +6,12 @@ body {
     background-image: url("/project/img/background.jpg");
 }
 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 @font-face {
     font-family: Pusab;
     src: url("/project/fonts/PUSAB___.otf");
@@ -14,6 +20,10 @@ body {
 @font-face {
     font-family: geometryDash;
     src: url("/project/fonts/OXYGENE1.TTF");
+}
+
+hr{
+    margin: 1.8em 0 1.8em 0;
 }
 
 #title {
@@ -35,7 +45,7 @@ body {
 
 #parent{
     height: 100%;
-    margin-top: 2em;
+    margin: 2em 5em 0 5em;
     background-color: white;
     border: 3px solid #cccccc;
     font-size: 1.2em;
@@ -45,4 +55,55 @@ body {
     outline: 1px solid #000000;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.30), 0 1px 1px rgba(0, 0, 0, .4);
     padding: 30px;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+#smartphoneView{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+
+#player{
+    width: 20%;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left, .middle, .right{
+    width: 33.33%;
+}
+
+.left1, .right1{
+    width: 50%;
+}
+
+figcaption{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#evilPortal{
+    width: 60%;
+}
+
+#walls{
+    width: 100%;
+}
+
+#goodPortal{
+    width: 40%;
+}
+#coins{
+    width: 50%;
 }

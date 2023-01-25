@@ -10,10 +10,102 @@
 <p id="title">G<span class="titleObj">3</span>OMETRY <span class="titleObj">D</span>ASH</p>
 
 <div id="parent">
-    <p>Il progetto consiste nella riproposizione in grafica 3D del videogioco per dispositivi mobile Geometry Dash. <br>
+    <h2>Introduzione al gioco</h2>
+    <p>Il progetto si ispira al popolare gioco in 2D per dispositivi mobili Geometry Dash e ne è la ricostruzione in 3D. <br>
     L'obiettivo del gioco è quello di arrivare al traguardo evitando gli oggetti che si troveranno sul percorso e cercando
-    di non cadere dalle varie piattaforme. Il giocatore controlla un cubo, facendolo saltare e muovendolo a destra e sinistra.
-    Nella mappa sono anche presenti 3 monete </p>
+    di non cadere dalle varie piattaforme. Il giocatore controlla un cubo che va avanti nella mappa automaticamente, facendolo
+    saltare e muovendolo a destra e sinistra. Nella mappa sono anche presenti 3 monete, utili per completare il livello al 100%.</p>
+
+    <hr>
+
+    <h2>Descrizione dell'applicazione</h2>
+    <p>Dopo aver avviato il file <i>index.html</i> si presenta la seguente pagina</p>
+    <img src="img/firstPage.png" alt="First Page">
+
+    <p>La pagina è suddivisa principalmente in tre parti:</p>
+    <ul>
+        <li>Parte sinistra: sono presenti le istruzioni, le impostazioni personalizzate e la <i>gui</i> (contenente le impostazioni per la camera e
+            per le luci);</li>
+        <li>Parte centrale: è presente il canvas;</li>
+        <li>Parte destra: sono presenti il tasto <i>Start</i> (per avviare il gioco), <i>Coins</i> (tiene il conto delle monete raccolte) e
+            <i>Pause</i> per mettere in pausa il gioco.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Input utente</h2>
+    L'utente può controllare il cubo facendogli fare tre movimenti:
+    <ul>
+        <li><b>Salto</b>: è possibile saltare premendo o tenendo premuto il tasto <i>SPACEBAR</i>. Quando sono presenti più cubi staccati consecutivi
+        da saltare è necessario tenere premuto il tasto, al posto di premerlo singolarmente;</li>
+        <li><b>Movimento a destra</b>: tenere premuto il tasto <i>D</i>. Una volta rilasciato il cubo continuerà ad andare avanti automaticamente;</li>
+        <li><b>Movimento a sinistra</b>: tenere premuto il tasto <i>A</i>. Una volta rilasciato il cubo continuerà ad andare avanti automaticamente.</li>
+    </ul>
+
+    <p>Tenendo premuto il <i>TASTO SINISTRO</i> e muovendo il mouse è possibile spostare la camera da destra a sinistra
+        e tramite la <i>ROTELLA</i> del mouse è possibile aumentare o diminuire il <i>FieldOfView</i>.</p>
+
+    <h3>Dispositivo mobile</h3>
+    <p>Per quanto riguarda la parte per dispositivi mobili, il gioco si presenta come segue: </p>
+    <img id="smartphoneView" src="img/smartphone.png" alt="Smartphone Page">
+    <p>Tramite i bottoni in basso è possibile muovere il cubo e dalle <i>Settings</i> in alto è possibile attivare lo <i>skybox</i> e la musica.</p>
+
+    <hr>
+
+    <h2>Impostazioni e DAT.GUI</h2>
+    <p>Nella parte sinistra dello schermo sono presenti le impostazioni:</p>
+    <ul>
+        <li><b>Show Skybox</b>: permette di mostrare lo skybox sul canvas;</li>
+        <li><b>Play Sound Effects</b>: permette di attivare la musica;</li>
+        <li><b>Camera e Luci</b>: permette di modificare la posizione della camera e delle luci. Queste sono state create tramite 
+        la libreria <a href="https://github.com/dataarts/dat.gui/blob/master/API.md">dat.gui.js</a></li>
+    </ul>
+
+    <hr>
+
+    <h2>Oggetti nella mappa</h2>
+    <p>Di seguito vengono mostrati gli oggetti che è possibile trovare all'interno della mappa:</p>
+
+    <h3>- Player</h3>
+    <img id="player" src="img/player.png" alt="Player">
+
+    <h3>- Oggetti negativi</h3>
+    <div class="row">
+        <div class="column left">
+            <img id="tnt" src="img/tnt.png" alt="tnt">
+            <figcaption>TNT da saltare</figcaption>
+        </div>
+
+        <div class="column middle">
+            <img id="walls" src="img/walls.png" alt="walls">
+            <figcaption>Muri da evitare (quelli alti), da saltare (quelli bassi)</figcaption>
+        </div>
+
+        <div class="column right">
+            <img id="evilPortal" src="img/evilPortal.png" alt="evilPortal">
+            <figcaption>Portale che fa ricominciare il livello</figcaption>
+        </div>
+    </div>
+
+    <h3>- Oggetti positivi</h3>
+    <div class="row">
+        <div class="column left1">
+            <img id="coins" src="img/coins.png" alt="coins">
+            <figcaption>Monete da raccogliere</figcaption>
+        </div>
+
+        <div class="column right1">
+            <img id="goodPortal" src="img/goodPortal.png" alt="goodPortal">
+            <figcaption>Portale che porta all'arrivo</figcaption>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Scelte progettuali</h2>
+    <p>Per la realizzazione del gioco è stato utilizzato webgl per il canvas, due vertex shader e due fragment shader. Una coppia di shader (vertex-fragment)
+    è stata utilizzata per lo skybox, l'altra coppia per la gestione della camera, delle luci e delle texture.</p>
+
 </div>
 
 </body>

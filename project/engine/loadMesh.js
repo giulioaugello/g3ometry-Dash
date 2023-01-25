@@ -3,9 +3,9 @@ This class is a refactor of code written by Professor Casciola from Unibo.
 Refactored to allow multiple materials and to use the async/wait paradigm.
  */
 
-import {PhysObject} from "./physObject.js";
+import {PhysicsManager} from "./physicsManager.js";
 
-export class Load_mesh {
+export class LoadMesh {
     // Class constructor. Sets internal object list.
     constructor(list) {
         this.list = list;
@@ -143,11 +143,11 @@ export class Load_mesh {
         mesh.shininess = mesh.data.materials[materialIndex].parameter.get("Ns");
         mesh.opacity = mesh.data.materials[materialIndex].parameter.get("Ni");
 
-        // Adds mesh as PhysObject to internal list.
-        this.list.push(new PhysObject(mesh, name, isPlayer, isBall, collider_type, dim, coords, this.generateBounds(mesh.positions)))
+        // Adds mesh as PhysicsManager to internal list.
+        this.list.push(new PhysicsManager(mesh, name, isPlayer, isBall, collider_type, dim, coords, this.generateBounds(mesh.positions)))
 
         if (name === "Player"){
-            this.list.push(new PhysObject(mesh, "Death", false, true, "death", dim, {
+            this.list.push(new PhysicsManager(mesh, "Death", false, true, "death", dim, {
                 x: 0.0,
                 y: -4.0,
                 z: 0.0
@@ -164,7 +164,7 @@ export class Load_mesh {
                 }
             }))
 
-            this.list.push(new PhysObject(mesh, "portal", false, true, "portal", dim, {
+            this.list.push(new PhysicsManager(mesh, "portal", false, true, "portal", dim, {
                 x: 5.6,
                 y: 6.0,
                 z: 0.0

@@ -1,4 +1,4 @@
-import {Load_mesh} from "./load_mesh.js";
+import {LoadMesh} from "./loadMesh.js";
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 import '../main.js'
 
@@ -27,13 +27,13 @@ export class Engine {
     async load_meshes() {
         this.meshlist = [];
 
-        this.loader = new Load_mesh(this.meshlist)
+        this.loader = new LoadMesh(this.meshlist)
 
         await fetch("scene.json")
             .then(response => response.json())
             .then(async scene => {
                 for (const obj of scene.objs) {
-                    // Loads up the meshes using the Load_mesh object.
+                    // Loads up the meshes using the LoadMesh object.
                     await this.loader.load(obj.path, this.gl, obj.name, obj.isPlayer, obj.isBall, obj.collider_type, obj.dim, obj.coords, obj.isPlayer)
                 }
 
