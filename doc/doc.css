@@ -33,7 +33,7 @@ hr{
     color: #7eeb2d;
     background: ghostwhite;
     border: 2px solid black;
-    margin: 0 8em 0 8em;
+    margin: 0.8em 8em 0 8em;
     border-radius: 15px;
     padding: 5px 0 5px 0;
 }
@@ -45,7 +45,7 @@ hr{
 
 #parent{
     height: 100%;
-    margin: 2em 5em 0 5em;
+    margin: 1.5em 5em 0 5em;
     background-color: white;
     border: 3px solid #cccccc;
     font-size: 1.2em;

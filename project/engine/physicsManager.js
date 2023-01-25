@@ -69,12 +69,6 @@ export class PhysicsManager {
 
                 }
 
-                //Se la palla sta collidendo sopra e non è ferma
-                if (check.data.y.top.is_colliding) {
-
-                }
-
-
                 if (check.data.x.top.is_colliding && this.speed.x > 0) {
                     console.log("x top")
                     // this.playerController.setSpace(false)
@@ -83,23 +77,6 @@ export class PhysicsManager {
 
                     // this.speed.y = -0.15
                 }
-
-                if (check.data.x.bottom.is_colliding) {
-                    // console.log("x bottom")
-                    // this.speed.x = 0
-                }
-
-                if (check.data.z.bottom.is_colliding) {
-                    // console.log("z bottom")
-                    // this.speed.z = 0
-
-                }
-
-                if (check.data.z.top.is_colliding) {
-                    // console.log("z top")
-                    // this.speed.z = 0
-                }
-
 
             } else {
                 //in aria
@@ -207,19 +184,6 @@ export class PhysicsManager {
                         window.dispatchEvent(new CustomEvent('game_over'))
                     } else if (physobjs[obj].collider_type === "evilPortal") {
                         window.dispatchEvent(new CustomEvent('game_over'))
-
-                        // isPortalized = true;
-                        //
-                        // this.position.x = -4
-                        // this.position.y = 4.5
-                        // this.position.z = 0
-                        //
-                        // this.translation.x = 95;
-                        // this.translation.y = 0;
-                        // this.translation.z = 0;
-                        //
-                        // newPositions = this.position;
-                        // newTranslations = this.translation;
                     } else if (physobjs[obj].collider_type === "portal") {
                         isPortalized = true;
 

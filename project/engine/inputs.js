@@ -1,9 +1,6 @@
-// Common variables in module
-
-// User input queue
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 
-
+// user input queue
 let queue = {x: {p: false, n: false}, z: {p: false, n: false}};
 let obj = null;
 let drag = false;
@@ -55,7 +52,6 @@ export class Inputs {
             this.canvas.removeEventListener("wheel", this.wheelMove, true);
         }
 
-
         console.log("Controller uninstalled.")
     }
 
@@ -99,25 +95,6 @@ export class Inputs {
         if (drag) {
             if (e instanceof TouchEvent) {
                 e = e.changedTouches[0]
-                if (e.clientX > old.x) {
-                    // queue.x.n = true;
-                    console.log("ciao1")
-                } else if (e.clientX < old.x) {
-                    // queue.x.p = true;
-                } else {
-                    // queue.x.n = queue.x.p = false
-                    console.log("ciao2")
-                }
-                if (e.clientY < old.y) {
-                    // queue.z.p = true;
-                    console.log("ciao3")
-                } else if (e.clientY > old.y) {
-                    // queue.z.n = true;
-                    console.log("ciao4")
-                } else {
-                    // queue.z.p = queue.z.n = false
-                    console.log("ciao5")
-                }
                 old.x = e.clientX;
                 old.y = e.clientY;
             } else {
@@ -129,19 +106,6 @@ export class Inputs {
                     // queue.x.p = true;
                     console.log("sinistra")
                     shadersManager.decreaseCameraPositionAtIndexOfValue(0, 1)
-                } else {
-                    // queue.x.n = queue.x.p = false
-                    console.log("ciao8")
-                }
-                if (e.movementY < 0) {
-                    // queue.z.p = true;
-                    console.log("ciao9")
-                } else if (e.movementY > 0) {
-                    // queue.z.n = true;
-                    console.log("ciao10")
-                } else {
-                    // queue.z.p = queue.z.n = false
-                    console.log("ciao11")
                 }
             }
         }

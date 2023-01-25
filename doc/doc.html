@@ -13,23 +13,23 @@
     <h2>Introduzione al gioco</h2>
     <p>Il progetto si ispira al popolare gioco in 2D per dispositivi mobili <a href="https://apps.apple.com/it/app/geometry-dash-lite/id698255242">Geometry Dash</a>
         e ne propone una ricostruzione in 3D. <br>
-    L'obiettivo del gioco è quello di arrivare al traguardo evitando gli oggetti che si troveranno sul percorso e cercando
+    L'obiettivo del gioco è quello di arrivare al traguardo evitando gli oggetti che si trovano sul percorso cercando
     di non cadere dalle varie piattaforme. Il giocatore controlla un cubo che va avanti nella mappa automaticamente, facendolo
-    saltare e muovendolo a destra e sinistra. Nella mappa sono anche presenti 3 monete, utili per completare il livello al 100%.</p>
+    saltare e muovendolo a destra e sinistra. Nella mappa sono anche presenti 3 monete, utili per completare il gioco al 100%.</p>
 
     <hr>
 
     <h2>Descrizione dell'applicazione</h2>
-    <p>Dopo aver avviato il file <i>index.html</i> si presenta la seguente pagina</p>
-    <img src="img/firstPage.png" alt="First Page">
+    <p>Dopo aver avviato il file <i>index.html</i> si presenta la seguente pagina:</p>
+    <img src="img/firstPage1.png" alt="First Page">
 
     <p>La pagina è suddivisa principalmente in tre parti:</p>
     <ul>
-        <li>Parte sinistra: sono presenti le istruzioni, le impostazioni personalizzate e la <i>gui</i> (contenente le impostazioni per la camera e
-            per le luci);</li>
+        <li>Parte sinistra: sono presenti le istruzioni, le impostazioni personalizzate e la <i>gui</i>, contenente le impostazioni per la camera e
+            per le luci;</li>
         <li>Parte centrale: è presente il canvas;</li>
-        <li>Parte destra: sono presenti il tasto <i>Start</i> (per avviare il gioco), <i>Coins</i> (tiene il conto delle monete raccolte) e
-            <i>Pause</i> per mettere in pausa il gioco.</li>
+        <li>Parte destra: sono presenti il tasto <i>Start</i> (per avviare il gioco), la label <i>Coins</i> (tiene il conto delle monete raccolte) e
+            il tasto <i>Pause</i> per mettere in pausa il gioco.</li>
     </ul>
 
     <hr>
@@ -37,14 +37,14 @@
     <h2>Input utente</h2>
     L'utente può controllare il cubo facendogli fare tre movimenti:
     <ul>
-        <li><b>Salto</b>: è possibile saltare premendo o tenendo premuto il tasto <i>SPACEBAR</i>. Quando sono presenti più cubi staccati consecutivi
-        da saltare è necessario tenere premuto il tasto, al posto di premerlo singolarmente;</li>
+        <li><b>Salto</b>: è possibile saltare premendo o tenendo premuto il tasto <i>SPAZIO</i>. Quando sono presenti più cubi staccati consecutivi
+        da saltare è necessario tenere premuto il tasto, invece di premerlo singolarmente;</li>
         <li><b>Movimento a destra</b>: tenere premuto il tasto <i>D</i>. Una volta rilasciato il cubo continuerà ad andare avanti automaticamente;</li>
         <li><b>Movimento a sinistra</b>: tenere premuto il tasto <i>A</i>. Una volta rilasciato il cubo continuerà ad andare avanti automaticamente.</li>
     </ul>
 
-    <p>Tenendo premuto il <i>TASTO SINISTRO</i> e muovendo il mouse è possibile spostare la camera da destra a sinistra
-        e tramite la <i>ROTELLA</i> del mouse è possibile aumentare o diminuire il <i>FieldOfView</i>.</p>
+    <p>Tenendo premuto il <i>TASTO SINISTRO</i> del mouse e muovendo il mouse a destra e sinistra è possibile spostare la camera
+        e tramite la <i>ROTELLA</i> del mouse si può aumentare o diminuire il <i>FieldOfView</i>.</p>
 
     <h3>Dispositivo mobile</h3>
     <p>Per quanto riguarda la parte per dispositivi mobili, si è scelto di mostrarla simile ad un gioco "arcade". Quindi, il gioco si presenta come segue: </p>
@@ -58,8 +58,8 @@
     <ul>
         <li><b>Show Skybox</b>: permette di mostrare lo skybox sul canvas;</li>
         <li><b>Play Sound Effects</b>: permette di attivare la musica;</li>
-        <li><b>Camera e Luci</b>: permette di modificare la posizione della camera e delle luci. Queste sono state create tramite 
-        la libreria <a href="https://github.com/dataarts/dat.gui/blob/master/API.md">dat.gui.js</a></li>
+        <li><b>Camera e Luci</b>: tramite la libreria <a href="https://github.com/dataarts/dat.gui/blob/master/API.md">dat.gui.js</a>
+            è possibile modificare la posizione della camera e delle luci.</li>
     </ul>
 
     <hr>
@@ -84,7 +84,7 @@
 
         <div class="column right">
             <img id="evilPortal" src="img/evilPortal.png" alt="evilPortal">
-            <figcaption>Portale che fa ricominciare il livello</figcaption>
+            <figcaption>Portale che fa ricominciare il gioco</figcaption>
         </div>
     </div>
 
@@ -97,7 +97,7 @@
 
         <div class="column right1">
             <img id="goodPortal" src="img/goodPortal.png" alt="goodPortal">
-            <figcaption>Portale che porta all'arrivo</figcaption>
+            <figcaption>Portale della vittoria</figcaption>
         </div>
     </div>
 
@@ -106,22 +106,22 @@
     <h2>Scelte progettuali</h2>
     <p>Per la realizzazione del gioco è stato utilizzato webgl per il canvas, due vertex shader e due fragment shader. Una coppia di shader (vertex-fragment)
     è stata utilizzata per lo skybox, l'altra coppia per la gestione della camera, delle luci e delle texture. Il progetto è suddiviso in diversi file a
-    seconda delle funzionalità che ricoprono.</p>
+    seconda delle funzionalità che ricoprono:</p>
 
     <ul>
-        <li><b>main.js</b>: gestisce le dinamiche, l'avvio e la terminazione del gioco.</li>
-        <li><b>engine.js</b>: gestisce e coordina le mesh, il render e l'input utente.</li>
-        <li><b>inputs.js</b>: controlla gli input utente per ogni tipo di dispositivo.</li>
+        <li><b>main.js</b>: gestisce le dinamiche, l'avvio e la terminazione del gioco;</li>
+        <li><b>engine.js</b>: gestisce e coordina le mesh, il render e l'input utente;</li>
+        <li><b>inputs.js</b>: controlla gli input utente per ogni tipo di dispositivo;</li>
         <li><b>loadMesh.js</b>: prende in input il file <i>scene.json</i>, dove ci sono i riferimenti agli oggetti e relativi materiali, e li carica
-        all'interno dell'oggetto <i>physicsManager</i> tramite la libreria mesh_utils.js.</li>
-        <li><b>physicsManager.js</b>: gestisce la fisica degli oggetti, le collisioni e fa il render di ognuno.</li>
+        all'interno dell'oggetto <i>physicsManager</i> tramite la libreria mesh_utils.js;</li>
+        <li><b>physicsManager.js</b>: gestisce la fisica degli oggetti, le collisioni e fa il render di ognuno;</li>
         <li><b>shadersManager.js</b>: gestisce e calcola i parametri relativi alla camera e alle luci, tramite la libreria m4.js.</li>
     </ul>
 
     <p>Una parte fondamentale del gioco è la fisica del cubo e le collisioni di quest'ultimo con gli oggetti circostanti. Al player viene settata una
     velocità fissa lungo l'asse x, mentre per gli spostamenti e per il salto viene gestita la velocità anche degli altri assi.</p>
-    <p>Per quanto riguarda le collisioni, sono state calcolate le bounding box dei vari oggetti. Questi sono stati utili per la gestione del gameplay,
-    per poter indicare cosa accadesse a seconda dell'oggetto con cui si viene a contatto.</p>
+    <p>Per quanto riguarda le collisioni, sono state calcolate le bounding box dei vari oggetti, utili per la gestione del gameplay e
+    per poter indicare la reazione del cubo a seconda dell'oggetto con cui viene a contatto.</p>
 
 </div>
 

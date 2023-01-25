@@ -1,8 +1,3 @@
-/*
-This class is a refactor of code written by Professor Casciola from Unibo.
-Refactored to allow multiple materials and to use the async/wait paradigm.
- */
-
 import {PhysicsManager} from "./physicsManager.js";
 
 export class LoadMesh {
