@@ -4,7 +4,6 @@
       "name": "Player",
       "path": "obj/player.obj",
       "isPlayer": true,
-      "isBall": false,
       "collider_type": "box",
       "dim": {
         "x": 1,
@@ -21,7 +20,6 @@
       "name": "base",
       "path": "obj/base.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -34,7 +32,6 @@
       "name": "cube001",
       "path": "obj/cube001.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -47,7 +44,6 @@
       "name": "evil000",
       "path": "obj/evil000.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -60,7 +56,6 @@
       "name": "evil001",
       "path": "obj/evil001.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -73,7 +68,6 @@
       "name": "evil002",
       "path": "obj/evil002.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -86,7 +80,6 @@
       "name": "evil003",
       "path": "obj/evil003.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -99,7 +92,6 @@
       "name": "cube002",
       "path": "obj/cube002.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -112,7 +104,6 @@
       "name": "evil001",
       "path": "obj/evil001.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -125,7 +116,6 @@
       "name": "cube003",
       "path": "obj/cube003.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -138,7 +128,6 @@
       "name": "cube004",
       "path": "obj/cube004.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -151,7 +140,6 @@
       "name": "cube005",
       "path": "obj/cube005.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -164,7 +152,6 @@
       "name": "evil004",
       "path": "obj/evil004.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -177,7 +164,6 @@
       "name": "cube006",
       "path": "obj/cube006.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -190,7 +176,6 @@
       "name": "coin001",
       "path": "obj/coin001.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "coin",
       "dim": null,
       "coords": {
@@ -203,7 +188,6 @@
       "name": "evil005",
       "path": "obj/evil005.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -216,7 +200,6 @@
       "name": "coin002",
       "path": "obj/coin002.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "coin",
       "dim": null,
       "coords": {
@@ -229,7 +212,6 @@
       "name": "evil006",
       "path": "obj/evil006.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -242,7 +224,6 @@
       "name": "evil007",
       "path": "obj/evil007.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -255,7 +236,6 @@
       "name": "coin003",
       "path": "obj/coin003.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "coin",
       "dim": null,
       "coords": {
@@ -268,7 +248,6 @@
       "name": "cube007",
       "path": "obj/cube007.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -281,7 +260,6 @@
       "name": "cube008",
       "path": "obj/cube008.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -294,11 +272,10 @@
       "name": "cube009",
       "path": "obj/cube009.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
-        "x": -74,
+        "x": -74.4,
         "y": 5.5,
         "z": 4.0
       }
@@ -307,7 +284,6 @@
       "name": "cube010",
       "path": "obj/cube010.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -320,7 +296,6 @@
       "name": "bounce",
       "path": "obj/bounce.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "bounce",
       "dim": null,
       "coords": {
@@ -333,7 +308,6 @@
       "name": "portal002",
       "path": "obj/portal002.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "portal",
       "dim": null,
       "coords": {
@@ -346,7 +320,6 @@
       "name": "myPhotoPlane",
       "path": "obj/myPhotoPlane.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "portal",
       "dim": null,
       "coords": {
@@ -359,7 +332,6 @@
       "name": "cube011",
       "path": "obj/cube011.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -372,7 +344,6 @@
       "name": "evil010",
       "path": "obj/evil010.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "death",
       "dim": null,
       "coords": {
@@ -385,7 +356,6 @@
       "name": "portal001",
       "path": "obj/portal001.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "evilPortal",
       "dim": null,
       "coords": {
@@ -398,7 +368,6 @@
       "name": "nether",
       "path": "obj/nether.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -411,7 +380,6 @@
       "name": "win",
       "path": "obj/win.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "win",
       "dim": null,
       "coords": {
@@ -424,7 +392,6 @@
       "name": "flag",
       "path": "obj/flag.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -437,7 +404,6 @@
       "name": "palo",
       "path": "obj/palo.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -450,7 +416,6 @@
       "name": "text",
       "path": "obj/text.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {
@@ -463,7 +428,6 @@
       "name": "text001",
       "path": "obj/text1.obj",
       "isPlayer": false,
-      "isBall": false,
       "collider_type": "box",
       "dim": null,
       "coords": {

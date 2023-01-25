@@ -79,7 +79,7 @@ export class LoadMesh {
         }
     }
 
-    async load(filepath, gl, name, isPlayer, isBall, collider_type, dim, coords) {
+    async load(filepath, gl, name, isPlayer, collider_type, dim, coords) {
         // Mesh loader. Loads a mesh through an async method
         let mesh = [];
         mesh.source = filepath;
@@ -144,7 +144,7 @@ export class LoadMesh {
         mesh.opacity = mesh.data.materials[materialIndex].parameter.get("Ni");
 
         // Adds mesh as PhysicsManager to internal list.
-        this.list.push(new PhysicsManager(mesh, name, isPlayer, isBall, collider_type, dim, coords, this.generateBounds(mesh.positions)))
+        this.list.push(new PhysicsManager(mesh, name, isPlayer, false, collider_type, dim, coords, this.generateBounds(mesh.positions)))
 
         if (name === "Player"){
             this.list.push(new PhysicsManager(mesh, "Death", false, true, "death", dim, {

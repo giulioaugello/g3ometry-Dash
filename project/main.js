@@ -113,10 +113,6 @@ quitButton.addEventListener("click", () => {
     quit()
 });
 
-// skyboxColor.addEventListener("change", () => {
-//     engine.setSkyboxColor(skyboxColor.value)
-// });
-
 // // FPS
 // const fpsDomElement = document.getElementById('fpsID');
 // fpsDomElement.addEventListener("change", () => {

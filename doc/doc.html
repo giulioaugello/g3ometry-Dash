@@ -104,7 +104,18 @@
 
     <h2>Scelte progettuali</h2>
     <p>Per la realizzazione del gioco è stato utilizzato webgl per il canvas, due vertex shader e due fragment shader. Una coppia di shader (vertex-fragment)
-    è stata utilizzata per lo skybox, l'altra coppia per la gestione della camera, delle luci e delle texture.</p>
+    è stata utilizzata per lo skybox, l'altra coppia per la gestione della camera, delle luci e delle texture. Il progetto è suddiviso in diversi file a
+    seconda delle funzionalità che ricoprono.</p>
+
+    <ul>
+        <li><b>main.js</b>: gestisce le dinamiche, l'avvio e la terminazione del gioco.</li>
+        <li><b>engine.js</b>: gestisce e coordina le mesh, il render e l'input utente.</li>
+        <li><b>inputs.js</b>: controlla gli input utente per ogni tipo di dispositivo.</li>
+        <li><b>loadMesh.js</b>: prende in input il file <i>scene.json</i>, dove ci sono i riferimenti agli oggetti e relativi materiali, e li carica
+        all'interno dell'oggetto <i>physicsManager</i> tramite la libreria mesh_utils.js</li>
+        <li><b>physicsManager.js</b></li>
+        <li><b>shadersManager.js</b></li>
+    </ul>
 
 </div>
 

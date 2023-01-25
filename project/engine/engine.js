@@ -34,7 +34,7 @@ export class Engine {
             .then(async scene => {
                 for (const obj of scene.objs) {
                     // Loads up the meshes using the LoadMesh object.
-                    await this.loader.load(obj.path, this.gl, obj.name, obj.isPlayer, obj.isBall, obj.collider_type, obj.dim, obj.coords, obj.isPlayer)
+                    await this.loader.load(obj.path, this.gl, obj.name, obj.isPlayer, obj.collider_type, obj.dim, obj.coords)
                 }
 
                 window.dispatchEvent(new CustomEvent('ready'))
