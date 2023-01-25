@@ -11,7 +11,8 @@
 
 <div id="parent">
     <h2>Introduzione al gioco</h2>
-    <p>Il progetto si ispira al popolare gioco in 2D per dispositivi mobili Geometry Dash e ne è la ricostruzione in 3D. <br>
+    <p>Il progetto si ispira al popolare gioco in 2D per dispositivi mobili <a href="https://apps.apple.com/it/app/geometry-dash-lite/id698255242">Geometry Dash</a>
+        e ne propone una ricostruzione in 3D. <br>
     L'obiettivo del gioco è quello di arrivare al traguardo evitando gli oggetti che si troveranno sul percorso e cercando
     di non cadere dalle varie piattaforme. Il giocatore controlla un cubo che va avanti nella mappa automaticamente, facendolo
     saltare e muovendolo a destra e sinistra. Nella mappa sono anche presenti 3 monete, utili per completare il livello al 100%.</p>
@@ -46,7 +47,7 @@
         e tramite la <i>ROTELLA</i> del mouse è possibile aumentare o diminuire il <i>FieldOfView</i>.</p>
 
     <h3>Dispositivo mobile</h3>
-    <p>Per quanto riguarda la parte per dispositivi mobili, il gioco si presenta come segue: </p>
+    <p>Per quanto riguarda la parte per dispositivi mobili, si è scelto di mostrarla simile ad un gioco "arcade". Quindi, il gioco si presenta come segue: </p>
     <img id="smartphoneView" src="img/smartphone.png" alt="Smartphone Page">
     <p>Tramite i bottoni in basso è possibile muovere il cubo e dalle <i>Settings</i> in alto è possibile attivare lo <i>skybox</i> e la musica.</p>
 
@@ -112,10 +113,15 @@
         <li><b>engine.js</b>: gestisce e coordina le mesh, il render e l'input utente.</li>
         <li><b>inputs.js</b>: controlla gli input utente per ogni tipo di dispositivo.</li>
         <li><b>loadMesh.js</b>: prende in input il file <i>scene.json</i>, dove ci sono i riferimenti agli oggetti e relativi materiali, e li carica
-        all'interno dell'oggetto <i>physicsManager</i> tramite la libreria mesh_utils.js</li>
-        <li><b>physicsManager.js</b></li>
-        <li><b>shadersManager.js</b></li>
+        all'interno dell'oggetto <i>physicsManager</i> tramite la libreria mesh_utils.js.</li>
+        <li><b>physicsManager.js</b>: gestisce la fisica degli oggetti, le collisioni e fa il render di ognuno.</li>
+        <li><b>shadersManager.js</b>: gestisce e calcola i parametri relativi alla camera e alle luci, tramite la libreria m4.js.</li>
     </ul>
+
+    <p>Una parte fondamentale del gioco è la fisica del cubo e le collisioni di quest'ultimo con gli oggetti circostanti. Al player viene settata una
+    velocità fissa lungo l'asse x, mentre per gli spostamenti e per il salto viene gestita la velocità anche degli altri assi.</p>
+    <p>Per quanto riguarda le collisioni, sono state calcolate le bounding box dei vari oggetti. Questi sono stati utili per la gestione del gameplay,
+    per poter indicare cosa accadesse a seconda dell'oggetto con cui si viene a contatto.</p>
 
 </div>
 
