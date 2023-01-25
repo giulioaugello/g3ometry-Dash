@@ -1,4 +1,4 @@
-import {PlayerController} from "./playerController.js";
+import {Inputs} from "./inputs.js";
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 
 /*
@@ -26,7 +26,7 @@ export class PhysObject {
 
         if (this.isPlayer) {
             // If object is player-controllable, a controller is created.
-            this.playerController = new PlayerController(this)
+            this.playerController = new Inputs(this)
         }
 
         // What kind of collider does this object have?

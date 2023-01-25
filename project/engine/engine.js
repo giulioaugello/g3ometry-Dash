@@ -1,4 +1,4 @@
-import {MeshLoader} from "./meshLoader.js";
+import {Load_mesh} from "./load_mesh.js";
 import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager.js";
 import '../main.js'
 
@@ -17,23 +17,23 @@ export class Engine {
 
         this.program = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader", "fragment-shader"])
 
-        // // SKYBOX
+        // SKYBOX
         this.skyboxProgram = webglUtils.createProgramFromScripts(this.gl, ["vertex-shader-skybox", "fragment-shader-skybox"]);
         this.sky()
 
-        this.loadMeshes()
+        this.load_meshes()
     }
 
-    async loadMeshes() {
+    async load_meshes() {
         this.meshlist = [];
 
-        this.loader = new MeshLoader(this.meshlist)
+        this.loader = new Load_mesh(this.meshlist)
 
         await fetch("scene.json")
             .then(response => response.json())
             .then(async scene => {
                 for (const obj of scene.objs) {
-                    // Loads up the meshes using the MeshLoader object.
+                    // Loads up the meshes using the Load_mesh object.
                     await this.loader.load(obj.path, this.gl, obj.name, obj.isPlayer, obj.isBall, obj.collider_type, obj.dim, obj.coords, obj.isPlayer)
                 }
 

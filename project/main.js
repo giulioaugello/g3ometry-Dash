@@ -1,5 +1,5 @@
 import {Engine} from "./engine/engine.js";
-import {PlayerController} from "./engine/playerController.js";
+import {Inputs} from "./engine/inputs.js";
 import {ShadersManager} from "./engine/shadersManager.js";
 
 let params = (new URL(document.location)).searchParams;

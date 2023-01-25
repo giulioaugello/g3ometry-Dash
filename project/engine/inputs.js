@@ -10,21 +10,21 @@ let drag = false;
 let old = {x: null, y: null};
 let isSpaceTr = true
 
-export class PlayerController {
+export class Inputs {
 
     constructor(object) {
         // Controller constructor, saves actor object inside itself.
         this.object = object;
         obj = object
         this.canvas = document.getElementById("canvas");
-        this.install();
+        this.add_event_listeners();
 
         this.mobileController();
 
         this.move = true;
     }
 
-    install() {
+    add_event_listeners() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
             window.addEventListener("touchstart", this.mouseDown, true)
             window.addEventListener("touchend", this.mouseUp, true)
@@ -41,7 +41,7 @@ export class PlayerController {
         console.log("Controller installed.")
     }
 
-    uninstall() {
+    remove_event_listeners() {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
             window.removeEventListener("touchstart", this.mouseDown, true)
             window.removeEventListener("touchend", this.mouseUp, true)

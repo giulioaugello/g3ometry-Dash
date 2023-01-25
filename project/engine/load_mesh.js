@@ -5,7 +5,7 @@ Refactored to allow multiple materials and to use the async/wait paradigm.
 
 import {PhysObject} from "./physObject.js";
 
-export class MeshLoader {
+export class Load_mesh {
     // Class constructor. Sets internal object list.
     constructor(list) {
         this.list = list;
