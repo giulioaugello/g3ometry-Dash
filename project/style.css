@@ -3,17 +3,17 @@
 }
 
 body {
-    background-image: url("/img/background.jpg");
+    background-image: url("/project/img/background.jpg");
 }
 
 @font-face {
     font-family: Pusab;
-    src: url("/fonts/PUSAB___.otf");
+    src: url("/project/fonts/PUSAB___.otf");
 }
 
 @font-face {
     font-family: geometryDash;
-    src: url("/fonts/OXYGENE1.TTF");
+    src: url("/project/fonts/OXYGENE1.TTF");
 }
 
 #title {

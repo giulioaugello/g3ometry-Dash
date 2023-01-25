@@ -180,6 +180,7 @@ export class PlayerController {
         switch (e.keyCode) {
             case 32: // space
                 if (isSpaceTr) {
+                    console.log("down")
                     queue.x.n = true
                 }
                 break
@@ -265,5 +266,13 @@ export class PlayerController {
             obj.speed.z = 0
         }
 
+    }
+
+    stopSpace(){
+        window.removeEventListener("keydown", this.keyDown, true)
+        queue.x.n = false
+        setTimeout(() => {
+            window.addEventListener("keydown", this.keyDown, true)
+        }, 1000)
     }
 }

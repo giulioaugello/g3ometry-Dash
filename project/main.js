@@ -145,6 +145,8 @@ playMusic.addEventListener('change', () => {
 });
 
 window.addEventListener('start', async (e) => {
+    console.log("start event")
+
     engine.start(120)
 
     if (playMusic.checked) {
@@ -169,6 +171,8 @@ window.addEventListener('point', async (e) => {
 })
 
 window.addEventListener('game_over', async (e) => {
+    console.log("qua è il problema")
+
     quit()
 
     reload()

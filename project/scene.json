@@ -399,7 +399,7 @@
       "path": "obj/nether.obj",
       "isPlayer": false,
       "isBall": false,
-      "collider_type": "evilPortal",
+      "collider_type": "box",
       "dim": null,
       "coords": {
         "x": -95.77,

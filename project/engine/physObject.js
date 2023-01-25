@@ -76,8 +76,11 @@ export class PhysObject {
 
 
                 if (check.data.x.top.is_colliding && this.speed.x > 0) {
-                    // console.log("x top")
+                    console.log("x top")
+                    // this.playerController.setSpace(false)
+                    this.playerController.stopSpace()
                     this.speed.x = 0
+
                     // this.speed.y = -0.15
                 }
 
@@ -200,20 +203,23 @@ export class PhysObject {
                     (bounds.min.y <= targetBounds.max.y && bounds.max.y >= targetBounds.min.y)) {
 
                     if (physobjs[obj].collider_type === "death") {
+                        console.log("death")
                         window.dispatchEvent(new CustomEvent('game_over'))
                     } else if (physobjs[obj].collider_type === "evilPortal") {
-                        isPortalized = true;
+                        window.dispatchEvent(new CustomEvent('game_over'))
 
-                        this.position.x = 0
-                        this.position.y = 4.5
-                        this.position.z = 0
-
-                        this.translation.x = 0;
-                        this.translation.y = 0;
-                        this.translation.z = 0;
-
-                        newPositions = this.position;
-                        newTranslations = this.translation;
+                        // isPortalized = true;
+                        //
+                        // this.position.x = -4
+                        // this.position.y = 4.5
+                        // this.position.z = 0
+                        //
+                        // this.translation.x = 95;
+                        // this.translation.y = 0;
+                        // this.translation.z = 0;
+                        //
+                        // newPositions = this.position;
+                        // newTranslations = this.translation;
                     } else if (physobjs[obj].collider_type === "portal") {
                         isPortalized = true;
 
@@ -248,6 +254,7 @@ export class PhysObject {
                         this.speed.y = 0.4
                         bounceCollision = true
                     } else if (physobjs[obj].collider_type === "win") {
+                        console.log("win event")
                         window.dispatchEvent(new CustomEvent('win'))
                     }
 
