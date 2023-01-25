@@ -121,13 +121,10 @@ quitButton.addEventListener("click", () => {
 
 // Skybox
 const skyboxElement = document.getElementById('showSkybox');
-// skyboxElement.addEventListener("change", () => {
-//     if (skyboxElement.checked) {
-//         $('#fpsDiv').hide();
-//     } else {
-//         $('#fpsDiv').show();
-//     }
-// });
+skyboxElement.addEventListener('change', () => {
+
+    skyboxElement.blur()
+});
 
 // Soundtrack
 const playMusic = document.getElementById('playMusic')
