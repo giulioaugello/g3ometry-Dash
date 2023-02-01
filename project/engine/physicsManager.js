@@ -8,7 +8,6 @@ import {ShadersManager as shadersManager, ShadersManager} from "./shadersManager
 
 let actualPosY = null
 let bounceCollision = false
-let rotation = [shadersManager.degToRad(40), shadersManager.degToRad(25), shadersManager.degToRad(325)];
 
 export class PhysicsManager {
     // offsets sono le coordinate degli oggetti che mettiamo nelle scene
@@ -103,6 +102,7 @@ export class PhysicsManager {
                 this.playerController.setSpace(false)
             }
 
+            // se è un portale
             if (check.portalized) {
 
                 this.position = check.newPositions;

@@ -194,9 +194,8 @@ export class Engine {
         // let our quad pass the depth test at 1.0
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        // disegno sky se checkbox è checked
         if (document.getElementById('showSkybox').checked) {
-            // console.log(document.getElementById('showSkybox').checked)
-            // Draw the geometry.
             this.gl.drawArrays(this.gl.TRIANGLES, 0, 1 * 6);
         }
 

@@ -99,11 +99,9 @@ export class Inputs {
                 old.y = e.clientY;
             } else {
                 if (e.movementX > 0) {
-                    // queue.x.n = true;
                     console.log("destra")
                     shadersManager.increaseCameraPositionAtIndexOfValue(0, 1)
                 } else if (e.movementX < 0) {
-                    // queue.x.p = true;
                     console.log("sinistra")
                     shadersManager.decreaseCameraPositionAtIndexOfValue(0, 1)
                 }

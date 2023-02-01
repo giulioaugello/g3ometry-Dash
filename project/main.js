@@ -4,11 +4,8 @@ import {ShadersManager} from "./engine/shadersManager.js";
 
 let params = (new URL(document.location)).searchParams;
 
+// quando carica la pagina, carica musica e sky se erano attivi
 document.addEventListener("DOMContentLoaded", () => {
-    // let fpsParam = params.get('fps')
-    // if (fpsParam) {
-    //     fpsDomElement.value = fpsParam
-    // }
     soundtrack.loop = true
     let playMusicParam = params.get('playMusic')
     if (playMusicParam === 'true') {
@@ -26,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// settings button con media query
 let screenSizeMediaQuery = window.matchMedia("(min-width: 320px) and (max-width: 1100px)")
 let spanValue = false
 let icon = document.getElementById("icon")
 showIconSettings(screenSizeMediaQuery, icon)
-
 function showIconSettings(x, icon) {
     if (x.matches) { // If media query matches
         icon.style.display = '';
@@ -51,7 +48,6 @@ icon.onclick = function showSettings(){
         displayNoneSettings(true)
     }
 }
-
 function displayNoneSettings(b){
     if (b){
         $('.hideOnMobile').hide()
@@ -61,7 +57,7 @@ function displayNoneSettings(b){
 }
 
 
-// prevent long press on mobile
+// prevent long press on mobile (non fa aprire le impostazioni se tengo premuto)
 function absorbEvent_(event) {
     var e = event || window.event;
     e.preventDefault && e.preventDefault();
@@ -93,7 +89,6 @@ soundtrack.src = "sound_effects/soundtrack.mp3";
 
 // Counter
 let counter;
-// const counterElem = document.querySelector('#counter');
 const counterElem = document.getElementById("counter")
 
 // Start Button
@@ -113,16 +108,9 @@ quitButton.addEventListener("click", () => {
     quit()
 });
 
-// // FPS
-// const fpsDomElement = document.getElementById('fpsID');
-// fpsDomElement.addEventListener("change", () => {
-//     engine.setFPS(fpsDomElement.value)
-// });
-
 // Skybox
 const skyboxElement = document.getElementById('showSkybox');
 skyboxElement.addEventListener('change', () => {
-
     skyboxElement.blur()
 });
 
@@ -151,6 +139,7 @@ window.addEventListener('start', async (e) => {
     setCounterTo(0)
 })
 
+// tasto start disabilitato se ancora non è pronto
 window.addEventListener('ready', async (e) => {
     startButton.disabled = false
     startButton.style.background = "lawngreen"
@@ -164,10 +153,7 @@ window.addEventListener('point', async (e) => {
 })
 
 window.addEventListener('game_over', async (e) => {
-    console.log("qua è il problema")
-
     quit()
-
     reload()
 })
 
@@ -176,12 +162,11 @@ window.addEventListener('win', async (e) => {
 })
 
 function reload() {
+    // prende url vecchio
     let url = window.location.href.split('?')[0];
-
-    // url += '?auto_start=true&fps=' + fpsDomElement.value + '&playMusic=' + playMusic.checked + '&showSkybox=' + skyboxElement.checked
-
+    // aggiunge parametri per musica e skybox
     url += '?auto_start=true&playMusic=' + playMusic.checked + '&showSkybox=' + skyboxElement.checked
-
+    // carica l'url
     window.location.href = url;
 }
 
@@ -197,16 +182,11 @@ function quit() {
 
 function setCounterTo(value) {
     counter = value;
-
-    // console.log("new value of counter: " + counter)
-
-    // counterElem.textContent = counter;
     counterElem.value = "Coins: " + counter
 }
 
 
-// Disable windows scrolls
-
+// disabilita lo scroll della pagina quando premo SPAZIO
 function preventDefault(e) {
     e.preventDefault();
 }
