@@ -347,7 +347,7 @@ export class PhysicsManager {
             let viewWorldPositionLocation = gl.getUniformLocation(program, "u_viewWorldPosition");
             gl.uniform3fv(viewWorldPositionLocation, camera_positions);
 
-            // Set up viewMatrixLocation (u_view)
+            // Set up viewMatrixLocation (u_view) (per camera)
             let viewMatrixLocation = gl.getUniformLocation(program, "u_view_matrix");
             gl.uniformMatrix4fv(viewMatrixLocation, false, ShadersManager.getViewMatrix(camera_positions, player_coords));
 

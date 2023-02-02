@@ -122,6 +122,7 @@
 
         varying vec4 v_position;
         void main() {
+          // multiply the position by the inverse view projection matrix and divide by w to go from 4D space to 3D space
           vec4 t = u_viewDirectionProjectionInverse * v_position;
           gl_FragColor = textureCube(u_skybox, normalize(t.xyz / t.w));
         }

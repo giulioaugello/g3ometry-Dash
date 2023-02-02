@@ -85,7 +85,11 @@ export class Engine {
     }
 
     stop() {
-        window.cancelAnimationFrame(this.animationId)
+        // aggiunto questa riga per la presentazione
+        this.player.playerController.stopSpeed()
+
+        // questa è quella corretta
+        // window.cancelAnimationFrame(this.animationId)
     }
 
     win(){
@@ -179,7 +183,7 @@ export class Engine {
         viewMatrix[14] = 0;
 
         var viewDirectionProjectionMatrix =
-            m4.multiply(projectionMatrix, viewMatrix);
+            m4.multiply(projectionMatrix, viewMatrix); // camera
         var viewDirectionProjectionInverseMatrix =
             m4.inverse(viewDirectionProjectionMatrix);
 
@@ -194,7 +198,7 @@ export class Engine {
         // let our quad pass the depth test at 1.0
         this.gl.depthFunc(this.gl.LEQUAL);
 
-        // disegno sky se checkbox è checked
+        // disegno skybox se checkbox è checked
         if (document.getElementById('showSkybox').checked) {
             this.gl.drawArrays(this.gl.TRIANGLES, 0, 1 * 6);
         }

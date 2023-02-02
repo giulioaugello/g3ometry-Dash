@@ -206,6 +206,11 @@ export class Inputs {
         this.move = false;
     }
 
+    resumeSpeed() {
+        obj.speed.x = 0.15
+        this.move = true;
+    }
+
     handler() {
         // Based on queue, applies acceleration to selected axis.
         if (queue.x.n) { // space

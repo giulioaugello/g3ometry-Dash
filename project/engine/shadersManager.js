@@ -66,16 +66,20 @@ export class ShadersManager {
     // View Matrix è l'inversa della Camera Matrix
     // Ed è il nuovo sistema di riferimento
     static getViewMatrix(camera_positions, player_coords) {
-        //this.move();
-
-        let cameraMatrix = m4.lookAt(camera_positions, player_coords, this.vertexShaderParameters.cameraUp); //cameraMatrix = m4.lookAt((camera_override ? [camera_override.position.x, camera_override.position.z, camera_override.position.y * -1] : cameraPosition), cameraTar, up);
+        // cameraUp: View-Up vector
+        // cameraMatrix: posizione e orientamento della camera nel mondo
+        let cameraMatrix = m4.lookAt(camera_positions, player_coords, this.vertexShaderParameters.cameraUp);
+        // inverse: sposta tutto il resto in modo tale che la camera sia all'origine
         return m4.inverse(cameraMatrix)
     }
 
     static getProjectionMatrix(canvasClientWidth, canvasClientHeight) {
         let aspect = canvasClientWidth / canvasClientHeight;
 
-        return m4.perspective(this.degToRad(this.vertexShaderParameters.fieldOfViewDegrees), aspect, this.vertexShaderParameters.zNear, this.vertexShaderParameters.zFar);
+        // zNear: near Z clipping plane
+        // zFar: far Z clipping plane
+        return m4.perspective(this.degToRad(this.vertexShaderParameters.fieldOfViewDegrees), aspect,
+            this.vertexShaderParameters.zNear, this.vertexShaderParameters.zFar);
     }
 
     static getLightDirection() {
